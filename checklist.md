@@ -4,7 +4,7 @@
 
 图例：`[x]` 已定或已完成 / `[ ]` 待补充或待开工
 
-> 进度快照（2026-10-03 M0 批 · 下次接续点）：blocking 批、前史裁定批、M0 骨架 + 实测 + master v0.2 均落；工程仓库已成型（Vite 8 + TS 7 + React 19 + React Flow 12 + Tailwind 4；`npm run dev / build / validate / measure` 全绿）。实测修订：前史段 3 → 6.3px/年（段高 279 → 586）、主图容器 2750、前史卷 H 2160（prd2 v4 / ui-spec v0.7 / content-spec v0.8）；F-D-4 已消（master v0.2：+罗素 +EDVAC 报告、−图灵机 −ENIAC，前史孤岛清零）。M0 第三方验收 = 有条件通过，缺陷已修毕（`docs/m0-acceptance.md` §8–§9）。残留 = 理论列簇缺口 ≤ 3px + M–P 块底越段界（随 M1 肉眼闸门）。待办：① M1（20 手写节点 + 边，关键闸门 = 列对齐肉眼可辨）；② Pages source 设 "GitHub Actions"——**推送 main 前先设**，否则 `deploy.yml` 首跑失败（用户定：M1 完成后再说）。
+> 进度快照（2026-10-03 M0 批 · 下次接续点）：blocking 批、前史裁定批、M0 骨架 + 实测 + master v0.2 均落；工程仓库已成型（Vite 8 + TS 7 + React 19 + React Flow 12 + Tailwind 4；`npm run dev / build / validate / measure` 全绿）。实测修订：前史段 3 → 6.3px/年（段高 279 → 586）、主图容器 2750、前史卷 H 2160（prd2 v4 / ui-spec v0.7 / content-spec v0.8）；F-D-4 已消（master v0.2：+罗素 +EDVAC 报告、−图灵机 −ENIAC，前史孤岛清零）。M0 第三方验收 = 有条件通过，缺陷已修毕（`docs/m0-acceptance.md` §8–§9）；M0 批已提交 = `f0950ab`（未推送）。残留 = 理论列簇缺口 ≤ 3px + M–P 块底越段界（随 M1 肉眼闸门）。待办：① M1（20 手写节点 + 边，关键闸门 = 列对齐肉眼可辨）；② 首推 main 验部署链（Pages source 已设；推 `f0950ab` 即上线 M0 骨架，未推）。
 
 ## 0. 基建与仓库（2026-10-03）
 
@@ -12,7 +12,7 @@
 - [x] GitHub 仓库 `JaronTam/philo-tech`：public（免费账号 Pages 前提）
 - [x] 首提交 `0c44673` 推到 `main`，tracking 已设（`main...origin/main`）
 - [x] remote 切 SSH：`git@github.com:JaronTam/philo-tech.git`，`ls-remote` 与 `push` 均验证通过
-- [ ] Pages source = "GitHub Actions"（与 M0 的 `deploy.yml` 同批设置）
+- [x] Pages source = "GitHub Actions"——2026-10-03 用户已设（`deploy.yml` 已入库，M0 批）；首次 push main 时验证部署链
 
 ## 1. prd2 已定（实现直接引用）
 
@@ -106,7 +106,7 @@ M0 第三方验收（2026-10-03 · 报告 = `docs/m0-acceptance.md`）：
 - 事实面补核（4.1–4.3）：① 罗素 → 哥德尔（哥德尔 1931 论文标题即 Principia Mathematica，主源自证）· 罗素 → M–P（zbMATH 引文表含 Principia 1925）；② 图灵 1936 独立于哥德尔（Copeland & Fan 2022，10.1007/s00283-022-10177-y）——`哥德尔 → 图灵` 不画依据闭合；③ ABC → ENIAC（Honeywell v. Sperry Rand 1973-10-19 判决原文，国会记录 GPO-CRECB-1974-pt2）
 - 仍延后：TechBlock weight 映射（随 M1 真实数据）；节点级 `checked_at` 留痕按 content-spec §5 随 M1 执行
 
-M0 批交付物（复核用，基线 = `eef87dd`；已成批提交〔M0 批，见 `git log`〕，未推送）：
+M0 批交付物（复核用，基线 = `eef87dd`；已成批提交 = `f0950ab`，未推送）：
 
 - 文档：`docs/prd2.md`（v4）· `docs/ui-spec.md`（v0.7）· `docs/content-spec.md`（v0.8）· `docs/master-candidates.md`（v0.2）· 本 checklist
 - 代码：`src/lib/{types,volumes,layout,data}.ts` · `src/components/{GridLayer,TechBlock,Toolbar}.tsx` · `src/App.tsx` · `src/main.tsx` · `src/index.css` · `scripts/{validate,measure}.ts`
