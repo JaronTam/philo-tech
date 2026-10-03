@@ -60,6 +60,9 @@ for (const n of nodes) {
   }
   if (n.year < YEAR_MIN || n.year >= YEAR_MAX) errors.push(`[year] ${where}：${n.year} 越界`);
   if (!n.summary) errors.push(`[summary] ${where}：缺失`);
+  else if ([...n.summary].length > 60) {
+    errors.push(`[summary] ${where}：${[...n.summary].length} 字符 > 60`);
+  }
   if (!n.sources || n.sources.length < 1) errors.push(`[sources] ${where}：空`);
   if (!n.checked_at) errors.push(`[checked_at] ${where}：缺失`);
   const hit = bannedHit(n.label);

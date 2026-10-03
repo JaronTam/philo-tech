@@ -24,7 +24,7 @@
       "year": 1948,
       "weight": "major",
       "master": true,
-      "summary": "首台运行存储程序的电子计算机，1948 年 6 月 21 日执行 Kilburn 的首段程序，验证 Williams 管内存。",
+      "summary": "首台运行存储程序的电子计算机，1948 年 6 月 21 日首跑 Kilburn 程序，验证 Williams 管。",
       "concepts": ["stored program", "Williams tube", "random-access memory"],
       "people": ["Frederic Williams", "Tom Kilburn", "University of Manchester"],
       "sources": ["https://curation.cs.manchester.ac.uk/digital60/www.digital60.org/birth/how/"],

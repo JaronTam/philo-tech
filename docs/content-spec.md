@@ -13,7 +13,7 @@
 | `layer` | 枚举 `L0_hardware` … `L5_ai`（prd2 §3.3） |
 | `column` | 必须命中 §2 注册表（`PRE_theory` 层含保留列 `theory`，§4） |
 | `year` | 首个公开可用 / 规范发布年；争议年主标 = 完成或首次公开演示年，发表年入详情框备注（香农 1937 / 1938 记 1937） |
-| `summary` | ≤60 字，陈述句；不评价、不预测 |
+| `summary` | ≤60 字（含标点），陈述句；不评价、不预测；由 `validate` 强制（字符数计数） |
 | `concepts` | 3–8 个，英文原形（Self-Attention、POSIX） |
 | `people` | 机构或人物 2–4 个 |
 | `sources` | ≥1 条可点击 URL；另记 `checked_at`（核验日期，必填）与 `archive_url`（存档链接，可选）；优先级：官方文档 / 规范 > 原始论文（DOI）> 博物馆 / 百科 |
