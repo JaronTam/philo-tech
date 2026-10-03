@@ -1,10 +1,10 @@
 # 工程 Checklist
 
-状态：2026-10-03 · 依据 `docs/prd2.md`（v3 · schema v5.1）与同日审计（全文见 `subject-matter/prd.md` §13） · 远端 `git@github.com:JaronTam/philo-tech.git`（SSH）
+状态：2026-10-03 · 依据 `docs/prd2.md`（v4 · schema v5.1）与同日审计（全文见 `subject-matter/prd.md` §13） · 远端 `git@github.com:JaronTam/philo-tech.git`（SSH）
 
 图例：`[x]` 已定或已完成 / `[ ]` 待补充或待开工
 
-> 进度快照（2026-10-03 收尾 · 下次接续点）：blocking 5 项 + F-B-3 修复、§2.3 两项裁定已落；spec 版本 = prd2 v3 · schema v5.1、ui-spec v0.5、content-spec v0.6、master-candidates v0.1（44 条）。下次：① 终审勾 §2.1 / §2.2；② 拍板 §2.4 data 组织 + 内容侧两项（前史 13 选 12–15、禁用词清单定稿）；③ 然后 M0（骨架 + 实测）。
+> 进度快照（2026-10-03 M0 批 · 下次接续点）：blocking 批、前史裁定批、M0 骨架 + 实测 + master v0.2 均落；工程仓库已成型（Vite 8 + TS 7 + React 19 + React Flow 12 + Tailwind 4；`npm run dev / build / validate / measure` 全绿）。实测修订：前史段 3 → 6.3px/年（段高 279 → 586）、主图容器 2750、前史卷 H 2160（prd2 v4 / ui-spec v0.7 / content-spec v0.8）；F-D-4 已消（master v0.2：+罗素 +EDVAC 报告、−图灵机 −ENIAC，前史孤岛清零）。M0 第三方验收 = 有条件通过，缺陷已修毕（`docs/m0-acceptance.md` §8–§9）。残留 = 理论列簇缺口 ≤ 3px + M–P 块底越段界（随 M1 肉眼闸门）。待办：① M1（20 手写节点 + 边，关键闸门 = 列对齐肉眼可辨）；② Pages source 设 "GitHub Actions"——**推送 main 前先设**，否则 `deploy.yml` 首跑失败（用户定：M1 完成后再说）。
 
 ## 0. 基建与仓库（2026-10-03）
 
@@ -32,28 +32,32 @@
 
 ## 2. 待补充（动手前）
 
-> 2026-10-03：`docs/ui-spec.md` / `docs/content-spec.md` 草案已出；同日三轮回填至 v0.4（web 审计 → 4 项落定 → 4 项多信源采集：①②③维持、④ 主图改分段刻度），blocking 修复批升至 v0.5（prd2 v3）。整体审计完成（15 项 findings 登记于 §2.5）——结论：不能直接进 M0，blocking 5 项修完即动工。§2.1 / §2.2 各项经审后勾：与 blocking 相关的条目待修复后终审。
+> 2026-10-03：`docs/ui-spec.md` / `docs/content-spec.md` 草案已出；同日三轮回填至 v0.4（web 审计 → 4 项落定 → 4 项多信源采集：①②③维持、④ 主图改分段刻度），blocking 修复批升至 v0.5（prd2 v3）。整体审计完成（15 项 findings 登记于 §2.5）——结论：不能直接进 M0，blocking 5 项修完即动工。§2.1 / §2.2 各项经审后勾：与 blocking 相关的条目待修复后终审（2026-10-03 二轮：15 项全部终审勾讫）。
 
 ### 2.1 UI / 渲染规范 —— M0 前
 
-- [ ] 坐标数值表：lane 宽、column 宽、每卷 px/年、避让方向与间距（§5 "纵向或横向" 未定）
-- [ ] 节点形态：纯文本块（名字 + 灰色小字，参考图语法）还是卡片
-- [ ] 色板：`accent` 色值、背景 / 正文 / 灰字 / 泳道带 / 网格线 CSS 变量表、中文字体栈
-- [ ] 边渲染：线形（正交折线）、箭头有无、`citation` 露出方式（边 hover tooltip）
-- [ ] 详情框：容器（侧栏 / popover）、触发方式、`sources` 链接渲染
-- [ ] 交互状态优先级：搜索 / BFS / 收敛高亮的叠加与清除规则（M2 前）
-- [ ] 卷切换导航与初始视图（M3 前）
+> 2026-10-03 终审：7 项全部由 `docs/ui-spec.md` 落值（逐项勾）；终审补 3 处残留空白——详情框触发方式、三态互斥与「选中」定义、citation 可点击，已写入 ui-spec §2/§4/§5（v0.6）。
+
+- [x] 坐标数值表：lane 宽、column 宽、每卷 px/年、避让方向与间距（§5 "纵向或横向" 未定）——定：column 112px、lane 宽 = max(列数,3)×112+32、避让取纵向微调 ≤±20px（ui-spec §1）
+- [x] 节点形态：纯文本块（名字 + 灰色小字，参考图语法）还是卡片——定：纯文本块，无边框无填充（ui-spec §2）
+- [x] 色板：`accent` 色值、背景 / 正文 / 灰字 / 泳道带 / 网格线 CSS 变量表、中文字体栈——`accent = #C0392B`，9 个 token + 中西文双字体栈（ui-spec §3）
+- [x] 边渲染：线形（正交折线）、箭头有无、`citation` 露出方式（边 hover tooltip）——正交折线、无箭头、tooltip 含 citation 且 URL 可点击（ui-spec §2）
+- [x] 详情框：容器（侧栏 / popover）、触发方式、`sources` 链接渲染——右侧 360px 面板、触发 = 单击节点 / 深链、外链 `_blank`（ui-spec §4）
+- [x] 交互状态优先级：搜索 / BFS / 收敛高亮的叠加与清除规则（M2 前）——三态互斥（后启动者胜）+「选中」统一定义（ui-spec §5）
+- [x] 卷切换导航与初始视图（M3 前）——顶栏 6 项（主图 / 前史 / 卷 1–4）、初始 = 主图 fitView（ui-spec §6）
 
 ### 2.2 内容标准 —— M1 前
 
-- [ ] `column` 注册表（§9 校验依赖；M1 试排的输入）
-- [ ] 年份取值规则：以"首个公开可用版本 / 规范发布年"为准，year 与 sources 对账
+> 2026-10-03 终审：8 项全部由 `docs/content-spec.md` 落值（v0.6，label 方案前置已勾）；注册表 / 禁用词表的 data 文件仍随 M1 建（见 §2.4）。
+
+- [x] `column` 注册表（§9 校验依赖；M1 试排的输入）——6 层 19 列 + 保留列 `theory`（content-spec §2/§4）
+- [x] 年份取值规则：以"首个公开可用版本 / 规范发布年"为准，year 与 sources 对账——争议年主标 = 完成或首次公开演示年，差异入备注（content-spec §1）
 - [x] label 语言方案（§11）：label 中文 + 术语英文，或 label/labelEn 双字段（动 schema 需一并定）——定：`label` 中文主标 + `label_en` 英文全称（schema v5.1，2026-10-03）
-- [ ] summary / concepts 规格：字数上限、concepts 条数（3–8）、术语写法
-- [ ] sources / citation 格式：URL 优先？DOI / 书页？citation 是否可点击
-- [ ] 边预算：出入度上限、非源头节点 ≥1 入边、跨卷边数量与入口 / 出口标记
-- [ ] master / weight 判据：主图 ~40 节点选取、epic / major / minor 标准
-- [ ] 核验流程：写入后打开 sources 逐条确认并留痕（对症"写时未核验"）
+- [x] summary / concepts 规格：字数上限、concepts 条数（3–8）、术语写法——summary ≤60 字陈述句、concepts 3–8 条英文原形、people 2–4（content-spec §1）
+- [x] sources / citation 格式：URL 优先？DOI / 书页？citation 是否可点击——sources ≥1 可点击 URL（官方 > 原始论文 DOI > 博物馆 / 百科）；citation = 一句话依据 + 来源，含 URL 可点击（content-spec §1/§3 + ui-spec §2）
+- [x] 边预算：出入度上限、非源头节点 ≥1 入边、跨卷边数量与入口 / 出口标记——出边 ≤5、主图入边 ≤8（超限优先级截断 + `+N` 角标）、跨卷边相邻卷 3–5 条（content-spec §3）
+- [x] master / weight 判据：主图 ~40 节点选取、epic / major / minor 标准——epic ≈15 条；master = epic 或跨 ≥2 泳道枢纽，40±5（content-spec §1）
+- [x] 核验流程：写入后打开 sources 逐条确认并留痕（对症"写时未核验"）——写 → 逐条确认 → 记 `checked_at` → `npm run validate`；失效换源或补 `archive_url`（content-spec §5）
 
 ### 2.3 先决裁定 —— 写内容前
 
@@ -63,12 +67,13 @@
   - 未采信：web 回答 2（香农年份"1837"错字、Macmillan 署疑误、结构表自相矛盾、未核验仍标 95%）。
 - [x] 卷边界年份：1980 / 2000 / 2015 维持（2026-10-03 裁定）——三界对齐断层线（IBM PC 1981 / dot-com 破裂 2000 / TensorFlow、ResNet 2015 入卷 4 首）；改界将连带重算 173 年、55px/年、2360px 与 ui-spec 两表 + prd2 §9；AlexNet 2012 收在卷 3 尾段（可接受，主题词面未动）
 - [x] 淘汰分支收不收（Multics / OS/2 类）——收「有活后代的祖先」、不收「死胡同」：Multics 1969 收（→ UNIX），OS/2 1987 不收；判据落 `docs/content-spec.md` §6（v0.6）
+- [x] 前史节点定稿（2026-10-03 前史裁定）：13 条 = 理论 7（含新增 罗素《数学原理》1910–13）+ 机器 6；Z3 1941 出图（唯一孤岛）；`哥德尔 → 图灵` 不画（Copeland & Fan 2022）；多源头判据「源头 ≥1 出边」入 content-spec §3；清单入 §4（v0.7）
 
 ### 2.4 工程小项
 
-- [ ] data 组织：单 `data.json` 多人 PR 冲突 → 按卷拆分（`data/vol-1.json` …）
-- [ ] id 规则：kebab-case + 年份、全局唯一、发布后不改（深链依赖）
-- [ ] 禁用词表：显式清单文件，与 column 注册表同置
+- [x] data 组织：单 `data.json` 多人 PR 冲突 → 按卷拆分——定（2026-10-03）：`data/vol-0.json`（前史）+ `vol-1..4.json`，每卷含 `nodes` / `edges`，跨卷边归 target 卷；`data/meta.json` 放 bands / column 注册表 / 禁用词表；合并与校验构建期一次完成
+- [x] id 规则：kebab-case + 年份、全局唯一、发布后不改（深链依赖）——落 content-spec §1（2026-10-03）
+- [x] 禁用词表：显式清单文件，与 column 注册表同置（`data/meta.json`）——定稿 25 词（2026-10-03，content-spec §6 v0.8：初始 7 + 新增 18；子串匹配、拉丁大小写不敏感、机构不入表）
 - [x] prd2 修订（v3）：§4 卷表加前史卷 1854–1946；§9 并集 → [1854, 2027)（随 A1 = 1854；含卷 4 半开修正）；§4 主图「全局压缩刻度」→ 分段压缩（5 段：3/12/25/35/55 px/年，段高合计 2360px）；§3.1 渊源节点例外（F-B-3）——2026-10-03 执行
 
 ### 2.5 整体审计（2026-10-03 完成）
@@ -85,7 +90,29 @@ P1 非 blocking：
 
 - [x] F-B-3：渊源节点例外（前史卷收论文 / 著作 / 理论模型）登记进 prd2 §3.1 例外条款，入 2.4 的 prd2 v3 清单；2026-10-03 修复：`docs/prd2.md` §3.1 增例外条款（限前史卷 1854–1946）；checklist 2.4 登记
 
-P2（9 项，M1 中途修）：F-B-2（prd2 §3.2 c-family 例与注册表冲突、C# 无列）· F-B-4（checklist 2.3「主图根节点 = 布尔 + 香农」vs content-spec §3 入度 0 定义）· F-B-5（ui-spec §5 sources 空态不可达，prd2 §9 规则 2 强制 ≥1）· F-B-6（已登记 3 项修订的连带面：prd2 §4 主图年份 / §10 M0 验收 / §6 深链 `vol=` 域；§4、§10 面 2026-10-03 已修，§6 域留 P2）· F-B-7（边预算 3 条无校验器落点）· F-C-1（两份 spec H1 仍「草案 v0.2」；2026-10-03 随本批升 v0.5、prd2 升 v3）· F-E-1（ParadigmBand 渲染缺 spec）· F-E-2（深链 `vol=` 取值域未定义）· F-E-3（交互控件未定义，编辑取舍）
+二轮补充（2026-10-03 前史裁定批）：
+
+- [x] F-D-4（P1）：master 子图孤岛——裁定 ①（2026-10-03）：`docs/master-candidates.md` 升 v0.2——+罗素《数学原理》1910–13（theory）、+EDVAC 报告 1945（`L0_hardware` / `arch`）；−图灵机 1936、−ENIAC 1945（仍在前史卷 13 条内）。复验（`npm run measure`）：master 44 条下**前史孤立 = 无**；全表孤立 34 条 = 正卷边集未写（M1/M3 复跑）。
+
+M0 实测记录（2026-10-03，报告 = `npm run measure`）：
+
+- 主图分段：前史段 3 → 6.3px/年（段高 279 → 586，理论单列 6 节点堆叠）· 卷 1/2/4 段 ✓ · 卷 3 段按 LOD 主标块高 ✓（放大读、灰字显形时 Docker ↔ K8s 缺 38px，随 M1 复看）；段高合计 2360 → 2667（容器 2750，prd2 v4）；前史段主标轮缺口 59.2px 由容器余量 83px 吸收，灰字预留轮缺口 195.2px 不吸收（M1 带真实 concepts 复跑；口径已落 ui-spec §1）
+- 分卷：前史卷 H 2000 → 2160（按 13 条定稿试排，px/年 23.2；残余 = 1936–37 簇同源，需高 2170 − H 2160 ≈ 10px）· 卷 1–4 H 2000 ✓（基于 master 子集，M3 全量后复跑）
+- M1 待办（随肉眼闸门）：理论列 1936–43 簇（丘奇 λ 演算 / 香农 / M–P）微调后缺口 ≤ 3px（master v0.2 去图灵机后收窄）；`McCulloch–Pitts 神经元模型` 标签 3 行致块底越段界——M1 写作时压到 ≤ 2 行
+
+M0 第三方验收（2026-10-03 · 报告 = `docs/m0-acceptance.md`）：
+
+- 结论：有条件通过（骨架无功能缺陷）；4 项必须修 + 6 项可延后已修毕（含 convergence 校验器挪出边循环 + 回归实测：假阳消 / 真阳保留），四命令复绿（build gzip 129.9KB）
+- 事实面补核（4.1–4.3）：① 罗素 → 哥德尔（哥德尔 1931 论文标题即 Principia Mathematica，主源自证）· 罗素 → M–P（zbMATH 引文表含 Principia 1925）；② 图灵 1936 独立于哥德尔（Copeland & Fan 2022，10.1007/s00283-022-10177-y）——`哥德尔 → 图灵` 不画依据闭合；③ ABC → ENIAC（Honeywell v. Sperry Rand 1973-10-19 判决原文，国会记录 GPO-CRECB-1974-pt2）
+- 仍延后：TechBlock weight 映射（随 M1 真实数据）；节点级 `checked_at` 留痕按 content-spec §5 随 M1 执行
+
+M0 批交付物（复核用，基线 = `eef87dd`；已成批提交〔M0 批，见 `git log`〕，未推送）：
+
+- 文档：`docs/prd2.md`（v4）· `docs/ui-spec.md`（v0.7）· `docs/content-spec.md`（v0.8）· `docs/master-candidates.md`（v0.2）· 本 checklist
+- 代码：`src/lib/{types,volumes,layout,data}.ts` · `src/components/{GridLayer,TechBlock,Toolbar}.tsx` · `src/App.tsx` · `src/main.tsx` · `src/index.css` · `scripts/{validate,measure}.ts`
+- 数据 / 工程：`data/{meta,vol-0..4,master-candidates}.json` · `.github/workflows/deploy.yml` · `package.json` / `tsconfig.json` / `vite.config.ts` / `index.html` / `.gitignore`
+
+P2（8 项，M1 中途修）：F-B-2（prd2 §3.2 c-family 例与注册表冲突、C# 无列）· F-B-4（2026-10-03 前史裁定已消：术语拆分——「图论源头」〔前史 6 条〕vs「主图前史入口」渲染标记；content-spec §3 改写）· F-B-5（ui-spec §5 sources 空态不可达，prd2 §9 规则 2 强制 ≥1）· F-B-6（已登记 3 项修订的连带面：prd2 §4 主图年份 / §10 M0 验收 / §6 深链 `vol=` 域；§4、§10 面 2026-10-03 已修，§6 域留 P2）· F-B-7（边预算 3 条无校验器落点）· F-C-1（两份 spec H1 仍「草案 v0.2」；2026-10-03 随本批升 v0.5、prd2 升 v3）· F-E-1（ParadigmBand 渲染缺 spec）· F-E-2（深链 `vol=` 取值域未定义）· F-E-3（交互控件未定义，编辑取舍）
 
 押后登记（2026-10-03：终裁未决 / 递延项，一律不勾）：
 
@@ -93,7 +120,7 @@ P2（9 项，M1 中途修）：F-B-2（prd2 §3.2 c-family 例与注册表冲突
 - Node.js 归属终裁（现 `L4-web`）——死线 = 写该节点前（M1 / M3）；改判面 3 处（content-spec §2 判据行、节点列值、候选表 #30）
 - prd2 §0 / §2「1947–2026」表述 + §11 已定行（起点年份 / 双语标签 / 淘汰分支）同步——随 F-B-6 §6 深链面同批（M1 中途 P2）
 - 年份抽查（PyTorch 2016、WWW 1991、IC / TPU / ENIAC 备注项）——随 content-spec §5 核验流程 M1 兜底；PyTorch 若改 2017，重跑卷 4 段 TF↔PyTorch 间距判定
-- 前史单列 x 槽位（ui-spec 未写）——最迟 M3 主图前补
+- ~~前史单列 x 槽位（ui-spec 未写）~~——2026-10-03 M0 已补：视图含理论节点时最左增设 144px 单列（ui-spec §1 v0.7 + `src/lib/layout.ts`）
 
 已登记项（审计标「已登记」，非新发现，不入 findings）：注册表 / 禁用词表的 data 文件未建（checklist 2.4，随 M1 建）
 
@@ -107,10 +134,10 @@ P2（9 项，M1 中途修）：F-B-2（prd2 §3.2 c-family 例与注册表冲突
 
 ## 4. 里程碑（prd2 §10）
 
-- [ ] M0 骨架页：纵轴刻度 + 6 泳道带 + 时间网格
+- [x] M0 骨架页：纵轴刻度 + 6 泳道带 + 时间网格——2026-10-03 完成：Vite 8 + TS 7 + React 19 + React Flow 12 + Tailwind 4 脚手架；主图 / 前史 / 卷 1–4 六视图（主图分段刻度）；master 候选表试排开关；`validate` / `measure` 脚本；`deploy.yml`（prd2 §8）已入库。验收：刻度与年份对得上、泳道分隔可辨（dev 实测截图核对）。残留 = ↑快照所列 3 项。
 - [ ] M1 20 个手写节点 + 边（关键闸门：语义列对齐肉眼可辨）
 - [ ] M2 交互四项（BFS < 100ms @ 250 节点）
 - [ ] M3 主图 + 4 卷，150–250 节点（validate 全绿）
 - [ ] M4 部署 GitHub Pages（深链可分享）
 
-开工顺序：specs v0.5–v0.6（2026-10-03 已出并随两批升版，§2.1 / §2.2 全覆盖）→ 整体审计（2026-10-03 完成，见 §2.5）→ 修 blocking 5 项（2026-10-03 完成）→ 终审勾 §2.1 / §2.2 → B4 等余项回填 → M0 → M1。
+开工顺序：specs v0.5–v0.7（2026-10-03 已出并随四批升版，§2.1 / §2.2 全覆盖）→ 整体审计（2026-10-03 完成，见 §2.5）→ 修 blocking 5 项（2026-10-03 完成）→ 终审勾 §2.1 / §2.2（2026-10-03 二轮完成）→ §2.4 裁定 + 前史定稿（2026-10-03 二轮完成）→ 禁用词清单定稿（2026-10-03）→ M0（2026-10-03 完成：骨架 + 实测）→ M1。

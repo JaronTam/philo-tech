@@ -6,3 +6,6 @@ dist/
 subject-matter/*.jpg
 subject-matter/qa.md
 subject-matter/prd.md
+
+# 本地浏览器取证
+.playwright-mcp/

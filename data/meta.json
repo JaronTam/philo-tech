@@ -1,0 +1,38 @@
+{
+  "columns": {
+    "L0_hardware": ["device", "arch", "accelerator"],
+    "L1_system": ["os", "net"],
+    "L2_language": ["c-family", "lisp-family", "ml-family", "jvm-family", "toolchain", "scripting"],
+    "L3_data": ["relational", "nosql", "distributed"],
+    "L4_delivery": ["web", "container", "cloud-api"],
+    "L5_ai": ["nn", "framework"]
+  },
+  "bannedWords": [
+    "云计算",
+    "SaaS",
+    "连接主义",
+    "面向对象",
+    "LLM Agents",
+    "向量数据库",
+    "微服务",
+    "人工智能",
+    "机器学习",
+    "深度学习",
+    "神经网络",
+    "大数据",
+    "物联网",
+    "移动互联网",
+    "元宇宙",
+    "区块链",
+    "AGI",
+    "Web 2.0",
+    "PaaS",
+    "IaaS",
+    "开源",
+    "DevOps",
+    "Serverless",
+    "边缘计算",
+    "低代码"
+  ],
+  "bands": []
+}

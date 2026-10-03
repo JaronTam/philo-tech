@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+@import '@xyflow/react/dist/style.css';
+
+/* 色板 token：ui-spec §3 */
+:root {
+  --bg: #fafaf8;
+  --ink: #1a1a1a;
+  --ink-soft: #6b6b6b;
+  --lane-a: #f4f4f0;
+  --lane-b: #fafaf8;
+  --grid: #e8e8e4;
+  --rule: #d9d9d4;
+  --accent: #c0392b;
+  --link: #2a6fbb;
+  --dim: #b8b8b2;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    system-ui,
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    'Noto Sans CJK SC',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.react-flow__attribution {
+  background: transparent;
+}
