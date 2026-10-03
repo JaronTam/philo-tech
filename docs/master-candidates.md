@@ -1,24 +1,24 @@
 # Master 候选表（M0 试排输入）
 
-状态：2026-10-03 · v0.2 · 依据 checklist §2.5 F-D-2 / F-D-4 与 ui-spec §1 主图实测（M0）· 与 prd2 冲突时以 prd2 为准
+状态：2026-10-04 · v0.3（F-D-3 终裁：theory 行 `layer` 改 `PRE_theory` 哨兵层）· v0.2（F-D-4：+罗素 +EDVAC 报告、−图灵机 −ENIAC）· 依据 checklist §2.5 F-D-2 / F-D-4 与 ui-spec §1 主图实测 · 与 prd2 冲突时以 prd2 为准
 
 - 判据（content-spec §1）：`weight=epic`，或跨 ≥2 泳道的枢纽；主图目标 40±5 条，本表 44 条候选（ui-spec §7 主图上限 ≤45）。
 - 取材：prd2 §3.1 正例、content-spec §4 前史候选池（布尔 / 图灵 / 香农等已定项直接入选）、content-spec §2 注册表列。
 - 年份口径（content-spec §1）：首个公开可用 / 规范发布年；争议年主标取完成或首次公开演示年，差异入备注。拿不准的标「年份待核」不编数——本版无待核项。
 - 高危段覆盖（M0 实测重点）：卷 3 段 [2000, 2015) 10 条；卷 4 段 [2015, 2027) 10 条。
-- 前史理论节点（†）：`layer` 取占位值 `L0_hardware`、`column` 取保留列名 `theory`，渲染走前史单列（content-spec §4）。
+- 前史理论节点（†）：`layer` = `PRE_theory`（哨兵层）、`column` = `theory`，渲染走前史单列（content-spec §4，v0.3 起）。
 - 卷界口径：半开 [start, end)，末卷含 2026（[2015, 2027) = 12 年；见 ui-spec §1）。
 - **v0.2（2026-10-03，F-D-4 裁定 ①）**：+罗素《数学原理》1910–13（† theory）、+EDVAC 报告 1945（`L0_hardware` / `arch`）；−图灵机 1936、−ENIAC 1945——两者主图边端点（哥德尔链 / ABC）均非 master，留在主图即成孤点；节点本身仍在前史卷 13 条定稿内（content-spec §4）。改后主图前史段孤岛清零。
 
 | # | label | layer | column | year | 备注 |
 |---:|---|---|---|---:|---|
-| 1 | 布尔《思维规律研究》 | L0_hardware † | theory | 1854 | 源头（入度 0） |
-| 2 | 罗素《数学原理》 | L0_hardware † | theory | 1910 | 源头；1910–13 三卷，取首卷 |
-| 3 | 哥德尔不完备定理 | L0_hardware † | theory | 1931 | |
-| 4 | 丘奇 λ 演算 | L0_hardware † | theory | 1936 | |
-| 5 | 香农开关电路论文 | L0_hardware † | theory | 1937 | 由 布尔 → 香农（conceptual_inf）入边，非源头 |
-| 6 | McCulloch–Pitts 神经元模型 | L0_hardware † | theory | 1943 | |
-| 7 | EDVAC 报告 | L0_hardware | arch | 1945 | 存储程序体系结构规范；层 / 列映射随 M1 写作规范复核 |
+| 1 | 布尔《思维规律研究》 | PRE_theory † | theory | 1854 | 源头（入度 0） |
+| 2 | 罗素《数学原理》 | PRE_theory † | theory | 1910 | 源头；1910–13 三卷，取首卷 |
+| 3 | 哥德尔不完备定理 | PRE_theory † | theory | 1931 | |
+| 4 | 丘奇 λ 演算 | PRE_theory † | theory | 1936 | |
+| 5 | 香农开关电路论文 | PRE_theory † | theory | 1937 | 由 布尔 → 香农（conceptual_inf）入边，非源头 |
+| 6 | McCulloch–Pitts 神经元模型 | PRE_theory † | theory | 1943 | M1 数据落文时标签压为「McCulloch–Pitts 模型」（块高 ≤2 行） |
+| 7 | EDVAC 报告 | L0_hardware | arch | 1945 | 存储程序体系结构规范；层 / 列映射 M1 复核维持 L0_hardware / arch |
 | 8 | 晶体管 | L0_hardware | device | 1947 | 首演 1947-12-16（checklist 2.3 裁决） |
 | 9 | Manchester Baby | L0_hardware | device | 1948 | EDVAC 报告 1945 → Baby（enables） |
 | 10 | LISP | L2_language | lisp-family | 1958 | |

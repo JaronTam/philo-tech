@@ -1,10 +1,10 @@
 # 工程 Checklist
 
-状态：2026-10-03 · 依据 `docs/prd2.md`（v4 · schema v5.1）与同日审计（全文见 `subject-matter/prd.md` §13） · 远端 `git@github.com:JaronTam/philo-tech.git`（SSH）
+状态：2026-10-04 · 依据 `docs/prd2.md`（v5 · schema v5.2）与审计（全文见 `subject-matter/prd.md` §13） · 远端 `git@github.com:JaronTam/philo-tech.git`（SSH）
 
 图例：`[x]` 已定或已完成 / `[ ]` 待补充或待开工
 
-> 进度快照（2026-10-03 M0 批 · 下次接续点）：blocking 批、前史裁定批、M0 骨架 + 实测 + master v0.2 均落；工程仓库已成型（Vite 8 + TS 7 + React 19 + React Flow 12 + Tailwind 4；`npm run dev / build / validate / measure` 全绿）。实测修订：前史段 3 → 6.3px/年（段高 279 → 586）、主图容器 2750、前史卷 H 2160（prd2 v4 / ui-spec v0.7 / content-spec v0.8）；F-D-4 已消（master v0.2：+罗素 +EDVAC 报告、−图灵机 −ENIAC，前史孤岛清零）。M0 第三方验收 = 有条件通过，缺陷已修毕（`docs/m0-acceptance.md` §8–§9）；M0 批已提交 = `f0950ab`（未推送）。残留 = 理论列簇缺口 ≤ 3px + M–P 块底越段界（随 M1 肉眼闸门）。待办：① M1（20 手写节点 + 边，关键闸门 = 列对齐肉眼可辨）；② 首推 main 验部署链（Pages source 已设；推 `f0950ab` 即上线 M0 骨架，未推）。
+> 进度快照（2026-10-04 M1 批 · 下次接续点）：M1 完成——20 手写节点 + 16 条边落 `data/vol-0.json` / `vol-1.json`（前史 13 定稿全写 + 卷 1 七条闭合集），`validate` 全绿（含新增 2 条校验）、`measure` 真实数据复跑、列对齐肉眼闸门通过（DOM 断言 + dev 截图复核，六视图无 console error）。编码终裁落地：F-D-3 = `PRE_theory` 哨兵层（schema v5.2，数据不再谎报泳道）；F-B-2 / F-B-5 / F-B-6（含 §0/§2/§11 连带）/ F-B-7 / F-E-1 随批修毕。实测修订：前史段 6.3 → 6.8px/年（段高 632.4；主标轮越段 31.2px 由容器余量 2800 − 2713 = 87px 吸收）、理论列 ≤3px 缺口清零、前史卷 H 2160 维持（prd2 v5 / ui-spec v0.9 / content-spec v0.9）。新增机制：灰字降级（两遍放置，缺口节点去 concepts，实排余违规 1 处 7.5px 行盒级）。待办：① M2 交互四项（BFS < 100ms @ 250 节点；或按裁定先 M3 全量数据）；② M3 全量 150–250 节点（含 theory 列 1936–43 簇复跑、前史卷 / 卷 1–4 全量表）；③ 推送 = 待裁定（M1 数据上线会覆盖 M0 骨架）。
 
 ## 0. 基建与仓库（2026-10-03）
 
@@ -12,7 +12,7 @@
 - [x] GitHub 仓库 `JaronTam/philo-tech`：public（免费账号 Pages 前提）
 - [x] 首提交 `0c44673` 推到 `main`，tracking 已设（`main...origin/main`）
 - [x] remote 切 SSH：`git@github.com:JaronTam/philo-tech.git`，`ls-remote` 与 `push` 均验证通过
-- [x] Pages source = "GitHub Actions"——2026-10-03 用户已设（`deploy.yml` 已入库，M0 批）；首次 push main 时验证部署链
+- [x] Pages source = "GitHub Actions"——2026-10-03 用户已设；首跑验证 = push `b52eed2` → run `37128586547` success → 站点 `https://jarontam.github.io/philo-tech/` HTTP 200（资源路径正确）
 
 ## 1. prd2 已定（实现直接引用）
 
@@ -98,7 +98,15 @@ M0 实测记录（2026-10-03，报告 = `npm run measure`）：
 
 - 主图分段：前史段 3 → 6.3px/年（段高 279 → 586，理论单列 6 节点堆叠）· 卷 1/2/4 段 ✓ · 卷 3 段按 LOD 主标块高 ✓（放大读、灰字显形时 Docker ↔ K8s 缺 38px，随 M1 复看）；段高合计 2360 → 2667（容器 2750，prd2 v4）；前史段主标轮缺口 59.2px 由容器余量 83px 吸收，灰字预留轮缺口 195.2px 不吸收（M1 带真实 concepts 复跑；口径已落 ui-spec §1）
 - 分卷：前史卷 H 2000 → 2160（按 13 条定稿试排，px/年 23.2；残余 = 1936–37 簇同源，需高 2170 − H 2160 ≈ 10px）· 卷 1–4 H 2000 ✓（基于 master 子集，M3 全量后复跑）
-- M1 待办（随肉眼闸门）：理论列 1936–43 簇（丘奇 λ 演算 / 香农 / M–P）微调后缺口 ≤ 3px（master v0.2 去图灵机后收窄）；`McCulloch–Pitts 神经元模型` 标签 3 行致块底越段界——M1 写作时压到 ≤ 2 行
+- M1 待办（随肉眼闸门）：理论列 1936–43 簇（丘奇 λ 演算 / 香农 / M–P）微调后缺口 ≤ 3px（master v0.2 去图灵机后收窄）；`McCulloch–Pitts 神经元模型` 标签 3 行致块底越段界——M1 写作时压到 ≤ 2 行 → **2026-10-04 落定：见下「M1 实测记录」**
+
+M1 实测记录（2026-10-04 · 输入 = 真实数据 20 节点 / 16 边 · 报告 = `npm run measure`）：
+
+- 主图前史段 6.3 → 6.8px/年（段高 632.4）：主标轮需高 663.6，越段 31.2px = `McCulloch–Pitts 模型` 块底（理论列下方空列，无碰撞）→ 由容器余量吸收（2800 − 2713.4 = 86.6px）；理论列 1936–43 簇缺口清零（0 违规）；卷 1 段 ✓（主标轮 308 / 396）；卷 2–4 段空（本批无数据）。容器 2750 → 2800。
+- 前史卷 H 2160 维持 ✓（主标轮需高 2150.3，0 违规）；卷 1 H 2000 ✓（1474.5）；逐条 sources 核验（checked_at = 2026-10-04；DOI ×8 解析 302 全通，官方 / 博物馆页 200）。
+- 带 concepts 轮结构性缺口（±20px 上限之外）：主图理论簇 3 处、卷 1 段 device 1 处、前史卷 4 处 → 落实「灰字降级」机制（两遍放置：缺口节点去 concepts 重排）；实排余违规 = 前史卷 Colossus ↔ Harvard Mark I 7.5px（行盒级，12px 字号 + 20px 行高下字形不碰，接受）。
+- `validate`：20 / 16 全绿（新增校验：主图入边 ≤8、相邻卷跨卷边 ≤5 = 5 条 ✓）；`build` gzip 135.1KB（< 500 预算）；六视图（主图 / 前史 / 卷 1–4）dev 无 console error。
+- 列对齐肉眼闸门（DOM 断言 + 截图复核）：theory 列 6 条同 x、device 列 4 条同 x、arch / lisp-family 各归列；同列边走右侧旁路、跨列边走横-竖-横；LOD 生效（fitView 0.29 隐藏灰字、0.79 显形、minor 0.5 以下隐藏）。
 
 M0 第三方验收（2026-10-03 · 报告 = `docs/m0-acceptance.md`）：
 
@@ -106,20 +114,20 @@ M0 第三方验收（2026-10-03 · 报告 = `docs/m0-acceptance.md`）：
 - 事实面补核（4.1–4.3）：① 罗素 → 哥德尔（哥德尔 1931 论文标题即 Principia Mathematica，主源自证）· 罗素 → M–P（zbMATH 引文表含 Principia 1925）；② 图灵 1936 独立于哥德尔（Copeland & Fan 2022，10.1007/s00283-022-10177-y）——`哥德尔 → 图灵` 不画依据闭合；③ ABC → ENIAC（Honeywell v. Sperry Rand 1973-10-19 判决原文，国会记录 GPO-CRECB-1974-pt2）
 - 仍延后：TechBlock weight 映射（随 M1 真实数据）；节点级 `checked_at` 留痕按 content-spec §5 随 M1 执行
 
-M0 批交付物（复核用，基线 = `eef87dd`；已成批提交 = `f0950ab`，未推送）：
+M0 批交付物（复核用，基线 = `eef87dd`；已成批推送 = `f0950ab` + `b52eed2`）：
 
 - 文档：`docs/prd2.md`（v4）· `docs/ui-spec.md`（v0.7）· `docs/content-spec.md`（v0.8）· `docs/master-candidates.md`（v0.2）· 本 checklist
 - 代码：`src/lib/{types,volumes,layout,data}.ts` · `src/components/{GridLayer,TechBlock,Toolbar}.tsx` · `src/App.tsx` · `src/main.tsx` · `src/index.css` · `scripts/{validate,measure}.ts`
 - 数据 / 工程：`data/{meta,vol-0..4,master-candidates}.json` · `.github/workflows/deploy.yml` · `package.json` / `tsconfig.json` / `vite.config.ts` / `index.html` / `.gitignore`
 
-P2（8 项，M1 中途修）：F-B-2（prd2 §3.2 c-family 例与注册表冲突、C# 无列）· F-B-4（2026-10-03 前史裁定已消：术语拆分——「图论源头」〔前史 6 条〕vs「主图前史入口」渲染标记；content-spec §3 改写）· F-B-5（ui-spec §5 sources 空态不可达，prd2 §9 规则 2 强制 ≥1）· F-B-6（已登记 3 项修订的连带面：prd2 §4 主图年份 / §10 M0 验收 / §6 深链 `vol=` 域；§4、§10 面 2026-10-03 已修，§6 域留 P2）· F-B-7（边预算 3 条无校验器落点）· F-C-1（两份 spec H1 仍「草案 v0.2」；2026-10-03 随本批升 v0.5、prd2 升 v3）· F-E-1（ParadigmBand 渲染缺 spec）· F-E-2（深链 `vol=` 取值域未定义）· F-E-3（交互控件未定义，编辑取舍）
+P2（8 项，M1 中途修 —— 2026-10-04 M1 批处置完毕）：F-B-2（**已修**：prd2 §3.2 c-family 示例对齐注册表——C/C++；Java → jvm-family；C# 暂无槽位、收录前先改注册表）· F-B-4（2026-10-03 前史裁定已消：术语拆分——「图论源头」〔前史 6 条〕vs「主图前史入口」渲染标记；content-spec §3 改写）· F-B-5（**已修**：ui-spec §5 空态标注「防御性、正常数据不可达」）· F-B-6（**已修**：§6 深链 `vol=` 域定 `main|pre|v1..v4`〔缺省 main〕；§0 / §2 年份表述改 1854–2026；§11 已定项登记）· F-B-7（**已修**：validate.ts 落 2 条——主图入边 ≤8、相邻卷跨卷边 ≤5〔下限 3 建设期降 warn〕）· F-C-1（**已修**：两份 spec H1 随 M0 修复批升版）· F-E-1（**已修**：ui-spec §2 补 ParadigmBand 渲染一句）· F-E-2（**已修**：同 F-B-6 §6 域）· F-E-3（**留 M2**：交互控件布局随交互四项一并定）
 
 押后登记（2026-10-03：终裁未决 / 递延项，一律不勾）：
 
-- F-D-3 编码终裁（`theory` + `L0_hardware` 占位 vs 哨兵枚举）——死线 = M1 写前史节点前；改判面 3 处（content-spec §4 一行、prd2 §3.3 枚举、master-candidates 6 行）
+- ~~F-D-3 编码终裁（`theory` + `L0_hardware` 占位 vs 哨兵枚举）~~——2026-10-04 裁定：**哨兵枚举** `PRE_theory`（schema v5.2；改判面 5 处已同步：content-spec §4 / prd2 §3.3 / master-candidates v0.3 六行 / types.ts + meta.json / validate.ts 去特判）
 - Node.js 归属终裁（现 `L4-web`）——死线 = 写该节点前（M1 / M3）；改判面 3 处（content-spec §2 判据行、节点列值、候选表 #30）
 - prd2 §0 / §2「1947–2026」表述 + §11 已定行（起点年份 / 双语标签 / 淘汰分支）同步——随 F-B-6 §6 深链面同批（M1 中途 P2）
-- 年份抽查（PyTorch 2016、WWW 1991、IC / TPU / ENIAC 备注项）——随 content-spec §5 核验流程 M1 兜底；PyTorch 若改 2017，重跑卷 4 段 TF↔PyTorch 间距判定
+- 年份抽查（PyTorch 2016、WWW 1991、IC / TPU / ENIAC 备注项）——随 content-spec §5 核验流程 M1 兜底；PyTorch 若改 2017，重跑卷 4 段 TF↔PyTorch 间距判定。〔2026-10-04 部分：集成电路 1958（Kilby 1958-09-12 演示，TI 官方史）、ENIAC 1945（Penn 工程史页）已随 M1 核验；PyTorch / WWW / TPU 不在 M1 切片，留 M3 写作时核〕
 - ~~前史单列 x 槽位（ui-spec 未写）~~——2026-10-03 M0 已补：视图含理论节点时最左增设 144px 单列（ui-spec §1 v0.7 + `src/lib/layout.ts`）
 
 已登记项（审计标「已登记」，非新发现，不入 findings）：注册表 / 禁用词表的 data 文件未建（checklist 2.4，随 M1 建）
@@ -135,9 +143,9 @@ P2（8 项，M1 中途修）：F-B-2（prd2 §3.2 c-family 例与注册表冲突
 ## 4. 里程碑（prd2 §10）
 
 - [x] M0 骨架页：纵轴刻度 + 6 泳道带 + 时间网格——2026-10-03 完成：Vite 8 + TS 7 + React 19 + React Flow 12 + Tailwind 4 脚手架；主图 / 前史 / 卷 1–4 六视图（主图分段刻度）；master 候选表试排开关；`validate` / `measure` 脚本；`deploy.yml`（prd2 §8）已入库。验收：刻度与年份对得上、泳道分隔可辨（dev 实测截图核对）。残留 = ↑快照所列 3 项。
-- [ ] M1 20 个手写节点 + 边（关键闸门：语义列对齐肉眼可辨）
+- [x] M1 20 个手写节点 + 边（关键闸门：语义列对齐肉眼可辨）——2026-10-04 完成：前史 13 定稿全写 + 卷 1 七条（闭合集：晶体管 / Baby / Mark 1 / 集成电路 / 感知机 / LISP / Intel 4004）落 `data/vol-0.json` / `vol-1.json`；16 条边（跨卷 5）；`validate` 全绿；列对齐 DOM 断言（theory 6 条同 x = 569、device 4 条同 x = 611）+ dev 截图复核（0.79–1.03 缩放）；六视图无 console error；build gzip 135.1KB
 - [ ] M2 交互四项（BFS < 100ms @ 250 节点）
 - [ ] M3 主图 + 4 卷，150–250 节点（validate 全绿）
-- [ ] M4 部署 GitHub Pages（深链可分享）
+- [ ] M4 部署 GitHub Pages（深链可分享）——部署链 2026-10-03 已提前验证（run `37128586547`）；M4 剩 = 全量数据上线 + 深链可用
 
-开工顺序：specs v0.5–v0.7（2026-10-03 已出并随四批升版，§2.1 / §2.2 全覆盖）→ 整体审计（2026-10-03 完成，见 §2.5）→ 修 blocking 5 项（2026-10-03 完成）→ 终审勾 §2.1 / §2.2（2026-10-03 二轮完成）→ §2.4 裁定 + 前史定稿（2026-10-03 二轮完成）→ 禁用词清单定稿（2026-10-03）→ M0（2026-10-03 完成：骨架 + 实测）→ M1。
+开工顺序：specs v0.5–v0.7（2026-10-03 已出并随四批升版，§2.1 / §2.2 全覆盖）→ 整体审计（2026-10-03 完成，见 §2.5）→ 修 blocking 5 项（2026-10-03 完成）→ 终审勾 §2.1 / §2.2（2026-10-03 二轮完成）→ §2.4 裁定 + 前史定稿（2026-10-03 二轮完成）→ 禁用词清单定稿（2026-10-03）→ M0（2026-10-03 完成：骨架 + 实测）→ M1（2026-10-04 完成：20 节点 + 边 + 列对齐闸门）。
