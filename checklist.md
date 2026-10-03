@@ -4,7 +4,7 @@
 
 图例：`[x]` 已定或已完成 / `[ ]` 待补充或待开工
 
-> 进度快照（2026-10-04 M1 批 · 下次接续点）：M1 完成——20 手写节点 + 16 条边落 `data/vol-0.json` / `vol-1.json`（前史 13 定稿全写 + 卷 1 七条闭合集），`validate` 全绿（含新增 2 条校验）、`measure` 真实数据复跑、列对齐肉眼闸门通过（DOM 断言 + dev 截图复核，六视图无 console error）。编码终裁落地：F-D-3 = `PRE_theory` 哨兵层（schema v5.2，数据不再谎报泳道）；F-B-2 / F-B-5 / F-B-6（含 §0/§2/§11 连带）/ F-B-7 / F-E-1 随批修毕。实测修订：前史段 6.3 → 6.8px/年（段高 632.4；主标轮越段 31.2px 由容器余量 2800 − 2713 = 87px 吸收）、理论列 ≤3px 缺口清零、前史卷 H 2160 维持（prd2 v5 / ui-spec v0.9 / content-spec v0.9）。新增机制：灰字降级（两遍放置，缺口节点去 concepts，实排余违规 1 处 7.5px 行盒级）。待办：① M2 交互四项（BFS < 100ms @ 250 节点；或按裁定先 M3 全量数据）；② M3 全量 150–250 节点（含 theory 列 1936–43 簇复跑、前史卷 / 卷 1–4 全量表）；③ 推送 = 待裁定（M1 数据上线会覆盖 M0 骨架）。M1 第三方验收 = `[STATUS: AC]`（`docs/m1-acceptance.md`；B1 已修 + 校验器补位，B2 排期 M2，B3 登记）。
+> 进度快照（2026-10-04 M1 批 · 下次接续点）：M1 完成——20 手写节点 + 16 条边落 `data/vol-0.json` / `vol-1.json`（前史 13 定稿全写 + 卷 1 七条闭合集），`validate` 全绿（含新增 2 条校验）、`measure` 真实数据复跑、列对齐肉眼闸门通过（DOM 断言 + dev 截图复核，六视图无 console error）。编码终裁落地：F-D-3 = `PRE_theory` 哨兵层（schema v5.2，数据不再谎报泳道）；F-B-2 / F-B-5 / F-B-6（含 §0/§2/§11 连带）/ F-B-7 / F-E-1 随批修毕。实测修订：前史段 6.3 → 6.8px/年（段高 632.4；主标轮越段 31.2px 由容器余量 2800 − 2713 = 87px 吸收）、理论列 ≤3px 缺口清零、前史卷 H 2160 维持（prd2 v5 / ui-spec v0.9 / content-spec v0.9）。新增机制：灰字降级（两遍放置，缺口节点去 concepts，实排余违规 1 处 7.5px 行盒级）。待办：① M2 交互四项（BFS < 100ms @ 250 节点；或按裁定先 M3 全量数据）；② M3 全量 150–250 节点（含 theory 列 1936–43 簇复跑、前史卷 / 卷 1–4 全量表）；③ 推送 = 待裁定（M1 数据上线会覆盖 M0 骨架）。M1 第三方验收 = `[STATUS: AC]`（`docs/m1-acceptance.md`；B1 已修 + 校验器补位，B2 排期 M2，B3 登记）。M1 批 4 提交 = `da20600`（feat）+ `400e9d3`（docs）+ `12ad43b`（B1 修复）+ `f3ae01e`（§8 修复记录 + measure 措辞），未推送。
 
 ## 0. 基建与仓库（2026-10-03）
 
@@ -126,6 +126,12 @@ M0 批交付物（复核用，基线 = `eef87dd`；已成批推送 = `f0950ab` +
 - 文档：`docs/prd2.md`（v4）· `docs/ui-spec.md`（v0.7）· `docs/content-spec.md`（v0.8）· `docs/master-candidates.md`（v0.2）· 本 checklist
 - 代码：`src/lib/{types,volumes,layout,data}.ts` · `src/components/{GridLayer,TechBlock,Toolbar}.tsx` · `src/App.tsx` · `src/main.tsx` · `src/index.css` · `scripts/{validate,measure}.ts`
 - 数据 / 工程：`data/{meta,vol-0..4,master-candidates}.json` · `.github/workflows/deploy.yml` · `package.json` / `tsconfig.json` / `vite.config.ts` / `index.html` / `.gitignore`
+
+M1 批交付物（复核用，基线 = `b52eed2`；已成批提交 = `da20600` + `400e9d3` + `12ad43b` + `f3ae01e`，未推送）：
+
+- 文档：`docs/prd2.md`（v5 · schema v5.2）· `docs/ui-spec.md`（v0.9）· `docs/content-spec.md`（v0.9）· `docs/master-candidates.md`（v0.3）· `docs/m1-acceptance.md`（含 §8 修复记录）· 本 checklist
+- 代码：`src/components/TechEdge.tsx`（新增）· `src/App.tsx` · `src/components/{TechBlock,Toolbar}.tsx` · `src/lib/{types,volumes,layout,data}.ts` · `scripts/{validate,measure}.ts`
+- 数据：`data/vol-0.json`（13 节点 / 8 边）· `data/vol-1.json`（7 节点 / 8 边）· `data/meta.json`（+`PRE_theory` 注册列）· `data/master-candidates.json`（theory 行改 `PRE_theory`）
 
 P2（8 项，M1 中途修 —— 2026-10-04 M1 批处置完毕）：F-B-2（**已修**：prd2 §3.2 c-family 示例对齐注册表——C/C++；Java → jvm-family；C# 暂无槽位、收录前先改注册表）· F-B-4（2026-10-03 前史裁定已消：术语拆分——「图论源头」〔前史 6 条〕vs「主图前史入口」渲染标记；content-spec §3 改写）· F-B-5（**已修**：ui-spec §5 空态标注「防御性、正常数据不可达」）· F-B-6（**已修**：§6 深链 `vol=` 域定 `main|pre|v1..v4`〔缺省 main〕；§0 / §2 年份表述改 1854–2026；§11 已定项登记）· F-B-7（**已修**：validate.ts 落 2 条——主图入边 ≤8、相邻卷跨卷边 ≤5〔下限 3 建设期降 warn〕）· F-C-1（**已修**：两份 spec H1 随 M0 修复批升版）· F-E-1（**已修**：ui-spec §2 补 ParadigmBand 渲染一句）· F-E-2（**已修**：同 F-B-6 §6 域）· F-E-3（**留 M2**：交互控件布局随交互四项一并定）
 
