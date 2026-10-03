@@ -1,0 +1,8 @@
+# 依赖与构建产物
+node_modules/
+dist/
+
+# subject-matter：第三方素材与过程记录，不入公开仓库
+subject-matter/*.jpg
+subject-matter/qa.md
+subject-matter/prd.md
