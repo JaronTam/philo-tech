@@ -5,7 +5,8 @@ export type Layer =
   | 'L2_language'
   | 'L3_data'
   | 'L4_delivery'
-  | 'L5_ai';
+  | 'L5_ai'
+  | 'PRE_theory'; // 前史渊源层（哨兵，非泳道）：仅 theory 单列，限 year < 1947（content-spec §4）
 
 export type Relation =
   | 'enables'
@@ -60,15 +61,5 @@ export interface MetaFile {
 
 export type VolumeKey = 'main' | 'pre' | 'v1' | 'v2' | 'v3' | 'v4';
 
-// 前史理论节点使用保留列名 theory + 占位 layer（content-spec §4）
+// 前史理论节点：layer = PRE_theory、column = theory 单列（content-spec §4）
 export const THEORY_COLUMN = 'theory';
-
-/** M0 实测输入（docs/master-candidates.md 的 JSON 版；字段限表内三列 + 备注） */
-export interface MasterCandidate {
-  label: string;
-  layer: Layer;
-  column: string;
-  year: number;
-  note?: string;
-  theory?: boolean;
-}

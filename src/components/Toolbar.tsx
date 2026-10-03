@@ -4,11 +4,9 @@ import type { VolumeKey } from '../lib/types';
 interface Props {
   viewKey: VolumeKey;
   onView: (k: VolumeKey) => void;
-  fixture: boolean;
-  onFixture: (v: boolean) => void;
 }
 
-export function Toolbar({ viewKey, onView, fixture, onFixture }: Props) {
+export function Toolbar({ viewKey, onView }: Props) {
   return (
     <header
       style={{
@@ -46,24 +44,6 @@ export function Toolbar({ viewKey, onView, fixture, onFixture }: Props) {
           {v.title}
         </button>
       ))}
-      <label
-        style={{
-          marginLeft: 'auto',
-          fontSize: 12,
-          color: 'var(--ink-soft)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 6,
-          cursor: 'pointer',
-        }}
-      >
-        <input
-          type="checkbox"
-          checked={fixture}
-          onChange={(e) => onFixture(e.target.checked)}
-        />
-        试排：master 候选表（M0 实测）
-      </label>
     </header>
   );
 }

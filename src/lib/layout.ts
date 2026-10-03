@@ -1,4 +1,4 @@
-import type { Layer, MasterCandidate } from './types';
+import type { Layer } from './types';
 import { THEORY_COLUMN } from './types';
 import { linearRate, type Segment, type VolumeDef } from './volumes';
 
@@ -111,11 +111,16 @@ export function ticksFor(def: VolumeDef): Tick[] {
   return ticks;
 }
 
-/** 节点块高估算（主标按 100px 折行 × 20px/行 + 灰字 ≤2 行 × 15px + 4px）—— ui-spec §2 字号表 */
-export function estimateBlockHeight(label: string, concepts: string[] = []): number {
-  const charW = (ch: string) => (/[⺀-鿿豈-﫿＀-￯《》「」…]/.test(ch) ? 1 : 0.6);
+/** 节点块高估算（主标折行 × 20px/行，字号按 weight = 16/14/12 + 灰字 ≤2 行 × 15px + 4px）—— ui-spec §2 字号表 */
+export function estimateBlockHeight(
+  label: string,
+  concepts: string[] = [],
+  weight: 'epic' | 'major' | 'minor' = 'major',
+): number {
+  const fontPx = weight === 'epic' ? 16 : weight === 'minor' ? 12 : 14;
+  const charW = (ch: string) => (/[⺀-鿿豈-﫿＀-￯《》「」…]/.test(ch) ? 1 : ch === ' ' ? 0.3 : 0.6);
   const width = (s: string) => [...s].reduce((sum, ch) => sum + charW(ch), 0);
-  const labelLines = Math.max(1, Math.ceil((width(label) * 14) / NODE_MAX_WIDTH));
+  const labelLines = Math.max(1, Math.ceil((width(label) * fontPx) / NODE_MAX_WIDTH));
   let h = labelLines * 20;
   if (concepts.length > 0) {
     const cLines = Math.min(
@@ -128,10 +133,12 @@ export function estimateBlockHeight(label: string, concepts: string[] = []): num
 }
 
 export interface Placeable {
+  id?: string;
   label: string;
   layer: Layer;
   column: string;
   year: number;
+  weight?: 'epic' | 'major' | 'minor';
   concepts?: string[];
 }
 
@@ -149,6 +156,8 @@ export interface Violation {
   column: string;
   upper: string;
   lower: string;
+  upperId?: string;
+  lowerId?: string;
   naturalGap: number;
   finalGap: number;
   requiredGap: number;
@@ -184,7 +193,7 @@ export function placeInColumns<T extends Placeable>(
     let prev: Placed<T> | null = null;
     for (const item of sorted) {
       const naturalY = yForYear(def, item.year);
-      const blockH = estimateBlockHeight(item.label, item.concepts) + blockReserve;
+      const blockH = estimateBlockHeight(item.label, item.concepts, item.weight) + blockReserve;
       let y = naturalY;
       if (prev) {
         const required = Math.max(prev.blockH, minGap);
@@ -197,6 +206,8 @@ export function placeInColumns<T extends Placeable>(
             column: item.column,
             upper: prev.item.label,
             lower: item.label,
+            upperId: prev.item.id,
+            lowerId: item.id,
             naturalGap: naturalY - prev.naturalY,
             finalGap: gap,
             requiredGap: required,
@@ -219,6 +230,27 @@ export function placeInColumns<T extends Placeable>(
   return { placed, violations };
 }
 
+/**
+ * 两遍放置（M1 定）：先按全 concepts 排，避让缺口（±20px 上限压不住）涉及的节点
+ * 在第二遍去掉 concepts 重排——灰字不压字，坐标为「实排」坐标。
+ */
+export function placeWithDegradation<T extends Placeable>(
+  items: T[],
+  def: VolumeDef,
+  ctx: LayoutCtx,
+): { placed: Placed<T>[]; violations: Violation[]; degraded: Set<string> } {
+  const first = placeInColumns(items, def, ctx);
+  const degraded = new Set(
+    first.violations.flatMap((v) => [v.upperId, v.lowerId]).filter((id): id is string => !!id),
+  );
+  const second = placeInColumns(
+    items.map((it) => (degraded.has(it.id ?? '') ? { ...it, concepts: undefined } : it)),
+    def,
+    ctx,
+  );
+  return { placed: second.placed, violations: second.violations, degraded };
+}
+
 /** 主图段界（折弯标识线位置） */
 export function segmentBoundaries(def: VolumeDef): { year: number; y: number; pxPerYear: number }[] {
   if (!def.segments) return [];
@@ -227,10 +259,6 @@ export function segmentBoundaries(def: VolumeDef): { year: number; y: number; px
     y: yForYear(def, s.start),
     pxPerYear: s.pxPerYear,
   }));
-}
-
-export function toPlaceables(cands: MasterCandidate[]): Placeable[] {
-  return cands.map((c) => ({ label: c.label, layer: c.layer, column: c.column, year: c.year }));
 }
 
 export { THEORY_COLUMN };

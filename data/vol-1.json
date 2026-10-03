@@ -1,4 +1,162 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "transistor-1947",
+      "label": "晶体管",
+      "label_en": "Transistor",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1947,
+      "weight": "epic",
+      "master": true,
+      "summary": "贝尔实验室 1947 年 12 月首次实现点接触晶体管放大；三位发明人获 1956 年诺贝尔物理学奖。",
+      "concepts": ["point-contact transistor", "semiconductor", "solid-state amplifier"],
+      "people": ["John Bardeen", "Walter Brattain", "William Shockley", "Bell Labs"],
+      "sources": ["https://www.nobelprize.org/prizes/physics/1956/summary/"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "manchester-baby-1948",
+      "label": "Manchester Baby",
+      "label_en": "Manchester Baby (SSEM)",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1948,
+      "weight": "major",
+      "master": true,
+      "summary": "首台运行存储程序的电子计算机，1948 年 6 月 21 日执行 Kilburn 的首段程序，验证 Williams 管内存。",
+      "concepts": ["stored program", "Williams tube", "random-access memory"],
+      "people": ["Frederic Williams", "Tom Kilburn", "University of Manchester"],
+      "sources": ["https://curation.cs.manchester.ac.uk/digital60/www.digital60.org/birth/how/"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "manchester-mark-1-1949",
+      "label": "Manchester Mark 1",
+      "label_en": "Manchester Mark 1",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1949,
+      "weight": "major",
+      "master": false,
+      "summary": "Baby 的全尺寸后继，1949 年中间版本运行，首创索引寄存器与磁鼓辅助存储，后由 Ferranti 商品化。",
+      "concepts": ["stored program", "index registers", "magnetic drum"],
+      "people": ["Frederic Williams", "Tom Kilburn", "Ferranti"],
+      "sources": ["https://www.curation.cs.manchester.ac.uk/digital60/www.digital60.org/birth/manchestercomputers/mark1/index-2.html"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "integrated-circuit-1958",
+      "label": "集成电路",
+      "label_en": "Integrated Circuit",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1958,
+      "weight": "epic",
+      "master": true,
+      "summary": "TI 的 Kilby 1958 年 9 月展示首块单片集成电路；Noyce 平面工艺使其量产，微电子时代开启。",
+      "concepts": ["monolithic integrated circuit", "planar process", "semiconductor"],
+      "people": ["Jack Kilby", "Texas Instruments", "Robert Noyce", "Fairchild Semiconductor"],
+      "sources": [
+        "https://www.ti.com/about-ti/behind-chip/articles/from-idea-to-invention-the-origin-story-of-the-tiny-chip-that-changed-the-world.html",
+        "https://www.nobelprize.org/prizes/physics/2000/summary/"
+      ],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "perceptron-1958",
+      "label": "感知机",
+      "label_en": "Perceptron",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 1958,
+      "weight": "major",
+      "master": false,
+      "summary": "Rosenblatt 提出感知机与学习规则，首个可训练的线性分类器，神经网络走向工程实现。",
+      "concepts": ["linear classifier", "perceptron learning rule", "supervised learning"],
+      "people": ["Frank Rosenblatt", "Cornell Aeronautical Laboratory"],
+      "sources": ["https://doi.org/10.1037/h0042519"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "lisp-1958",
+      "label": "LISP",
+      "label_en": "LISP",
+      "layer": "L2_language",
+      "column": "lisp-family",
+      "year": 1958,
+      "weight": "epic",
+      "master": true,
+      "summary": "McCarthy 在 MIT 设计的符号计算语言，以 λ 演算为理论基础，开创符号处理与函数式传统。",
+      "concepts": ["symbolic computation", "recursion", "S-expressions", "lambda calculus"],
+      "people": ["John McCarthy", "MIT"],
+      "sources": ["https://doi.org/10.1145/367177.367199"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "intel-4004-1971",
+      "label": "Intel 4004",
+      "label_en": "Intel 4004",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1971,
+      "weight": "epic",
+      "master": true,
+      "summary": "首款商用单芯片微处理器，Intel 依 Busicom 计算器合同研发，2300 个晶体管，1971 年 11 月发布。",
+      "concepts": ["microprocessor", "MOS integrated circuit", "single-chip CPU"],
+      "people": ["Federico Faggin", "Ted Hoff", "Masatoshi Shima", "Intel"],
+      "sources": ["https://www.intel.com/content/www/us/en/history/virtual-vault/articles/the-intel-4004.html"],
+      "checked_at": "2026-10-04"
+    }
+  ],
+  "edges": [
+    {
+      "source": "shannon-switching-circuits-1937",
+      "target": "transistor-1947",
+      "relation": "enables",
+      "citation": "开关代数确立二进制开关元件为数字电路设计范式，为晶体管数字电路之理论基础（content-spec §4 衔接边）。来源：https://doi.org/10.1109/T-AIEE.1938.5057767"
+    },
+    {
+      "source": "edvac-report-1945",
+      "target": "manchester-baby-1948",
+      "relation": "enables",
+      "citation": "Manchester 团队（Newman 主持、Williams/Kilburn 建造）以存储程序概念建造 Baby，1948-06-21 首跑。来源：https://curation.cs.manchester.ac.uk/digital60/www.digital60.org/birth/how/"
+    },
+    {
+      "source": "colossus-1944",
+      "target": "manchester-baby-1948",
+      "relation": "enables",
+      "citation": "Colossus 运行主持者 Newman 战后赴 Manchester 建立计算实验室并主持 Baby 项目；Colossus 以约 2500 电子管验证大规模电子计算可行。来源：https://curation.cs.manchester.ac.uk/digital60/www.digital60.org/birth/how/"
+    },
+    {
+      "source": "church-lambda-calculus-1936",
+      "target": "lisp-1958",
+      "relation": "conceptual_inf",
+      "citation": "McCarthy 1960 论文（Recursive Functions of Symbolic Expressions）：LISP 的递归函数形式基于 λ 演算。来源：https://doi.org/10.1145/367177.367199"
+    },
+    {
+      "source": "mcculloch-pitts-1943",
+      "target": "perceptron-1958",
+      "relation": "conceptual_inf",
+      "citation": "Rosenblatt 感知机模型基于 M–P 形式神经元（1958 论文引 M–P 1943）。来源：https://doi.org/10.1037/h0042519"
+    },
+    {
+      "source": "transistor-1947",
+      "target": "integrated-circuit-1958",
+      "relation": "enables",
+      "citation": "Kilby 1958-09-12 展示的首块单片集成电路集成晶体管、电阻、电容于单一半导体块（TI 官方史）。来源：https://www.ti.com/about-ti/behind-chip/articles/from-idea-to-invention-the-origin-story-of-the-tiny-chip-that-changed-the-world.html"
+    },
+    {
+      "source": "integrated-circuit-1958",
+      "target": "intel-4004-1971",
+      "relation": "enables",
+      "citation": "4004 为单芯片 CPU（2300 晶体管），依赖 MOS 集成电路工艺；Intel 官方史（1969 起 Busicom 合同，1971-11 发布）。来源：https://www.intel.com/content/www/us/en/history/virtual-vault/articles/the-intel-4004.html"
+    },
+    {
+      "source": "manchester-baby-1948",
+      "target": "manchester-mark-1-1949",
+      "relation": "direct_fork",
+      "citation": "Mark 1 由 Baby 直接扩展而来（同团队；1949-04 中间版本运行，新增磁鼓与索引寄存器）。来源：https://www.curation.cs.manchester.ac.uk/digital60/www.digital60.org/birth/manchestercomputers/mark1/index-2.html"
+    }
+  ]
 }

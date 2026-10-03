@@ -1,4 +1,249 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "boole-laws-of-thought-1854",
+      "label": "布尔《思维规律研究》",
+      "label_en": "An Investigation of the Laws of Thought",
+      "layer": "PRE_theory",
+      "column": "theory",
+      "year": 1854,
+      "weight": "epic",
+      "master": true,
+      "summary": "布尔将逻辑推理代数化，提出二值代数系统，成为数字电路与计算机的逻辑基础。",
+      "concepts": ["Boolean algebra", "binary logic", "propositional calculus"],
+      "people": ["George Boole", "Queen's College, Cork"],
+      "sources": ["https://www.gutenberg.org/ebooks/15114"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "hollerith-tabulator-1890",
+      "label": "Hollerith 打孔卡制表机",
+      "label_en": "Hollerith Electric Tabulating System",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1890,
+      "weight": "major",
+      "master": false,
+      "summary": "Hollerith 电动打孔卡制表机赢得 1890 年美国人口普查，机械数据处理由此开始，其公司后并入 IBM。",
+      "concepts": ["punched cards", "electromechanical tabulation", "data processing"],
+      "people": ["Herman Hollerith", "US Census Office", "Tabulating Machine Company"],
+      "sources": ["https://www.ibm.com/history/punched-card-tabulator"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "russell-principia-mathematica-1910",
+      "label": "罗素《数学原理》",
+      "label_en": "Principia Mathematica (Russell & Whitehead)",
+      "layer": "PRE_theory",
+      "column": "theory",
+      "year": 1910,
+      "weight": "major",
+      "master": true,
+      "summary": "罗素与怀特海以类型论重建数学基础，三卷本形式化逻辑体系，直接引出哥德尔的不完备性研究。",
+      "concepts": ["type theory", "logicism", "formal logic", "axiomatic method"],
+      "people": ["Bertrand Russell", "Alfred North Whitehead", "Cambridge University Press"],
+      "sources": ["https://plato.stanford.edu/entries/principia-mathematica/"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "godel-incompleteness-theorems-1931",
+      "label": "哥德尔不完备定理",
+      "label_en": "Gödel's Incompleteness Theorems",
+      "layer": "PRE_theory",
+      "column": "theory",
+      "year": 1931,
+      "weight": "major",
+      "master": true,
+      "summary": "哥德尔证明任何足够强且一致的形式系统必含不可证命题，数学形式化纲领遭遇根本限制。",
+      "concepts": ["incompleteness", "consistency", "Gödel numbering", "undecidability"],
+      "people": ["Kurt Gödel", "University of Vienna"],
+      "sources": ["https://doi.org/10.1007/BF01700692"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "church-lambda-calculus-1936",
+      "label": "丘奇 λ 演算",
+      "label_en": "Lambda Calculus (Church)",
+      "layer": "PRE_theory",
+      "column": "theory",
+      "year": 1936,
+      "weight": "major",
+      "master": true,
+      "summary": "丘奇提出 λ 演算作为有效可计算性定义，证明算术判定问题不可解，奠定函数式语言理论基础。",
+      "concepts": ["lambda calculus", "effective computability", "Church–Turing thesis"],
+      "people": ["Alonzo Church", "Princeton University"],
+      "sources": ["https://doi.org/10.2307/2371045"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "turing-machine-1936",
+      "label": "图灵机",
+      "label_en": "Turing Machine (On Computable Numbers)",
+      "layer": "PRE_theory",
+      "column": "theory",
+      "year": 1936,
+      "weight": "epic",
+      "master": false,
+      "summary": "图灵以抽象机器定义可计算性，证明判定问题不可解；通用机构想成为存储程序计算机的理论原型。",
+      "concepts": ["computability", "universal machine", "halting problem"],
+      "people": ["Alan Turing", "King's College, Cambridge"],
+      "sources": ["https://doi.org/10.1112/plms/s2-42.1.230"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "shannon-switching-circuits-1937",
+      "label": "香农开关电路论文",
+      "label_en": "A Symbolic Analysis of Relay and Switching Circuits",
+      "layer": "PRE_theory",
+      "column": "theory",
+      "year": 1937,
+      "weight": "epic",
+      "master": true,
+      "summary": "香农硕士论文以布尔代数分析继电器开关电路，奠定数字电路设计理论（1938 年发表）。",
+      "concepts": ["switching algebra", "relay circuits", "Boolean logic"],
+      "people": ["Claude Shannon", "MIT"],
+      "sources": ["https://doi.org/10.1109/T-AIEE.1938.5057767"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "atanasoff-berry-computer-1942",
+      "label": "ABC",
+      "label_en": "Atanasoff–Berry Computer",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1942,
+      "weight": "major",
+      "master": false,
+      "summary": "爱荷华州立的 Atanasoff 与 Berry 建成首台电子数字计算机，采用二进制与再生存储，1942 年测试成功。",
+      "concepts": ["binary arithmetic", "regenerative memory", "electronic computing"],
+      "people": ["John Atanasoff", "Clifford Berry", "Iowa State College"],
+      "sources": ["https://www.cs.iastate.edu/history"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "mcculloch-pitts-1943",
+      "label": "McCulloch–Pitts 模型",
+      "label_en": "McCulloch–Pitts Neuron Model",
+      "layer": "PRE_theory",
+      "column": "theory",
+      "year": 1943,
+      "weight": "major",
+      "master": true,
+      "summary": "McCulloch 与 Pitts 提出形式神经元模型，证明神经活动可实现逻辑运算，为感知机奠基。",
+      "concepts": ["formal neuron", "threshold logic", "neural networks"],
+      "people": ["Warren McCulloch", "Walter Pitts"],
+      "sources": ["https://doi.org/10.1007/BF02478259"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "colossus-1944",
+      "label": "Colossus",
+      "label_en": "Colossus",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1944,
+      "weight": "minor",
+      "master": false,
+      "summary": "英国战时为破译 Lorenz 密码建造的电子管数字机，以约 2500 个电子管验证大规模电子计算可靠可行。",
+      "concepts": ["vacuum tubes", "codebreaking", "electronic digital computer"],
+      "people": ["Tommy Flowers", "Max Newman", "Bletchley Park"],
+      "sources": ["https://www.tnmoc.org/colossus"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "harvard-mark-1-1944",
+      "label": "Harvard Mark I",
+      "label_en": "Harvard Mark I (IBM ASCC)",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1944,
+      "weight": "minor",
+      "master": false,
+      "summary": "IBM 以打孔卡机件为哈佛建造的机电式自动计算机，1944 年运行，程序由纸带输入。",
+      "concepts": ["electromechanical computer", "punched cards", "automatic sequence control"],
+      "people": ["Howard Aiken", "IBM", "Harvard University"],
+      "sources": ["https://www.computerhistory.org/tdih/August/7/"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "eniac-1945",
+      "label": "ENIAC",
+      "label_en": "Electronic Numerical Integrator and Computer",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1945,
+      "weight": "major",
+      "master": false,
+      "summary": "首台通用电子数字计算机，宾大摩尔电气工程学院建造，1945 年底投入计算，1946 年 2 月公开。",
+      "concepts": ["vacuum tubes", "electronic computing", "ballistic computation"],
+      "people": ["John Mauchly", "J. Presper Eckert", "University of Pennsylvania"],
+      "sources": ["https://www.seas.upenn.edu/about/history-heritage/eniac/"],
+      "checked_at": "2026-10-04"
+    },
+    {
+      "id": "edvac-report-1945",
+      "label": "EDVAC 报告",
+      "label_en": "First Draft of a Report on the EDVAC",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 1945,
+      "weight": "epic",
+      "master": true,
+      "summary": "von Neumann 执笔的存储程序计算机设计草案，程序与数据同居内存，成为现代计算机体系结构范本。",
+      "concepts": ["stored program", "von Neumann architecture", "serial memory"],
+      "people": ["John von Neumann", "Moore School of Electrical Engineering", "J. Presper Eckert", "John Mauchly"],
+      "sources": ["https://doi.org/10.1109/85.238389"],
+      "checked_at": "2026-10-04"
+    }
+  ],
+  "edges": [
+    {
+      "source": "boole-laws-of-thought-1854",
+      "target": "shannon-switching-circuits-1937",
+      "relation": "conceptual_inf",
+      "citation": "香农 1937 硕士论文明确以布尔代数分析继电器与开关电路（1938 年 AIEE 发表）。来源：https://doi.org/10.1109/T-AIEE.1938.5057767"
+    },
+    {
+      "source": "russell-principia-mathematica-1910",
+      "target": "godel-incompleteness-theorems-1931",
+      "relation": "conceptual_inf",
+      "citation": "哥德尔 1931 论文标题即针对《数学原理》体系（Über formal unentscheidbare Sätze der Principia Mathematica）。来源：https://doi.org/10.1007/BF01700692"
+    },
+    {
+      "source": "russell-principia-mathematica-1910",
+      "target": "mcculloch-pitts-1943",
+      "relation": "conceptual_inf",
+      "citation": "M–P 1943 论文引文含 Principia Mathematica（zbMATH 0063.03860）。来源：https://doi.org/10.1007/BF02478259"
+    },
+    {
+      "source": "godel-incompleteness-theorems-1931",
+      "target": "church-lambda-calculus-1936",
+      "relation": "conceptual_inf",
+      "citation": "丘奇 1936 承接哥德尔结果（以 Gödel 编码证明判定问题不可解）；学界视其为不完备定理内容之另一形式。来源：https://doi.org/10.2307/2371045"
+    },
+    {
+      "source": "turing-machine-1936",
+      "target": "edvac-report-1945",
+      "relation": "conceptual_inf",
+      "citation": "EDVAC 草案的存储程序体系即通用图灵机之工程形式（Gandy）；von Neumann 熟知并重视 Turing 1936（Bigelow、Frankel 证言）。来源：https://doi.org/10.1109/85.238389"
+    },
+    {
+      "source": "atanasoff-berry-computer-1942",
+      "target": "eniac-1945",
+      "relation": "conceptual_inf",
+      "citation": "Honeywell v. Sperry Rand（1973-10-19，Judge Larson）判决：Mauchly 的 ENIAC 设计源自 Atanasoff 的 ABC。来源：https://www.cs.iastate.edu/history"
+    },
+    {
+      "source": "eniac-1945",
+      "target": "edvac-report-1945",
+      "relation": "direct_fork",
+      "citation": "EDVAC 草案由 ENIAC 设计团队（Eckert、Mauchly、von Neumann）撰写，为 ENIAC 的直接后继设计。来源：https://doi.org/10.1109/85.238389"
+    },
+    {
+      "source": "hollerith-tabulator-1890",
+      "target": "harvard-mark-1-1944",
+      "relation": "enables",
+      "citation": "Mark I（ASCC）由 IBM 以打孔卡机件制造，Aiken 1937 方案即打孔卡机互联加主控面板。来源：https://www.computerhistory.org/tdih/August/7/"
+    }
+  ]
 }

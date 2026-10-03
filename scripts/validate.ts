@@ -13,6 +13,7 @@ const LAYERS: Layer[] = [
   'L3_data',
   'L4_delivery',
   'L5_ai',
+  'PRE_theory',
 ];
 
 function load<T>(rel: string): T {
@@ -51,10 +52,11 @@ for (const n of nodes) {
   if (!n.label || !n.label_en) errors.push(`[label] ${where}：label / label_en 缺失`);
   if (!LAYERS.includes(n.layer)) errors.push(`[layer] ${where}：非法枚举 ${n.layer}`);
   const cols = meta.columns[n.layer] ?? [];
-  if (n.column === 'theory') {
-    if (n.year >= 1947) errors.push(`[column] ${where}：theory 列限前史卷（year < 1947）`);
-  } else if (!cols.includes(n.column)) {
+  if (!cols.includes(n.column)) {
     errors.push(`[column] ${where}：${n.column} 未在 ${n.layer} 下声明`);
+  }
+  if (n.layer === 'PRE_theory' && n.year >= 1947) {
+    errors.push(`[layer] ${where}：PRE_theory 限前史卷（year < 1947）`);
   }
   if (n.year < YEAR_MIN || n.year >= YEAR_MAX) errors.push(`[year] ${where}：${n.year} 越界`);
   if (!n.summary) errors.push(`[summary] ${where}：缺失`);
@@ -104,6 +106,37 @@ for (const n of nodes) {
   }
 }
 
+// 边预算（content-spec §3，F-B-7）：主图入边 ≤8；相邻卷跨卷边 ≤5
+// （下限 3 为 M3 全量目标，建设期降级为 warning）
+const masterIds = new Set(nodes.filter((n) => n.master).map((n) => n.id));
+const mainInDeg = new Map<string, number>();
+for (const e of edges) {
+  if (masterIds.has(e.source) && masterIds.has(e.target)) {
+    mainInDeg.set(e.target, (mainInDeg.get(e.target) ?? 0) + 1);
+  }
+}
+for (const [id, d] of mainInDeg) {
+  if (d > 8) errors.push(`[主图入边] ${id}：${d} 条 > 8`);
+}
+
+const volIdx = new Map<string, number>();
+volFiles.forEach((v, i) => v.nodes.forEach((n) => volIdx.set(n.id, i)));
+const crossPairs = new Map<string, number>();
+for (const e of edges) {
+  const a = volIdx.get(e.source);
+  const b = volIdx.get(e.target);
+  if (a === undefined || b === undefined || a === b) continue;
+  if (Math.abs(a - b) !== 1) {
+    warnings.push(`[跨卷边] ${e.source} → ${e.target}：跨 ${Math.abs(a - b)} 卷（相邻卷规则之外）`);
+  }
+  const key = `vol-${Math.min(a, b)} → vol-${Math.max(a, b)}`;
+  crossPairs.set(key, (crossPairs.get(key) ?? 0) + 1);
+}
+for (const [key, count] of crossPairs) {
+  if (count > 5) errors.push(`[跨卷边] ${key}：${count} 条 > 5`);
+  else if (count < 3) warnings.push(`[跨卷边] ${key}：${count} 条 < 3（M3 全量前补足）`);
+}
+
 console.log(`validate：nodes ${nodes.length} / edges ${edges.length}`);
 for (const w of warnings) console.log(`  warn  ${w}`);
 for (const e of errors) console.log(`  ERROR ${e}`);
@@ -111,4 +144,4 @@ if (errors.length > 0) {
   console.log(`\n${errors.length} error(s)`);
   process.exit(1);
 }
-console.log('全部通过（跨卷边数量、citation 可点击性等 M1 后启用）');
+console.log('全部通过（citation 可点击性等 M2 后启用）');

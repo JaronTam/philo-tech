@@ -5,7 +5,8 @@
     "L2_language": ["c-family", "lisp-family", "ml-family", "jvm-family", "toolchain", "scripting"],
     "L3_data": ["relational", "nosql", "distributed"],
     "L4_delivery": ["web", "container", "cloud-api"],
-    "L5_ai": ["nn", "framework"]
+    "L5_ai": ["nn", "framework"],
+    "PRE_theory": ["theory"]
   },
   "bannedWords": [
     "云计算",

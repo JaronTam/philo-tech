@@ -12,7 +12,7 @@ export interface VolumeDef {
   title: string;
   start: number;
   end: number; // 半开 [start, end)
-  height: number; // 画布纵向像素（主图 2750 含边距，段高合计 2667）
+  height: number; // 画布纵向像素（主图 2800 含边距，段高合计 2713）
   segments?: Segment[]; // 仅主图：分段压缩刻度，段界 = 卷界
 }
 
@@ -22,9 +22,9 @@ export const VOLUMES: VolumeDef[] = [
     title: '主图',
     start: 1854,
     end: 2027,
-    height: 2750,
+    height: 2800,
     segments: [
-      { start: 1854, end: 1947, pxPerYear: 6.3 }, // M0 实测：3 → 6.3（段高 586，理论列堆叠）
+      { start: 1854, end: 1947, pxPerYear: 6.8 }, // M1 实测：6.3 → 6.8（真实标签主标轮缺口 39.2px）
       { start: 1947, end: 1980, pxPerYear: 12 }, // 396 ✓
       { start: 1980, end: 2000, pxPerYear: 25 }, // 500 ✓
       { start: 2000, end: 2015, pxPerYear: 35 }, // 525 ✓（主图按 LOD 主标块高标定）
