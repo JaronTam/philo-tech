@@ -1,0 +1,65 @@
+# Content Spec（草案 v0.6）
+
+状态：2026-10-03 · v0.6（§2.3 裁定落文：淘汰分支收录判据入 §6；卷界 1980 / 2000 / 2015 维持，零数值改动）· 与 prd2 冲突时以 prd2 为准 · A1 已定：起点 1854、前史卷 1854–1946
+
+## 1. 节点字段写作规范
+
+字段全集 = prd2 §3.3（schema v5.1：`id` / `label` / `label_en` / `layer` / `column` / `year` / `weight` / `master` / `summary` / `concepts` / `people` / `sources` / `checked_at` / `archive_url`）；本节为写作规范。
+
+| 字段 | 规范 |
+|---|---|
+| `id` | kebab-case + 年份（`transformer-2017`）；全站唯一；发布后不改（深链依赖） |
+| `label` / `label_en` | label 中文主标、术语保留英文原形（LLVM、Transformer、x86）；`label_en` 英文名 / 全称，详情框显示 |
+| `layer` | 枚举 `L0_hardware` … `L5_ai`（prd2 §3.3） |
+| `column` | 必须命中 §2 注册表；唯一例外：前史理论单列 `theory`（§4） |
+| `year` | 首个公开可用 / 规范发布年；争议年主标 = 完成或首次公开演示年，发表年入详情框备注（香农 1937 / 1938 记 1937） |
+| `summary` | ≤60 字，陈述句；不评价、不预测 |
+| `concepts` | 3–8 个，英文原形（Self-Attention、POSIX） |
+| `people` | 机构或人物 2–4 个 |
+| `sources` | ≥1 条可点击 URL；另记 `checked_at`（核验日期，必填）与 `archive_url`（存档链接，可选）；优先级：官方文档 / 规范 > 原始论文（DOI）> 博物馆 / 百科 |
+| `weight` | epic = 泳道开创或转折（≈15 条）；major = 主线；minor = 衍生 |
+| `master` | 判据 = `weight=epic`，或跨 ≥2 泳道的枢纽；主图 40±5 条 |
+
+## 2. column 注册表
+
+| layer | 初始 column |
+|---|---|
+| L0_hardware | `device`、`arch`、`accelerator` |
+| L1_system | `os`、`net` |
+| L2_language | `c-family`、`lisp-family`、`ml-family`、`jvm-family`、`toolchain`、`scripting` |
+| L3_data | `relational`、`nosql`、`distributed` |
+| L4_delivery | `web`、`container`、`cloud-api` |
+| L5_ai | `nn`、`framework` |
+
+- 注册表 **M1 前冻结 v1**；新增列 = minor 升级并先改此表。
+- 泳道宽由列数决定（L2 = 6 列 → 704px，见 ui-spec §1）。
+- 已定（2 份 web 交叉复核维持）：CUDA 归 `L2-toolchain`（nvcc / PTX / runtime，语义同质；GPU→CUDA 跨层边保留）；HTTP 归 `L1-net`（IETF 协议，与 TCP/IP、DNS 同列）。
+- 脚本语言归属判据（2026-10-03 定）：语言规范 / 语言实现（JavaScript、V8、Python、Ruby、PHP、Go）→ `L2-scripting`；宿主平台 / 交付物（浏览器、Web API）→ `L4-web`。Node.js 为服务端运行时平台，按此判据归 `L4-web`。
+
+## 3. 边规范
+
+字段（prd2 §3.3）：`source` / `target` / `relation` / `citation`；`relation` ∈ 6 类，禁止新增。
+
+- 根节点（入度 0）= 布尔 1854、图灵 1936（两条独立源头：形式逻辑 / 可计算性）；香农 1937 由 `布尔 → 香农`（conceptual_inf）取得入边，不算根。
+- 非根节点 ≥1 入边；出边 ≤5 / 节点；入边上限：主图 ≤8——超限按优先级保留前 8（`paradigm_shift > direct_fork > enables > convergence > conceptual_inf > composition`），节点显示 `+N` 角标，详情框列出全部入边；分卷不限（若 M2 现毛线球，再引入软阈值与按 relation 过滤）；校验器 warning：入边 >10 提示复核。
+- 跨卷边：相邻卷间 3–5 条；分卷页只画「入口 / 出口」标记。
+- `citation` = 一句话依据 + 来源（同 `sources` 格式）；显示于边 tooltip 与详情框。
+
+## 4. 前史卷（1854–1946）
+
+- **渊源节点例外**：前史卷允许「论文 / 著作 / 理论模型」作为节点（如布尔 1854、图灵 1936、香农 1937、EDVAC 报告 1945）；正卷仍只收具体产物或规范。
+- 收 12–15 个渊源节点（独立刻度）。
+- **理论节点 `layer` / `column` 映射（2026-10-03 定）**：前史卷不按六泳道渲染，渊源节点入独立单列——理论节点（布尔 1854、哥德尔 1931、图灵 1936、丘奇 λ 演算 1936、香农 1937、McCulloch–Pitts 1943）`column` 取保留列名 `theory`（不进 §2 注册表，校验器放行），`layer` 统一取占位值 `L0_hardware`（不参与六泳道布局与 laneWidth 计算）；前史卷与主图按前史单列渲染（主图源头带「前史」标记，见 ui-spec §6）。规则只限前史理论节点：正卷节点不受影响；前史硬件节点（Z3 / ABC / Colossus / Harvard Mark I / ENIAC 等）照常挂对应泳道。
+- 候选池（待筛）：布尔 1854、Hollerith 1890、哥德尔 1931、图灵 1936、丘奇 λ 演算 1936、香农 1937、Z3 1941、ABC 1942、McCulloch–Pitts 1943、Colossus 1944、Harvard Mark I 1944、ENIAC 1945、EDVAC 报告 1945。
+- 主图源头：布尔 1854 + 香农 1937（图灵 1936 可选）。
+- 衔接边例：布尔 1854 → 香农 1937（conceptual_inf）；香农 1937 → 晶体管 1947（enables）；EDVAC 报告 1945 → Baby 1948（enables）。1948 信息论 / Baby 归卷 1。
+
+## 5. 核验流程
+
+写 → 逐条打开 `sources` 人工确认 → 记 `checked_at`（勾选 / 日期）→ `npm run validate`。来源失效：换源或补 `archive_url`；来源冲突：详情框并列，主标取官方 / 原始论文。
+
+## 6. 禁用词与红线
+
+- 禁用词仅约束节点 `label`（`concepts` 可用英文术语，如 connectionism）；初始清单：云计算 / SaaS / 连接主义 / 面向对象 / LLM Agents / 向量数据库 / 微服务；完整清单与 prd2 §3.1 合并后落 `data/`。
+- 事实错误零容忍：宁缺勿编。
+- **淘汰分支收录判据（2026-10-03 定）**：收「有活后代的祖先」——被淘汰的产物只要能写出一条到存活节点、可引用文献的 `citation` 边，就收（例：Multics 1969 → UNIX 的 conceptual_inf）；不收「死胡同」——无活后代、只能靠「结局」说明成立的（例：OS/2 1987）不入图；如需收死胡同，先升 schema 加结局字段，另行评估。
