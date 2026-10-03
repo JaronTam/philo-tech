@@ -168,8 +168,10 @@ for (const comp of components.sort((a, b) => b.length - a.length)) {
 {
   const masterSet = new Set(masterNodes.map((n) => n.id));
   const deg = new Map<string, number>([...masterSet].map((id) => [id, 0]));
+  let masterEdges = 0;
   for (const e of allEdges) {
     if (masterSet.has(e.source) && masterSet.has(e.target)) {
+      masterEdges += 1;
       deg.set(e.source, (deg.get(e.source) ?? 0) + 1);
       deg.set(e.target, (deg.get(e.target) ?? 0) + 1);
     }
@@ -177,6 +179,6 @@ for (const comp of components.sort((a, b) => b.length - a.length)) {
   const isolated = [...masterSet].filter((id) => (deg.get(id) ?? 0) === 0);
   const pre = isolated.filter((id) => byId.get(id)!.year < 1947);
   console.log(
-    `  master 子图（${masterSet.size} 条）：前史孤立 = ${pre.map(label).join(' / ') || '无'}；全表孤立 ${isolated.length} 条：${isolated.map(label).join(' / ') || '无'}`,
+    `  master 子图（${masterSet.size} 节点 / ${masterEdges} 边）：前史孤立 = ${pre.map(label).join(' / ') || '无'}；全表孤立 ${isolated.length} 条：${isolated.map(label).join(' / ') || '无'}`,
   );
 }

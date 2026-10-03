@@ -88,3 +88,15 @@ B1 修复建议（二选一或都做）：summary 压缩至 ≤60 字；validate
 - 交互四项（BFS < 100ms @ 250 节点）——checklist 待办①
 - B2 详情框排期、B1 summary 校验落地
 - 推送待裁定（M1 数据上线会覆盖 M0 骨架，checklist 快照③）
+
+## 8. 修复记录（2026-10-04，修复会话）
+
+| # | 位置 | 修复 |
+|---|---|---|
+| B1 | `data/vol-1.json` | `manchester-baby-1948` summary 63 → 58 字符（「首台运行存储程序的电子计算机，1948 年 6 月 21 日首跑 Kilburn 程序，验证 Williams 管。」）；同批全库 20 条复核，仅此 1 条超限 |
+| B1 | `scripts/validate.ts` | 补规则：summary 字符数 ≤ 60（含标点）；回归实测 = 放回 63 字符 → 1 error、压回 → 全绿；`docs/prd2.md` §9 规则表 + `docs/content-spec.md` §1 同步 |
+| B2 | `checklist.md` §4 | 详情框（ui-spec §4）排入 M2 里程碑行（「交互四项 + 详情框」），避免落空 |
+| B3 | `checklist.md` | relation 3/6 类登记入 M1 验收记录（20 节点规模正常） |
+| §2 措辞 | `scripts/measure.ts` | master 子图输出「N 条」→「N 节点 / M 边」，消歧义 |
+
+复验：`validate` / `measure` / `build`（gzip 135.19KB）全绿；提交 = `12ad43b`（B1）+ 本记录随修补批（measure 措辞 + 本文档 §8）。

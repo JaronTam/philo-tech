@@ -108,10 +108,10 @@ M1 实测记录（2026-10-04 · 输入 = 真实数据 20 节点 / 16 边 · 报�
 - `validate`：20 / 16 全绿（新增校验：主图入边 ≤8、相邻卷跨卷边 ≤5 = 5 条 ✓）；`build` gzip 135.1KB（< 500 预算）；六视图（主图 / 前史 / 卷 1–4）dev 无 console error。
 - 列对齐肉眼闸门（DOM 断言 + 截图复核）：theory 列 6 条同 x、device 列 4 条同 x、arch / lisp-family 各归列；同列边走右侧旁路、跨列边走横-竖-横；LOD 生效（fitView 0.29 隐藏灰字、0.79 显形、minor 0.5 以下隐藏）。
 
-M1 第三方验收（2026-10-04 · 报告 = `docs/m1-acceptance.md` · 独立会话实测）：
+M1 第三方验收（2026-10-04 · 报告 = `docs/m1-acceptance.md`〔含 §8 修复记录〕 · 独立会话实测）：
 
 - 结论 `[STATUS: AC]`：列对齐闸门 DOM 实测复现（主图 theory 6 @ x=569 / device 4 @ x=611；前史 theory 7、device 5 同 x）；六视图 0 error / 0 warning；三命令全绿（build gzip 135.21KB）；measure 数值与 checklist 逐项一致。
-- B1（小，已修）：`manchester-baby-1948` summary 63 字符 > content-spec §1 上限 60；修法 = summary 压至 58 字符 + `validate.ts` 补长度校验（prd2 §9 表 +1 条；回归实测：63 字符 → 1 error，压回 → 全绿）。
+- B1（小，已修）：`manchester-baby-1948` summary 63 字符 > content-spec §1 上限 60；修法 = summary 压至 58 字符 + `validate.ts` 补长度校验（prd2 §9 表 +1 条；回归实测：63 字符 → 1 error，压回 → 全绿）；连带修 `measure` master 子图输出措辞（「N 条」→「N 节点 / M 边」，报告 §2 消歧义）。
 - B2（登记，已排期）：节点单击无详情框——M1 范围外（ui-spec §4 已定 spec）；已排入 M2 里程碑行，避免落空。
 - B3（登记）：relation 仅用 3/6 类（conceptual_inf 8 / enables 6 / direct_fork 2）——20 节点规模正常，其余三类预期出现在卷 3–4。
 
