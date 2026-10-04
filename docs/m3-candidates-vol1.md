@@ -1,6 +1,6 @@
 # M3 卷 1 候选清单（G-A 待批）
 
-状态：2026-10-05 · **G-A 已批**（J1 跨卷边 ≤8/≤5 · J2 UNIX 1971 · J3 四项 epic · J4 接受三条弱边）+ 已落数据（`data/vol-1.json` 45 节点 / 48 边；validate 58/57 全绿）· 草案 = `data/candidates/vol-1.draft.json`（`npm run measure -- --draft` 预检 0 error / 0 warn；主标轮需高 1959.4 / H 2000 ✓ 免拉伸）· 45 = 现有 7 + 新增 38
+状态：2026-10-05 · **G-A 已批**（J1 跨卷边 ≤8/≤5 · J2 UNIX 1971 · J3 四项 epic · J4 接受三条弱边）+ 已落数据（`data/vol-1.json` 45 节点 / 49 边〔含后补桥边 `transistor→IBM 7090`〕；validate 58/57 全绿）· 草案 = `data/candidates/vol-1.draft.json`（`npm run measure -- --draft` 预检 0 error / 0 warn；主标轮需高 1959.4 / H 2000 ✓ 免拉伸）· 45 = 现有 7 + 新增 38
 
 ## 0. 待裁定（4 项）——已批（2026-10-05，全按提案）
 
