@@ -1,6 +1,6 @@
-# Content Spec（草案 v0.10）
+# Content Spec（草案 v0.11）
 
-状态：2026-10-05 · v0.10（M2 批：§3 注 ≤8 截断在主图渲染层执行）· v0.9（M1 批：§4 前史理论节点编码改 `PRE_theory` 哨兵层〔F-D-3 终裁〕；M1 数据落文 = 前史 13 + 卷 1 七条）· v0.8（§6 禁用词表定稿 25 词 + 匹配规则）· v0.7（前史裁定批：13 条定稿〔−Z3、+罗素《数学原理》1910–13〕；多源头判据入 §3；`哥德尔 → 图灵` 不画）· 与 prd2 冲突时以 prd2 为准 · A1 已定：起点 1854、前史卷 1854–1946
+状态：2026-10-05 · v0.11（M3 批：§2 增补两列 `algol-family` / `dotnet-family`〔L2 6 → 8 列，704 → 928px〕）· v0.10（M2 批：§3 注 ≤8 截断在主图渲染层执行）· v0.9（M1 批：§4 前史理论节点编码改 `PRE_theory` 哨兵层〔F-D-3 终裁〕；M1 数据落文 = 前史 13 + 卷 1 七条）· v0.8（§6 禁用词表定稿 25 词 + 匹配规则）· v0.7（前史裁定批：13 条定稿〔−Z3、+罗素《数学原理》1910–13〕；多源头判据入 §3；`哥德尔 → 图灵` 不画）· 与 prd2 冲突时以 prd2 为准 · A1 已定：起点 1854、前史卷 1854–1946
 
 ## 1. 节点字段写作规范
 
@@ -26,14 +26,15 @@
 |---|---|
 | L0_hardware | `device`、`arch`、`accelerator` |
 | L1_system | `os`、`net` |
-| L2_language | `c-family`、`lisp-family`、`ml-family`、`jvm-family`、`toolchain`、`scripting` |
+| L2_language | `c-family`、`lisp-family`、`ml-family`、`jvm-family`、`toolchain`、`scripting`、`algol-family`、`dotnet-family` |
 | L3_data | `relational`、`nosql`、`distributed` |
 | L4_delivery | `web`、`container`、`cloud-api` |
 | L5_ai | `nn`、`framework` |
 | PRE_theory | `theory`（前史渊源单列；哨兵层，非泳道，限 year < 1947） |
 
 - 注册表 **M1 前冻结 v1**；新增列 = minor 升级并先改此表。
-- 泳道宽由列数决定（L2 = 6 列 → 704px，见 ui-spec §1）。
+- 新增列（2026-10-05，M3 批）：`algol-family` = 命令式语言奠基线（FORTRAN、ALGOL 60、COBOL、PL/I、BASIC、Pascal、Simula 等）；`dotnet-family` = .NET 平台族（C#、F# 等，与 `jvm-family` 同构）。两列**追加于数组末尾**（既有列 x 位置不变；L3–L5 泳道随 L2 增宽整体右移 112px）。
+- 泳道宽由列数决定（L2 = 8 列 → 928px，见 ui-spec §1）。
 - 已定（2 份 web 交叉复核维持）：CUDA 归 `L2-toolchain`（nvcc / PTX / runtime，语义同质；GPU→CUDA 跨层边保留）；HTTP 归 `L1-net`（IETF 协议，与 TCP/IP、DNS 同列）。
 - 脚本语言归属判据（2026-10-03 定）：语言规范 / 语言实现（JavaScript、V8、Python、Ruby、PHP、Go）→ `L2-scripting`；宿主平台 / 交付物（浏览器、Web API）→ `L4-web`。Node.js 为服务端运行时平台，按此判据归 `L4-web`。
 

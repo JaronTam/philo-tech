@@ -1,6 +1,6 @@
 # 技术史图谱站 PRD
 
-状态：v6 · 冻结 schema v5.3（2026-10-05：M2 批〔§6 搜索域补 `label_en`；§10 M2 验收注测量口径；`year_note` 字段（只增不删）〕，见 §13）· 素材见 subject-matter/0–6.jpg
+状态：v7 · 冻结 schema v5.3（2026-10-05：M3 批〔§3.2 L2 增 `algol-family` / `dotnet-family` 两列，6 → 8 列〕；M2 批〔§6 搜索域补 `label_en`；§10 M2 验收注测量口径；`year_note` 字段（只增不删）〕，见 §13）· 素材见 subject-matter/0–6.jpg
 
 ## 0. 一句话
 
@@ -75,7 +75,7 @@ Y = volumeScale[volume].y(year)     // 每卷独立刻度
 
 `column` 是四轮方案都没提、但决定成败的字段。参考图的可读性来自语义列——洛克/贝克莱/休谟成一整列，巴门尼德/芝诺/麦里梭成一整列。没有 `column`，同泳道的节点会被年份打散，列对齐结构上不可能成立。
 
-例：L2 泳道内，`column` 可取 `c-family`（C、C++）、`lisp-family`（Lisp、Scheme、Clojure）、`ml-family`（ML、Haskell、Rust）、`jvm-family`（Java）；C#/.NET 暂无槽位，M3 收录前先走「新增列 = minor 升级」流程改注册表。
+例：L2 泳道内，`column` 可取 `c-family`（C、C++）、`lisp-family`（Lisp、Scheme、Clojure）、`ml-family`（ML、Haskell、Rust）、`jvm-family`（Java）、`algol-family`（FORTRAN、ALGOL 60、COBOL、Pascal）、`dotnet-family`（C#、F#）。后两列 = M3 批按「新增列 = minor 升级」流程新增（2026-10-05，见 content-spec §2；L2 6 → 8 列）。
 
 ### 3.3 数据模型（v5.1）
 
@@ -363,3 +363,4 @@ M1 是关键闸门：如果列对齐在 M1 站不住，整个坐标系要重做�
 | M2 | §6 | 搜索域补 `label_en`（消 ui-spec §5 冲突，判归 ui-spec） |
 | M2 | §9 | 校验器 +1：`citation` 含可点击 URL（`https?://`）；旧注「citation 可点击性等 M2 后启用」据此收敛 |
 | M2 | §10 | M2 验收注测量口径（`npm run bench` 250 节点合成图 p95 < 100ms + dev fixture 实排；M3 复跑） |
+| M3 | §3.2 | L2 增补两列 `algol-family`（FORTRAN / ALGOL 60 / COBOL / PL/I / BASIC / Pascal / Simula）与 `dotnet-family`（C# / .NET / F#）——「C#/.NET 暂无槽位」条款落定；泳道 L2 6 → 8 列（704 → 928px，ui-spec §1 同步） |
