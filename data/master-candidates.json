@@ -15,6 +15,7 @@
   { "label": "Intel 4004", "layer": "L0_hardware", "column": "device", "year": 1971 },
   { "label": "C 语言", "layer": "L2_language", "column": "c-family", "year": 1972, "note": "prd2 §3.1 正例" },
   { "label": "TCP/IP", "layer": "L1_system", "column": "net", "year": 1974, "note": "prd2 §3.1 正例" },
+  { "label": "Intel 8086", "layer": "L0_hardware", "column": "device", "year": 1978, "note": "J6：主图孤点消解（→ IBM PC）" },
   { "label": "IBM PC", "layer": "L0_hardware", "column": "device", "year": 1981 },
   { "label": "C++", "layer": "L2_language", "column": "c-family", "year": 1985 },
   { "label": "WWW", "layer": "L4_delivery", "column": "web", "year": 1991, "note": "提案 1989；公开可用 1991（year 口径）" },

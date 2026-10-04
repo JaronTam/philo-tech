@@ -756,7 +756,7 @@
       "column": "device",
       "year": 1978,
       "weight": "major",
-      "master": false,
+      "master": true,
       "summary": "16 位 CPU，x86 架构起点，此后 PC 处理器的共同祖先。",
       "concepts": ["x86", "16-bit", "instruction set"],
       "people": ["Intel", "Stephen Morse"],

@@ -1,14 +1,16 @@
-# M3 卷 2 候选清单（G-A 待批）
+# M3 卷 2 候选清单（G-A 已批）
 
-状态：2026-10-05 · 草案 = `data/candidates/vol-2.draft.json`（`npm run measure -- --draft` 预检 **0 error / 0 warn**；主标轮需高 1820 / H 2000 ✓ 免拉伸）· 45 = 8 master + 37·获批后落 `data/vol-2.json`
+状态：2026-10-05 · 草案 = `data/candidates/vol-2.draft.json`（`npm run measure -- --draft` 预检 **0 error / 0 warn**；主标轮需高 1820 / H 2000 ✓ 免拉伸）· 45 = 8 master + 37 · **已落数据**：`data/vol-2.json` 45 节点 / 47 边（validate 103/104 全绿）
 
-## 0. 待裁定（1 项）
+## 0. 待裁定（1 项）——已批（2026-10-05，按提案）
 
 | # | 事项 | 背景 | 提案 |
 |---|---|---|---|
 | J5 | **跨卷边总量上限 8 → 12**（master→master ≤5 不变） | V2 需 **11 条** pre/v1→v2 边：卷 2 的多条主线植根 v1（GUI ← Alto、RISC ← S/360、CNN ← 感知机/反向传播、SQL-92 ← SQL、C++ ← C、Python ← C、WWW ← TCP/IP、Linux ← UNIX…）。非 master 跨卷边在任何视图都不渲染（J1 已证）→ 无视觉密度成本；主图可见的 master→master 仍 4 条 ≤5 | 放宽至 12（吸收 11 条 + 留 1 余量）；维持 8 则需砍 AI 线（Neocognitron/LeNet）或 SQL-92 或 GUI 链 |
 
 已登记 5 条出卷边中 **4 条保留**（C→C++ / 8086→IBM PC / TCP-IP→WWW / UNIX→Linux），**Apple II→IBM PC 保留**（记为弱边）；另新增 6 条（见 §C）。
+
+落数据时的三处修正（2026-10-05）：① `Archimedes` 摘要与边引用按 **ARM2** 口径（核验发现「ARM1 首发」误——ARM1 为 1985 评估样片，Archimedes 用 ARM2）；② 边数实测 = **47**（§C 表 47 行；提交 `7ef829a` 文案「48 边」系误计）；③ **J6**（追加裁定）：`intel-8086-1978` 升 master（候选表 44 → 45）消解主图 `IBM PC` 孤点。
 
 ## A 节点表（45；`★` = master）
 
@@ -25,7 +27,7 @@
 | 9 | intel-80386-1985 | Intel 80386 | L0/device | 1985 | major | 32 位 x86，PC 进入 32 位时代 | intel.com |
 | 10 | arm-1985 | ARM | L0/arch | 1985 | major | 低功耗 RISC 架构（Acorn），后世移动霸主 | arm.com |
 | 11 | mips-r2000-1986 | MIPS R2000 | L0/arch | 1986 | major | 商用 RISC 处理器（Stanford MIPS 血统） | computerhistory.org / doi.org |
-| 12 | acorn-archimedes-1987 | Acorn Archimedes | L0/device | 1987 | minor | ARM1 首发机器 | computerhistory.org |
+| 12 | acorn-archimedes-1987 | Acorn Archimedes | L0/device | 1987 | minor | ARM2 量产首发机器（核验修正）| computerhistory.org |
 | 13 | sparc-1987 | SPARC | L0/arch | 1987 | major | Sun 的 RISC 架构（Berkeley RISC II 血统） | oracle.com / doi.org |
 | 14 | next-workstation-1988 | NeXT 工作站 | L0/device | 1988 | minor | Jobs 的图形工作站（NeXTSTEP） | computerhistory.org |
 | 15 | intel-80486-1989 | Intel 80486 | L0/device | 1989 | major | 集成 FPU/缓存的 x86 | intel.com |
@@ -87,7 +89,7 @@ L5/nn           1980 1989 1997
 | intel-80386-1985 | ibm-pc-1981 → | conceptual_inf 🚩 | PC 平台需求推动 x86 32 位化 |
 | arm-1985 | berkeley-risc-1981 → | direct_fork | ARM 设计据 Berkeley RISC 论文（Wilson/Hauser） |
 | mips-r2000-1986 | berkeley-risc-1981 → | direct_fork | Stanford MIPS 与 Berkeley RISC 同源（Hennessy） |
-| acorn-archimedes-1987 | arm-1985 → | enables | ARM1 首发机器 |
+| acorn-archimedes-1987 | arm-1985 → | enables | ARM2 量产首发机器（核验修正）|
 | sparc-1987 | berkeley-risc-1981 → | direct_fork | SPARC 源自 Berkeley RISC II |
 | next-workstation-1988 | macintosh-1984 → | conceptual_inf | Jobs 离 Apple 后建 NeXT，延续图形工作站路线 |
 | intel-80486-1989 | intel-80386-1985 → | direct_fork | x86 线：486 = 386 + FPU/缓存 |
@@ -127,7 +129,7 @@ L5/nn           1980 1989 1997
 ## D 预算核算
 
 - 出度 max = **5**（`www-1991`：mosaic / javascript / css / http-1-1 / google-search）≤5 ✓；次高 4（macintosh）✓
-- master→master 主图入度 ≤8 ✓；主图节点 16 → 24（+8 新 master）
+- master→master 主图入度 ≤8 ✓；主图节点 16 → 24（+8 新 master）；J6 追加：`intel-8086-1978` 升 master → 主图 25（`8086 → IBM PC` 消解孤点）
 - **跨卷 vol-1→vol-2 = 11 条**（J5 裁定）：master→master 4 条（c→c++ / tcp-ip→www / unix→linux / c→python）≤5 ✓
 - `paradigm_shift`：v2 消耗 0（留 v3/v4）✓ ≤8
 - `convergence`：+1（windows-95 入度 2：win3.0 + ms-dos）→ 站内累计 3 条

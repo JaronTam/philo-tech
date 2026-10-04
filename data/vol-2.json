@@ -1,4 +1,1089 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "neocognitron-1980",
+      "label": "Neocognitron",
+      "label_en": "Neocognitron",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 1980,
+      "weight": "minor",
+      "master": false,
+      "summary": "Fukushima 的层级特征检测网络，卷积网络思想前身，1980 年发表。",
+      "concepts": ["hierarchical feature extraction", "convolutional network", "visual cortex model"],
+      "people": ["Kunihiko Fukushima", "NHK Science & Technology Research Laboratories"],
+      "sources": [
+        "https://doi.org/10.1007/BF00344251",
+        "http://www.scholarpedia.org/article/Neocognitron"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ibm-pc-1981",
+      "label": "IBM PC",
+      "label_en": "IBM Personal Computer",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1981,
+      "weight": "epic",
+      "master": true,
+      "summary": "IBM 开放架构个人计算机（5150），1981 年 8 月发布，PC 产业起点。",
+      "concepts": ["open architecture", "Intel 8088", "MS-DOS", "expansion slots"],
+      "people": ["IBM", "Philip Don Estridge"],
+      "sources": [
+        "https://www.ibm.com/history/personal-computer",
+        "https://www.computerhistory.org/timeline/1981/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ms-dos-1981",
+      "label": "MS-DOS",
+      "label_en": "MS-DOS",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1981,
+      "weight": "major",
+      "master": false,
+      "summary": "随 IBM PC 发布的操作系统（PC-DOS），微软首个 OS 产品。",
+      "concepts": ["command line", "FAT file system", "personal computer OS"],
+      "people": ["Microsoft", "Bill Gates", "Tim Paterson"],
+      "sources": [
+        "https://learn.microsoft.com/en-us/shows/history/history-of-microsoft-1981",
+        "https://computerhistory.org/press-releases/ms-source-code/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "berkeley-risc-1981",
+      "label": "Berkeley RISC",
+      "label_en": "Berkeley RISC (RISC I)",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 1981,
+      "weight": "major",
+      "master": false,
+      "summary": "Patterson 的精简指令集项目（RISC I），RISC 浪潮源头。",
+      "concepts": ["reduced instruction set", "pipelining", "VLSI design"],
+      "people": ["David Patterson", "UC Berkeley"],
+      "sources": [
+        "https://doi.org/10.1145/285930.285981",
+        "https://www.computerhistory.org/collections/catalog/102658154/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "compaq-portable-1982",
+      "label": "Compaq Portable",
+      "label_en": "Compaq Portable",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1982,
+      "weight": "minor",
+      "master": false,
+      "summary": "首台 IBM PC 兼容便携机（干净室 BIOS），1982 年 11 月发布。",
+      "concepts": ["clean-room BIOS", "PC compatible", "portable computer"],
+      "people": ["Compaq", "Rod Canion"],
+      "sources": [
+        "https://www.computerhistory.org/revolution/mobile-computing/18/316/1195",
+        "https://www.computinghistory.org.uk/det/1322/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "apple-lisa-1983",
+      "label": "Apple Lisa",
+      "label_en": "Apple Lisa",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1983,
+      "weight": "major",
+      "master": false,
+      "summary": "首台商用 GUI 个人计算机（鼠标与窗口），1983 年 1 月发布。",
+      "concepts": ["graphical user interface", "mouse", "windows"],
+      "people": ["Apple", "Steve Jobs"],
+      "sources": [
+        "https://www.computerhistory.org/timeline/1983/",
+        "https://www.computinghistory.org.uk/det/5809/Apple-launches-the-Apple-Lisa"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "macintosh-1984",
+      "label": "Macintosh",
+      "label_en": "Apple Macintosh",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1984,
+      "weight": "major",
+      "master": false,
+      "summary": "GUI 大众化的个人计算机，1984 年 1 月发布。",
+      "concepts": ["desktop metaphor", "graphical user interface", "mouse"],
+      "people": ["Apple", "Steve Jobs", "Susan Kare"],
+      "sources": [
+        "https://web.stanford.edu/dept/SUL/sites/mac/primary/docs/pr1.html",
+        "https://www.computerhistory.org/timeline/1984/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "c-plus-plus-1985",
+      "label": "C++",
+      "label_en": "C++",
+      "layer": "L2_language",
+      "column": "c-family",
+      "year": 1985,
+      "weight": "major",
+      "master": true,
+      "summary": "Stroustrup 的 C with Classes 商用化：1985 年 10 月首个商业实现（Cfront）。",
+      "concepts": ["C with Classes", "static typing", "multi-paradigm"],
+      "people": ["Bjarne Stroustrup", "Bell Labs"],
+      "sources": [
+        "https://www.stroustrup.com/bs_faq.html",
+        "https://www.stroustrup.com/hopl2.pdf"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "intel-80386-1985",
+      "label": "Intel 80386",
+      "label_en": "Intel 80386",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1985,
+      "weight": "major",
+      "master": false,
+      "summary": "32 位 x86 处理器（1985 年 10 月发布），PC 进入 32 位时代。",
+      "concepts": ["32-bit", "paging", "protected mode"],
+      "people": ["Intel", "John Crawford"],
+      "sources": [
+        "https://www.computinghistory.org.uk/det/6192/Introduction-of-Intel-386/",
+        "https://doi.org/10.1109/mdt.1987.295165"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "arm-1985",
+      "label": "ARM",
+      "label_en": "ARM Architecture",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 1985,
+      "weight": "major",
+      "master": false,
+      "summary": "Acorn 的低功耗 RISC 架构，1985 年 4 月首硅，后世移动处理器基石。",
+      "concepts": ["RISC", "low power", "licensable IP"],
+      "people": ["Acorn Computers", "Sophie Wilson", "Steve Furber"],
+      "sources": [
+        "https://newsroom.arm.com/blog/40-year-anniversary-of-arm-architecture",
+        "https://www.computinghistory.org.uk/det/5440/First-ARM-Processor-Powered-Up"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "mips-r2000-1986",
+      "label": "MIPS R2000",
+      "label_en": "MIPS R2000",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 1986,
+      "weight": "major",
+      "master": false,
+      "summary": "源自 Stanford MIPS 项目的商用 RISC 处理器（1986）。",
+      "concepts": ["RISC", "pipeline", "workstation CPU"],
+      "people": ["MIPS Computer Systems", "John Hennessy", "Stanford University"],
+      "sources": [
+        "https://www.computerhistory.org/collections/catalog/X1301.97/",
+        "https://www.computerhistory.org/collections/catalog/102746036/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "acorn-archimedes-1987",
+      "label": "Acorn Archimedes",
+      "label_en": "Acorn Archimedes",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1987,
+      "weight": "minor",
+      "master": false,
+      "summary": "首台量产 ARM 处理器计算机（采用 ARM2；ARM1 为 1985 年评估样片）。",
+      "concepts": ["ARM2", "RISC OS", "desktop"],
+      "people": ["Acorn Computers", "Sophie Wilson"],
+      "sources": [
+        "https://www.computerhistory.org/timeline/1987/",
+        "https://www.computinghistory.org.uk/det/51418/Acorn-Archimedes-310-(Arthur-1-2-Installed)"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "sparc-1987",
+      "label": "SPARC",
+      "label_en": "SPARC",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 1987,
+      "weight": "major",
+      "master": false,
+      "summary": "Sun 的可扩展 RISC 架构（基于 Berkeley RISC II），1987 年发布。",
+      "concepts": ["RISC", "register windows", "scalable architecture"],
+      "people": ["Sun Microsystems", "Bill Joy"],
+      "sources": ["https://ethw.org/Milestones:SPARC_RISC_Architecture,_1987"],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "next-workstation-1988",
+      "label": "NeXT 工作站",
+      "label_en": "NeXT Workstation",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1988,
+      "weight": "minor",
+      "master": false,
+      "summary": "Jobs 的图形工作站，搭载 NeXTSTEP，1988 年发布。",
+      "concepts": ["NeXTSTEP", "object-oriented runtime", "workstation"],
+      "people": ["NeXT", "Steve Jobs"],
+      "sources": [
+        "https://www.computerhistory.org/timeline/1988/",
+        "https://www.computinghistory.org.uk/det/927/next-computers"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "intel-80486-1989",
+      "label": "Intel 80486",
+      "label_en": "Intel 80486",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1989,
+      "weight": "major",
+      "master": false,
+      "summary": "集成浮点单元与片上缓存的 x86（1989）。",
+      "concepts": ["integrated FPU", "on-chip cache", "pipeline"],
+      "people": ["Intel", "Pat Gelsinger"],
+      "sources": [
+        "https://www.computerhistory.org/timeline/1989/",
+        "https://doi.org/10.1109/CMPCON.1990.63684"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "lenet-1989",
+      "label": "LeNet",
+      "label_en": "LeNet",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 1989,
+      "weight": "major",
+      "master": false,
+      "summary": "LeCun 以反向传播训练的卷积网络，手写数字识别（1989）。",
+      "concepts": ["convolutional network", "backpropagation", "digit recognition"],
+      "people": ["Yann LeCun", "AT&T Bell Labs"],
+      "sources": [
+        "https://doi.org/10.1162/neco.1989.1.4.541",
+        "http://yann.lecun.com/exdb/publis/index.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "windows-3-0-1990",
+      "label": "Windows 3.0",
+      "label_en": "Windows 3.0",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1990,
+      "weight": "major",
+      "master": false,
+      "summary": "首个广泛成功的 Windows GUI 版本，1990 年 5 月发布。",
+      "concepts": ["GUI", "protected mode", "MS-DOS based"],
+      "people": ["Microsoft", "Bill Gates"],
+      "sources": [
+        "https://learn.microsoft.com/en-us/archive/blogs/uktechnet/history-of-windows",
+        "https://www.computinghistory.org.uk/det/555/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "www-1991",
+      "label": "WWW",
+      "label_en": "World Wide Web",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 1991,
+      "weight": "epic",
+      "master": true,
+      "summary": "Berners-Lee 在 CERN 的万维网（1991 年公开），超文本信息时代起点。",
+      "concepts": ["hypertext", "URL", "HTTP", "HTML"],
+      "people": ["Tim Berners-Lee", "CERN", "Robert Cailliau"],
+      "sources": [
+        "https://www.w3.org/History/19921103-hypertext/hypertext/WWW/TheProject.html",
+        "https://www.w3.org/People/Berners-Lee/History.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "linux-1991",
+      "label": "Linux",
+      "label_en": "Linux",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1991,
+      "weight": "epic",
+      "master": true,
+      "summary": "Torvalds 发布的开源 UNIX 类内核（1991 年 8 月宣告）。",
+      "concepts": ["UNIX-like", "kernel", "GPL", "community development"],
+      "people": ["Linus Torvalds", "GNU Project"],
+      "sources": [
+        "https://www.cs.cmu.edu/~awb/linux.history.html",
+        "https://www.gnu.org/gnu/linux-and-gnu.en.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "python-1991",
+      "label": "Python",
+      "label_en": "Python",
+      "layer": "L2_language",
+      "column": "scripting",
+      "year": 1991,
+      "weight": "major",
+      "master": true,
+      "summary": "Guido van Rossum 的通用语言（1991 年 2 月首次公开发布）。",
+      "concepts": ["readability", "dynamic typing", "standard library"],
+      "people": ["Guido van Rossum", "CWI"],
+      "sources": ["https://docs.python.org/3/faq/general.html"],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "sql-92-1992",
+      "label": "SQL-92",
+      "label_en": "SQL-92 (SQL2)",
+      "layer": "L3_data",
+      "column": "relational",
+      "year": 1992,
+      "weight": "major",
+      "master": false,
+      "summary": "SQL 国际标准（ISO/IEC 9075:1992，1992 年 11 月），关系数据库共同语言。",
+      "concepts": ["SQL standard", "ANSI/ISO", "declarative query"],
+      "people": ["ISO/IEC", "ANSI"],
+      "sources": [
+        "https://webstore.iec.ch/en/publication/97525",
+        "https://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "solaris-1992",
+      "label": "Solaris",
+      "label_en": "Oracle Solaris",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1992,
+      "weight": "minor",
+      "master": false,
+      "summary": "Sun 的 UNIX 商业化系统（Solaris 2.0，1992 年发布）。",
+      "concepts": ["UNIX System V", "SPARC", "enterprise OS"],
+      "people": ["Sun Microsystems", "Bill Joy"],
+      "sources": [
+        "https://docs.oracle.com/cd/E19683-01/817-0668/817-0668.pdf",
+        "http://www.cs.toronto.edu/sunmanagers/1992/1133.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "thinkpad-1992",
+      "label": "ThinkPad",
+      "label_en": "IBM ThinkPad",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1992,
+      "weight": "minor",
+      "master": false,
+      "summary": "IBM 经典笔记本线（700C，1992 年 10 月发布）。",
+      "concepts": ["laptop", "TrackPoint", "industrial design"],
+      "people": ["IBM", "Richard Sapper"],
+      "sources": [
+        "https://www.ibm.com/history/thinkpad",
+        "https://news.lenovo.com/pressroom/press-releases/happy-25th-birthday-thinkpad/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "mosaic-1993",
+      "label": "Mosaic",
+      "label_en": "NCSA Mosaic",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 1993,
+      "weight": "major",
+      "master": false,
+      "summary": "首个流行的图形浏览器（NCSA，1993 年 12 月发布）。",
+      "concepts": ["graphical browser", "inline images", "NCSA"],
+      "people": ["NCSA", "Marc Andreessen", "Eric Bina"],
+      "sources": [
+        "https://www.ncsa.illinois.edu/about/history/",
+        "https://www.computerhistory.org/revolution/the-web/20/388"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "windows-nt-1993",
+      "label": "Windows NT",
+      "label_en": "Windows NT",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1993,
+      "weight": "major",
+      "master": false,
+      "summary": "微软自研内核的操作系统（NT 3.1，1993），面向企业市场。",
+      "concepts": ["new kernel", "multitasking", "enterprise"],
+      "people": ["Microsoft", "Dave Cutler"],
+      "sources": [
+        "https://learn.microsoft.com/en-us/shows/history/history-of-microsoft-1993",
+        "https://www.computerhistory.org/timeline/1993/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "apple-newton-1993",
+      "label": "Apple Newton",
+      "label_en": "Apple Newton",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1993,
+      "weight": "minor",
+      "master": false,
+      "summary": "Apple 的早期 PDA（MessagePad，1993 年 8 月发布）。",
+      "concepts": ["PDA", "handwriting recognition", "pen input"],
+      "people": ["Apple", "John Sculley"],
+      "sources": [
+        "https://www.computerhistory.org/timeline/1993/",
+        "https://www.computinghistory.org.uk/det/6194/Apple-releases-the-Newton-MessagePad/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "netscape-navigator-1994",
+      "label": "Netscape Navigator",
+      "label_en": "Netscape Navigator",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 1994,
+      "weight": "major",
+      "master": false,
+      "summary": "Mosaic 团队的商业浏览器（1994 年发布），浏览器战争主角。",
+      "concepts": ["browser", "HTML rendering", "commercial web"],
+      "people": ["Netscape", "Marc Andreessen", "Jim Clark"],
+      "sources": [
+        "https://www.computerhistory.org/revolution/the-web/20/389",
+        "https://www.computinghistory.org.uk/det/71176/Netscape-launches-Navigator-web-browser"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "red-hat-linux-1994",
+      "label": "Red Hat Linux",
+      "label_en": "Red Hat Linux",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1994,
+      "weight": "minor",
+      "master": false,
+      "summary": "Linux 商业发行版（1994 年 10 月首发），开源商业化探索。",
+      "concepts": ["distribution", "package management", "RPM"],
+      "people": ["Red Hat", "Bob Young", "Marc Ewing"],
+      "sources": [
+        "https://www.redhat.com/en/blog/25-things-you-should-know-about-red-hat-0",
+        "https://www.redhat.com/en/about/brand/standards/history"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "playstation-1994",
+      "label": "PlayStation",
+      "label_en": "Sony PlayStation",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1994,
+      "weight": "major",
+      "master": false,
+      "summary": "索尼游戏主机（32 位 R3000），1994 年 12 月日本首发，3D 游戏时代。",
+      "concepts": ["3D graphics", "CD-ROM", "game console"],
+      "people": ["Sony", "Ken Kutaragi"],
+      "sources": ["https://www.playstation.com/en-us/playstation-history/1994-ps-one/"],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "java-1995",
+      "label": "Java",
+      "label_en": "Java",
+      "layer": "L2_language",
+      "column": "jvm-family",
+      "year": 1995,
+      "weight": "major",
+      "master": true,
+      "summary": "Sun 发布的可移植语言：JVM 中间码实现跨平台运行（1995 年 5 月宣告）。",
+      "concepts": ["JVM", "bytecode", "garbage collection", "portability"],
+      "people": ["Sun Microsystems", "James Gosling"],
+      "sources": [
+        "https://web.archive.org/web/20100105045840/http://java.sun.com/features/1998/05/birthday.html",
+        "https://web.archive.org/web/19990117055636/http://home.netscape.com/newsref/pr/newsrelease67.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "javascript-1995",
+      "label": "JavaScript",
+      "label_en": "JavaScript",
+      "layer": "L2_language",
+      "column": "scripting",
+      "year": 1995,
+      "weight": "major",
+      "master": true,
+      "summary": "Netscape 的浏览器脚本语言（1995 年 12 月发布）。",
+      "concepts": ["browser scripting", "dynamic web pages", "prototype-based"],
+      "people": ["Netscape", "Brendan Eich"],
+      "sources": [
+        "https://web.archive.org/web/19990117055636/http://home.netscape.com/newsref/pr/newsrelease67.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "mysql-1995",
+      "label": "MySQL",
+      "label_en": "MySQL",
+      "layer": "L3_data",
+      "column": "relational",
+      "year": 1995,
+      "weight": "major",
+      "master": false,
+      "summary": "开源 SQL 数据库（1995 年 5 月首发），LAMP 栈组件。",
+      "concepts": ["SQL", "open source", "LAMP"],
+      "people": ["Michael Widenius", "David Axmark"],
+      "sources": [
+        "https://blogs.oracle.com/mysql/mysql-retrospective-the-early-years",
+        "https://dev.mysql.com/doc/refman/8.0/en/history.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "apache-http-server-1995",
+      "label": "Apache HTTP Server",
+      "label_en": "Apache HTTP Server",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 1995,
+      "weight": "major",
+      "master": false,
+      "summary": "源自 NCSA HTTPd 的开源 web 服务器（0.6.2，1995 年 4 月）。",
+      "concepts": ["web server", "open source", "modular"],
+      "people": ["Apache Group", "Brian Behlendorf"],
+      "sources": [
+        "https://httpd.apache.org/ABOUT_APACHE.html",
+        "https://www.apache.org/history/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ssl-1995",
+      "label": "SSL",
+      "label_en": "Secure Sockets Layer",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 1995,
+      "weight": "major",
+      "master": false,
+      "summary": "Netscape 的网络加密层（SSL 2/3，1995-96），HTTPS 基础。",
+      "concepts": ["encryption", "handshake", "certificates"],
+      "people": ["Netscape", "Taher Elgamal"],
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc6101",
+        "https://www.rfc-editor.org/rfc/rfc6176"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "windows-95-1995",
+      "label": "Windows 95",
+      "label_en": "Windows 95",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1995,
+      "weight": "major",
+      "master": false,
+      "summary": "大众 32 位 Windows（开始菜单与即插即用），1995 年 8 月发布。",
+      "concepts": ["Start menu", "plug and play", "32-bit"],
+      "people": ["Microsoft", "Bill Gates"],
+      "sources": [
+        "https://www.computerhistory.org/tdih/august/24/",
+        "https://learn.microsoft.com/en-us/archive/blogs/uktechnet/history-of-windows"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "css-1996",
+      "label": "CSS",
+      "label_en": "Cascading Style Sheets",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 1996,
+      "weight": "major",
+      "master": false,
+      "summary": "W3C 层叠样式表（CSS1，1996 年 12 月推荐标准），样式与结构分离。",
+      "concepts": ["style sheets", "separation of concerns", "W3C recommendation"],
+      "people": ["W3C", "Håkon Wium Lie", "Bert Bos"],
+      "sources": [
+        "https://www.w3.org/TR/CSS1/",
+        "https://www.w3.org/Style/CSS20/history.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "postgresql-1996",
+      "label": "PostgreSQL",
+      "label_en": "PostgreSQL",
+      "layer": "L3_data",
+      "column": "relational",
+      "year": 1996,
+      "weight": "major",
+      "master": false,
+      "year_note": "1996 年由 Postgres95 定名 PostgreSQL；首个正式版 6.0 发布于 1997-01。",
+      "summary": "开源关系数据库（1996 定名），SQL 标准实现。",
+      "concepts": ["relational database", "SQL", "extensibility"],
+      "people": ["PostgreSQL Global Development Group", "Michael Stonebraker", "UC Berkeley"],
+      "sources": [
+        "https://www.postgresql.org/docs/current/history.html",
+        "https://www.postgresql.org/about/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "http-1-1-1997",
+      "label": "HTTP/1.1",
+      "label_en": "HTTP/1.1",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 1997,
+      "weight": "major",
+      "master": true,
+      "summary": "HTTP/1.1 标准（RFC 2068，1997 年 1 月），持久连接与虚拟主机。",
+      "concepts": ["persistent connections", "Host header", "RFC 2068"],
+      "people": ["IETF", "Roy Fielding"],
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc2068",
+        "https://www.rfc-editor.org/rfc/rfc2616"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ecmascript-1997",
+      "label": "ECMAScript",
+      "label_en": "ECMAScript (ECMA-262)",
+      "layer": "L2_language",
+      "column": "scripting",
+      "year": 1997,
+      "weight": "minor",
+      "master": false,
+      "summary": "JavaScript 的标准化（ECMA-262 首版，1997 年 6 月）。",
+      "concepts": ["ECMA-262", "standardization", "scripting"],
+      "people": ["ECMA International", "Brendan Eich"],
+      "sources": [
+        "https://ecma-international.org/publications-and-standards/standards/ecma-262/",
+        "https://ecma-international.org/wp-content/uploads/ECMA-262_1st_edition_june_1997.pdf"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "html-4-0-1997",
+      "label": "HTML 4.0",
+      "label_en": "HTML 4.0",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 1997,
+      "weight": "minor",
+      "master": false,
+      "summary": "W3C 的 HTML 4.0 推荐标准（1997 年 12 月），采纳样式表。",
+      "concepts": ["markup", "style sheets", "accessibility"],
+      "people": ["W3C", "Dave Raggett"],
+      "sources": [
+        "https://www.w3.org/TR/REC-html40-971218/cover.html",
+        "https://www.w3.org/TR/1998/REC-html40-19980424/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "mac-os-8-1997",
+      "label": "Mac OS 8",
+      "label_en": "Mac OS 8",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1997,
+      "weight": "minor",
+      "master": false,
+      "summary": "Apple 的 Mac OS 版本（1997 年 7 月发布）。",
+      "concepts": ["Mac OS", "Finder", "PowerPC"],
+      "people": ["Apple", "Steve Jobs"],
+      "sources": [
+        "https://www.computerhistory.org/tdih/july/22/",
+        "https://www.mactech.com/1997/07/22/md1-mac-os-8-ships/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "lstm-1997",
+      "label": "LSTM",
+      "label_en": "Long Short-Term Memory",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 1997,
+      "weight": "minor",
+      "master": false,
+      "summary": "Hochreiter 与 Schmidhuber 的长短期记忆网络（1997），序列建模基础。",
+      "concepts": ["gates", "vanishing gradient", "sequence modeling"],
+      "people": ["Sepp Hochreiter", "Jürgen Schmidhuber"],
+      "sources": [
+        "https://doi.org/10.1162/neco.1997.9.8.1735",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "imac-1998",
+      "label": "iMac",
+      "label_en": "Apple iMac",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1998,
+      "weight": "major",
+      "master": false,
+      "summary": "Apple 一体机（1998 年 5 月发布），推动 USB 普及。",
+      "concepts": ["all-in-one", "USB", "consumer design"],
+      "people": ["Apple", "Steve Jobs", "Jony Ive"],
+      "sources": [
+        "https://www.computerhistory.org/timeline/1998/",
+        "https://www.apple.com/ca/fr/press/1998/05/iMac.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "google-search-1998",
+      "label": "Google 搜索",
+      "label_en": "Google Search",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 1998,
+      "weight": "major",
+      "master": false,
+      "summary": "Brin 与 Page 的 PageRank 搜索引擎，1998 年创立。",
+      "concepts": ["PageRank", "web link graph", "search engine"],
+      "people": ["Larry Page", "Sergey Brin", "Stanford University"],
+      "sources": [
+        "http://infolab.stanford.edu/~backrub/google.html",
+        "https://about.google/our-story/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "windows-98-1998",
+      "label": "Windows 98",
+      "label_en": "Windows 98",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1998,
+      "weight": "minor",
+      "master": false,
+      "summary": "Win9x 线延续版本（1998 年 6 月发布）。",
+      "concepts": ["Win9x", "USB support", "browser integration"],
+      "people": ["Microsoft", "Bill Gates"],
+      "sources": [
+        "https://www.computinghistory.org.uk/det/559/",
+        "https://news.microsoft.com/source/1998/06/25/microsoft-announces-immediate-availability-of-windows-98-in-more-than-40-countries/"
+      ],
+      "checked_at": "2026-10-05"
+    }
+  ],
+  "edges": [
+    {
+      "source": "perceptron-1958",
+      "target": "neocognitron-1980",
+      "relation": "conceptual_inf",
+      "citation": "层级视觉网络承接感知机传统（Fukushima 自述受形式神经元研究影响；1980 Biol. Cybern. 论文）。来源：https://doi.org/10.1007/BF00344251"
+    },
+    {
+      "source": "intel-8086-1978",
+      "target": "ibm-pc-1981",
+      "relation": "enables",
+      "citation": "IBM PC 采用 Intel 8088（8086 的 8 位总线版）；IBM 官方史（1981-08-12 发布）。来源：https://www.ibm.com/history/personal-computer"
+    },
+    {
+      "source": "apple-ii-1977",
+      "target": "ibm-pc-1981",
+      "relation": "conceptual_inf",
+      "citation": "Apple II 验证个人计算消费市场，IBM 随后入场（CHM：PC 为首个被广泛采用的个人计算机）。来源：https://www.computerhistory.org/timeline/1981/"
+    },
+    {
+      "source": "ibm-pc-1981",
+      "target": "ms-dos-1981",
+      "relation": "enables",
+      "citation": "PC-DOS（MS-DOS 1.0）随 IBM PC 于 1981 年 8 月发布；微软官方史。来源：https://learn.microsoft.com/en-us/shows/history/history-of-microsoft-1981"
+    },
+    {
+      "source": "ibm-system-360-1964",
+      "target": "berkeley-risc-1981",
+      "relation": "conceptual_inf",
+      "citation": "RISC 以精简指令集回应复杂指令集传统（Patterson 的 Berkeley RISC 项目 1981；RISC I 论文）。来源：https://doi.org/10.1145/285930.285981"
+    },
+    {
+      "source": "ibm-pc-1981",
+      "target": "compaq-portable-1982",
+      "relation": "direct_fork",
+      "citation": "干净室逆向 BIOS 实现 PC 兼容（Compaq Portable，1982-11 发布）。来源：https://www.computinghistory.org.uk/det/1322/"
+    },
+    {
+      "source": "xerox-alto-1973",
+      "target": "apple-lisa-1983",
+      "relation": "conceptual_inf",
+      "citation": "GUI 与桌面隐喻自 PARC 传入 Apple（CHM：Lisa 为首台商用 GUI 个人计算机）。来源：https://www.computerhistory.org/timeline/1983/"
+    },
+    {
+      "source": "apple-lisa-1983",
+      "target": "macintosh-1984",
+      "relation": "direct_fork",
+      "citation": "Macintosh 为 Lisa 之后的低价 GUI 机型（1984-01-24 发布，Apple 新闻稿）。来源：https://web.stanford.edu/dept/SUL/sites/mac/primary/docs/pr1.html"
+    },
+    {
+      "source": "c-language-1972",
+      "target": "c-plus-plus-1985",
+      "relation": "direct_fork",
+      "citation": "C++ 由 C 扩展而来（C with Classes；Stroustrup 官方 FAQ：1985 年 10 月首个商业实现 Cfront）。来源：https://www.stroustrup.com/bs_faq.html"
+    },
+    {
+      "source": "ibm-pc-1981",
+      "target": "intel-80386-1985",
+      "relation": "conceptual_inf",
+      "citation": "PC 平台需求推动 x86 32 位化（386 1985-10 发布；Intel 386 介绍页）。来源：https://www.computinghistory.org.uk/det/6192/Introduction-of-Intel-386/"
+    },
+    {
+      "source": "berkeley-risc-1981",
+      "target": "arm-1985",
+      "relation": "direct_fork",
+      "citation": "ARM 设计借鉴 Berkeley RISC（Arm 官方史：1985-04-26 首硅通电）。来源：https://newsroom.arm.com/blog/40-year-anniversary-of-arm-architecture"
+    },
+    {
+      "source": "berkeley-risc-1981",
+      "target": "mips-r2000-1986",
+      "relation": "direct_fork",
+      "citation": "Stanford MIPS 与 Berkeley RISC 同源（CHM：1986 年 R2000 晶圆）。来源：https://www.computerhistory.org/collections/catalog/X1301.97/"
+    },
+    {
+      "source": "arm-1985",
+      "target": "acorn-archimedes-1987",
+      "relation": "enables",
+      "citation": "Archimedes 首台量产 ARM 计算机（采用 ARM2；1987 CHM 时间线）。来源：https://www.computerhistory.org/timeline/1987/"
+    },
+    {
+      "source": "berkeley-risc-1981",
+      "target": "sparc-1987",
+      "relation": "direct_fork",
+      "citation": "SPARC 源自 Berkeley RISC II（IEEE Milestone：Sun 1987 发布，立足 Berkeley RISC）。来源：https://ethw.org/Milestones:SPARC_RISC_Architecture,_1987"
+    },
+    {
+      "source": "macintosh-1984",
+      "target": "next-workstation-1988",
+      "relation": "conceptual_inf",
+      "citation": "Jobs 离 Apple 后建 NeXT，延续图形工作站路线（CHM：1988 年发布 NeXT Cube 与 NeXTSTEP）。来源：https://www.computerhistory.org/timeline/1988/"
+    },
+    {
+      "source": "intel-80386-1985",
+      "target": "intel-80486-1989",
+      "relation": "direct_fork",
+      "citation": "486 = 386 线增集成 FPU 与片上缓存（CHM 1989：on-chip cache + FPU）。来源：https://www.computerhistory.org/timeline/1989/"
+    },
+    {
+      "source": "backpropagation-1974",
+      "target": "lenet-1989",
+      "relation": "enables",
+      "citation": "LeNet 以反向传播（BPTT 传统）训练卷积网络（Neural Computation 1989 论文摘要）。来源：https://doi.org/10.1162/neco.1989.1.4.541"
+    },
+    {
+      "source": "ms-dos-1981",
+      "target": "windows-3-0-1990",
+      "relation": "enables",
+      "citation": "Windows 3.0 运行于 MS-DOS 之上（1990-05-22 发布；微软官方 Windows 史）。来源：https://learn.microsoft.com/en-us/archive/blogs/uktechnet/history-of-windows"
+    },
+    {
+      "source": "tcp-ip-1974",
+      "target": "www-1991",
+      "relation": "enables",
+      "citation": "WWW 构建于 TCP/IP 网络之上（CERN 1991 年公开；W3 项目原始页）。来源：https://www.w3.org/History/19921103-hypertext/hypertext/WWW/TheProject.html"
+    },
+    {
+      "source": "unix-1971",
+      "target": "linux-1991",
+      "relation": "conceptual_inf",
+      "citation": "Linux 为类 UNIX 内核重写（Torvalds 1991-08-25 宣告帖：'free, minix-like'）。来源：https://www.cs.cmu.edu/~awb/linux.history.html"
+    },
+    {
+      "source": "c-language-1972",
+      "target": "python-1991",
+      "relation": "enables",
+      "citation": "CPython 以 C 实现（Python 官方 FAQ：1991 年 2 月首次发布）。来源：https://docs.python.org/3/faq/general.html"
+    },
+    {
+      "source": "sql-1974",
+      "target": "sql-92-1992",
+      "relation": "direct_fork",
+      "citation": "SQL 标准系列（SQL-86/89/92）：ISO/IEC 9075:1992 于 1992-11-19 发布。来源：https://webstore.iec.ch/en/publication/97525"
+    },
+    {
+      "source": "sparc-1987",
+      "target": "solaris-1992",
+      "relation": "enables",
+      "citation": "Solaris 为 Sun/SPARC 平台的企业系统（Solaris 2.0 1992 年发布；Oracle 文档）。来源：https://docs.oracle.com/cd/E19683-01/817-0668/817-0668.pdf"
+    },
+    {
+      "source": "ibm-pc-1981",
+      "target": "thinkpad-1992",
+      "relation": "direct_fork",
+      "citation": "IBM PC 线的便携形态（ThinkPad 700C，1992-10-05 发布；IBM 官方史）。来源：https://www.ibm.com/history/thinkpad"
+    },
+    {
+      "source": "www-1991",
+      "target": "mosaic-1993",
+      "relation": "enables",
+      "citation": "Mosaic 为 WWW 的首个流行图形客户端（NCSA 官方史：1993-12）。来源：https://www.ncsa.illinois.edu/about/history/"
+    },
+    {
+      "source": "windows-3-0-1990",
+      "target": "windows-nt-1993",
+      "relation": "direct_fork",
+      "citation": "NT 为微软自研新内核系统（Cutler 团队；MS 官方博客：NT 3.1 首个版本 1993）。来源：https://learn.microsoft.com/en-us/archive/blogs/sankim/windows-nt-3-1"
+    },
+    {
+      "source": "macintosh-1984",
+      "target": "apple-newton-1993",
+      "relation": "conceptual_inf",
+      "citation": "Newton 为 Apple 移动设备线起点（1993-08 发布 MessagePad；CHM 时间线）。来源：https://www.computerhistory.org/timeline/1993/"
+    },
+    {
+      "source": "mosaic-1993",
+      "target": "netscape-navigator-1994",
+      "relation": "direct_fork",
+      "citation": "Netscape 由 Mosaic 团队创立（Clark 聘用 Andreessen 团队；CHM web 展）。来源：https://www.computerhistory.org/revolution/the-web/20/389"
+    },
+    {
+      "source": "linux-1991",
+      "target": "red-hat-linux-1994",
+      "relation": "direct_fork",
+      "citation": "发行版：内核打包为产品（Red Hat Linux 1994-10 首发；官方史）。来源：https://www.redhat.com/en/blog/25-things-you-should-know-about-red-hat-0"
+    },
+    {
+      "source": "mips-r2000-1986",
+      "target": "playstation-1994",
+      "relation": "enables",
+      "citation": "PS1 采用 MIPS R3000（Sony 官方史：1994-12-03 日本首发，32-bit R3000 CPU）。来源：https://www.playstation.com/en-us/playstation-history/1994-ps-one/"
+    },
+    {
+      "source": "c-plus-plus-1985",
+      "target": "java-1995",
+      "relation": "conceptual_inf",
+      "citation": "Java 语法承 C/C++ 传统（去指针、GC；Sun 1995-05-23 宣告）。来源：https://web.archive.org/web/20100105045840/http://java.sun.com/features/1998/05/birthday.html"
+    },
+    {
+      "source": "www-1991",
+      "target": "javascript-1995",
+      "relation": "enables",
+      "citation": "浏览器网页需要嵌入式脚本（Netscape/Sun 1995-12-04 发布公告）。来源：https://web.archive.org/web/19990117055636/http://home.netscape.com/newsref/pr/newsrelease67.html"
+    },
+    {
+      "source": "sql-92-1992",
+      "target": "mysql-1995",
+      "relation": "conceptual_inf",
+      "citation": "开源 SQL 数据库实现（MySQL 1995-05 首发；Oracle MySQL 回顾）。来源：https://blogs.oracle.com/mysql/mysql-retrospective-the-early-years"
+    },
+    {
+      "source": "mosaic-1993",
+      "target": "apache-http-server-1995",
+      "relation": "direct_fork",
+      "citation": "Apache 源自 NCSA HTTPd 1.3 + 补丁（官方：首个公开发布 0.6.2，1995-04）。来源：https://httpd.apache.org/ABOUT_APACHE.html"
+    },
+    {
+      "source": "netscape-navigator-1994",
+      "target": "ssl-1995",
+      "relation": "enables",
+      "citation": "SSL 随 Netscape 发布（SSL 2.0 spec 1995-02；RFC 6101/6176 记录）。来源：https://www.rfc-editor.org/rfc/rfc6176"
+    },
+    {
+      "source": "windows-3-0-1990",
+      "target": "windows-95-1995",
+      "relation": "direct_fork",
+      "citation": "Win9x 线：GUI 延续（1995-08-24 发布；CHM）。来源：https://www.computerhistory.org/tdih/august/24/"
+    },
+    {
+      "source": "ms-dos-1981",
+      "target": "windows-95-1995",
+      "relation": "convergence",
+      "citation": "多源汇聚标记：DOS 线合流（Win95 兼容 DOS/命令行；Microsoft 官方史）。来源：https://learn.microsoft.com/en-us/archive/blogs/uktechnet/history-of-windows"
+    },
+    {
+      "source": "www-1991",
+      "target": "css-1996",
+      "relation": "enables",
+      "citation": "W3C 发布 CSS1 推荐标准（1996-12-17），实现样式与结构分离。来源：https://www.w3.org/TR/CSS1/"
+    },
+    {
+      "source": "sql-92-1992",
+      "target": "postgresql-1996",
+      "relation": "conceptual_inf",
+      "citation": "PostgreSQL 按 SQL 标准实现（官方史：1996 年由 Postgres95 定名）。来源：https://www.postgresql.org/docs/current/history.html"
+    },
+    {
+      "source": "www-1991",
+      "target": "http-1-1-1997",
+      "relation": "direct_fork",
+      "citation": "HTTP 协议标准化演进（RFC 2068，1997-01）。来源：https://www.rfc-editor.org/rfc/rfc2068"
+    },
+    {
+      "source": "javascript-1995",
+      "target": "ecmascript-1997",
+      "relation": "direct_fork",
+      "citation": "JavaScript 标准化为 ECMA-262（首版 1997-06；ECMA 官方）。来源：https://ecma-international.org/publications-and-standards/standards/ecma-262/"
+    },
+    {
+      "source": "css-1996",
+      "target": "html-4-0-1997",
+      "relation": "conceptual_inf",
+      "citation": "HTML 4.0 采纳样式表体系（W3C 推荐标准 1997-12-18）。来源：https://www.w3.org/TR/REC-html40-971218/cover.html"
+    },
+    {
+      "source": "macintosh-1984",
+      "target": "mac-os-8-1997",
+      "relation": "direct_fork",
+      "citation": "Mac OS 线延续（Mac OS 8 于 1997-07-22 发布；Apple 新闻稿）。来源：https://www.mactech.com/1997/07/22/md1-mac-os-8-ships/"
+    },
+    {
+      "source": "lenet-1989",
+      "target": "lstm-1997",
+      "relation": "conceptual_inf",
+      "citation": "神经网络复兴期的序列建模（LSTM 以梯度法训练；Neural Computation 1997 论文）。来源：https://doi.org/10.1162/neco.1997.9.8.1735"
+    },
+    {
+      "source": "macintosh-1984",
+      "target": "imac-1998",
+      "relation": "direct_fork",
+      "citation": "Mac 消费化线（iMac 1998-05-06 发布，两个 USB 端口；Apple 新闻稿）。来源：https://www.apple.com/ca/fr/press/1998/05/iMac.html"
+    },
+    {
+      "source": "www-1991",
+      "target": "google-search-1998",
+      "relation": "enables",
+      "citation": "PageRank 构建于 Web 链接图之上（Brin–Page 1998 论文；Google 官方故事）。来源：http://infolab.stanford.edu/~backrub/google.html"
+    },
+    {
+      "source": "windows-95-1995",
+      "target": "windows-98-1998",
+      "relation": "direct_fork",
+      "citation": "Win9x 线延续（Windows 98 于 1998-06-25 发布；博物馆记录）。来源：https://www.computinghistory.org.uk/det/559/"
+    }
+  ]
 }
