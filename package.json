@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "validate": "tsx scripts/validate.ts",
-    "measure": "tsx scripts/measure.ts"
+    "measure": "tsx scripts/measure.ts",
+    "bench": "tsx scripts/bench-bfs.ts"
   },
   "dependencies": {
     "@xyflow/react": "^12.12.0",

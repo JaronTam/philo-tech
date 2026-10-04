@@ -1,12 +1,15 @@
+import type { ReactNode } from 'react';
 import { VOLUMES } from '../lib/volumes';
 import type { VolumeKey } from '../lib/types';
 
 interface Props {
   viewKey: VolumeKey;
   onView: (k: VolumeKey) => void;
+  /** 右侧控件槽（搜索框 / 收敛 toggle，F-E-3 落值：并入顶栏） */
+  right?: ReactNode;
 }
 
-export function Toolbar({ viewKey, onView }: Props) {
+export function Toolbar({ viewKey, onView, right }: Props) {
   return (
     <header
       style={{
@@ -16,6 +19,7 @@ export function Toolbar({ viewKey, onView }: Props) {
         padding: '8px 12px',
         borderBottom: '1px solid var(--rule)',
         background: 'var(--bg)',
+        flexWrap: 'wrap',
       }}
     >
       <span
@@ -44,6 +48,7 @@ export function Toolbar({ viewKey, onView }: Props) {
           {v.title}
         </button>
       ))}
+      {right && <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>{right}</div>}
     </header>
   );
 }

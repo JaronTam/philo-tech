@@ -75,6 +75,8 @@ for (const e of edges) {
   if (!byId.has(e.source)) errors.push(`[悬空] edge source 不存在：${e.source}`);
   if (!byId.has(e.target)) errors.push(`[悬空] edge target 不存在：${e.target}`);
   if (!e.citation) errors.push(`[citation] edge ${e.source} → ${e.target}：为空`);
+  // M2 起 citation 尾 URL 在边 tooltip 与详情框渲染为可点击外链（ui-spec §2/§4），故要求存在
+  else if (!/https?:\/\//.test(e.citation)) errors.push(`[citation] edge ${e.source} → ${e.target}：无可点击来源 URL`);
   const s = byId.get(e.source);
   const t = byId.get(e.target);
   if (s && t && s.year > t.year) {
@@ -147,4 +149,4 @@ if (errors.length > 0) {
   console.log(`\n${errors.length} error(s)`);
   process.exit(1);
 }
-console.log('全部通过（citation 可点击性等 M2 后启用）');
+console.log('全部通过');

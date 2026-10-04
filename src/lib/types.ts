@@ -23,6 +23,7 @@ export interface TechNode {
   layer: Layer;
   column: string;
   year: number;
+  year_note?: string; // 争议年备注（schema v5.3，只增不删）；ui-spec §4「year 含争议备注」
   weight: 'epic' | 'major' | 'minor';
   master: boolean;
   summary: string;

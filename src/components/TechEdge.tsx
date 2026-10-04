@@ -1,4 +1,5 @@
 import type { EdgeProps } from '@xyflow/react';
+import { useInteraction } from '../lib/interaction';
 import type { Relation } from '../lib/types';
 
 export interface TechEdgeData {
@@ -21,9 +22,11 @@ const STYLE: Record<Relation, { stroke: string; width: number; dash?: string }> 
 // 同列上下路由的侧向偏移：节点半宽 50 + 6px 间隙（避开相邻列 112px 槽位）
 const SIDE = 56;
 
-/** 边 = 正交折线（横-竖-横；同列取右侧旁路），无箭头（ui-spec §2）；引用暂用原生 title（完整 tooltip 归 M2） */
-export function TechEdge({ sourceX, sourceY, targetX, targetY, data }: EdgeProps) {
+/** 边 = 正交折线（横-竖-横；同列取右侧旁路），无箭头（ui-spec §2）；完整 tooltip 由 App 层 EdgeTooltip 渲染 */
+export function TechEdge({ id, sourceX, sourceY, targetX, targetY, data }: EdgeProps) {
   const d = data as unknown as TechEdgeData;
+  const { lit } = useInteraction();
+  const dim = lit.dimming && !lit.litEdges.has(id);
   let path: string;
   if (Math.abs(targetX - sourceX) < 2) {
     const rx = sourceX + SIDE;
@@ -41,12 +44,10 @@ export function TechEdge({ sourceX, sourceY, targetX, targetY, data }: EdgeProps
         stroke={s.stroke}
         strokeWidth={s.width}
         strokeDasharray={s.dash}
+        opacity={dim ? 0.1 : 1}
       />
-      <path d={path} fill="none" stroke="transparent" strokeWidth={14}>
-        <title>
-          {`${d.sourceLabel ?? ''} → ${d.targetLabel ?? ''} · ${d.relation}\n${d.citation}`}
-        </title>
-      </path>
+      {/* 透明加宽命中层：hover/click 经 RF 的边事件冒泡（视觉层保持 1） */}
+      <path d={path} fill="none" stroke="transparent" strokeWidth={14} />
     </>
   );
 }

@@ -38,3 +38,90 @@ body {
 .react-flow__attribution {
   background: transparent;
 }
+
+/* ---- M2 交互层 ---- */
+
+.tech-flash {
+  animation: node-flash 300ms ease-out 2;
+}
+
+@keyframes node-flash {
+  0% {
+    box-shadow: 0 0 0 4px rgb(192 57 43 / 50%);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgb(192 57 43 / 0%);
+  }
+}
+
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 220px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
+  z-index: 30;
+}
+
+.edge-tooltip {
+  max-width: 320px;
+  padding: 8px 10px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 12%);
+  z-index: 40;
+}
+
+.detail-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  box-sizing: border-box;
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--bg);
+  border-left: 1px solid var(--rule);
+  z-index: 20;
+}
+
+.detail-h {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin: 12px 0 6px;
+}
+
+/* 窄屏：底部抽屉（断点与 App 侧 1023.98px 一致） */
+@media (max-width: 1023.98px) {
+  .detail-panel {
+    top: auto;
+    left: 0;
+    right: 0;
+    height: 45vh;
+    width: auto;
+    border-left: none;
+    border-top: 1px solid var(--rule);
+  }
+}
+
+.notice {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  z-index: 50;
+}
