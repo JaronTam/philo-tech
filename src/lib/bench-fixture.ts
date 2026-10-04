@@ -45,7 +45,8 @@ export function makeSyntheticGraph(seed = 1, nodeCount = 250): SyntheticGraph {
   for (let i = 0; i < nodeCount; i++) {
     const [layer, columns] = LANE_COLUMNS[i % LANE_COLUMNS.length];
     const column = columns[Math.floor(rnd() * columns.length)];
-    const year = 1854 + Math.floor((i * span) / nodeCount) + Math.floor(rnd() * 4);
+    // 上限钳制 2026：抖动不得越出数据年窗（D-6）
+    const year = Math.min(2026, 1854 + Math.floor((i * span) / nodeCount) + Math.floor(rnd() * 4));
     const id = `syn-${String(i).padStart(3, '0')}-${year}`;
     volumeOf.set(id, volumeOfYear(year));
     nodes.push({

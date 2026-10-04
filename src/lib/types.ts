@@ -1,4 +1,4 @@
-// 数据模型：prd2 §3.3 schema v5.1
+// 数据模型：prd2 §3.3 schema v5.3
 export type Layer =
   | 'L0_hardware'
   | 'L1_system'

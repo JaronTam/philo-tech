@@ -328,12 +328,18 @@ export default function App() {
   // ---- 边 tooltip：hover 显示（180ms 延迟关闭）、点击固定、平移/切卷/空白关闭 ----
   const hideTipSoon = useCallback(() => {
     window.clearTimeout(tipTimer.current);
-    tipTimer.current = window.setTimeout(() => setEdgeTip(null), 180);
+    // 固定态（点击 pin）不受 180ms 收起影响：清除只走点空白 / 平移 / 切卷 / 节点选中（ui-spec §2）
+    tipTimer.current = window.setTimeout(() => setEdgeTip((t) => (t?.pinned ? t : null)), 180);
   }, []);
   const cancelHideTip = useCallback(() => window.clearTimeout(tipTimer.current), []);
   const showTip = useCallback((ev: React.MouseEvent, edge: Edge) => {
     window.clearTimeout(tipTimer.current);
-    setEdgeTip({ edgeId: edge.id, x: ev.clientX, y: ev.clientY, pinned: false, data: edge.data as unknown as TechEdgeData });
+    // 重新 hover 已固定的同一条边：保持固定态与锚点位置
+    setEdgeTip((t) =>
+      t?.pinned && t.edgeId === edge.id
+        ? t
+        : { edgeId: edge.id, x: ev.clientX, y: ev.clientY, pinned: false, data: edge.data as unknown as TechEdgeData },
+    );
   }, []);
   const pinTip = useCallback((ev: React.MouseEvent, edge: Edge) => {
     window.clearTimeout(tipTimer.current);
