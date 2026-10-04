@@ -135,6 +135,7 @@ for (const id of meta.preEntryNodes ?? []) {
 const volIdx = new Map<string, number>();
 volFiles.forEach((v, i) => v.nodes.forEach((n) => volIdx.set(n.id, i)));
 const crossPairs = new Map<string, number>();
+const crossMasterPairs = new Map<string, number>();
 for (const e of edges) {
   const a = volIdx.get(e.source);
   const b = volIdx.get(e.target);
@@ -144,10 +145,17 @@ for (const e of edges) {
   }
   const key = `vol-${Math.min(a, b)} → vol-${Math.max(a, b)}`;
   crossPairs.set(key, (crossPairs.get(key) ?? 0) + 1);
+  if (masterIds.has(e.source) && masterIds.has(e.target)) {
+    crossMasterPairs.set(key, (crossMasterPairs.get(key) ?? 0) + 1);
+  }
 }
+// M3 修订（J1）：总量 ≤8；master→master ≤5（唯一会渲染的类型：主图要求两端皆 master，分卷视图要求两端同卷）
 for (const [key, count] of crossPairs) {
-  if (count > 5) errors.push(`[跨卷边] ${key}：${count} 条 > 5`);
+  if (count > 8) errors.push(`[跨卷边] ${key}：${count} 条 > 8`);
   else if (count < 3) warnings.push(`[跨卷边] ${key}：${count} 条 < 3（M3 全量前补足）`);
+}
+for (const [key, count] of crossMasterPairs) {
+  if (count > 5) errors.push(`[跨卷边·主图] ${key}：${count} 条 > 5`);
 }
 
 console.log(`validate：nodes ${nodes.length} / edges ${edges.length}`);

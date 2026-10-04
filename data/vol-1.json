@@ -46,6 +46,75 @@
       "checked_at": "2026-10-04"
     },
     {
+      "id": "univac-1-1951",
+      "label": "UNIVAC I",
+      "label_en": "UNIVAC I",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1951,
+      "weight": "major",
+      "master": false,
+      "summary": "Eckert–Mauchly 团队建造的首台商用电子计算机，1951 年交付美国人口普查局。",
+      "concepts": ["stored-program computer", "magnetic tape", "commercial computer"],
+      "people": ["J. Presper Eckert", "John Mauchly", "Eckert–Mauchly Computer Corporation"],
+      "sources": ["https://www.census.gov/about/history/bureau-history/census-innovations/technology/univac-i.html"],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ibm-701-1952",
+      "label": "IBM 701",
+      "label_en": "IBM 701",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1952,
+      "weight": "major",
+      "master": false,
+      "summary": "IBM 首台商用科学计算机（国防计算器），共交付 19 台，奠定 IBM 电子计算地位。",
+      "concepts": ["scientific computer", "vacuum tube", "Williams tube"],
+      "people": ["IBM", "Thomas J. Watson Jr."],
+      "sources": [
+        "https://en.wikipedia.org/wiki/IBM_701",
+        "https://www.computerhistory.org/timeline/1953/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ibm-704-1954",
+      "label": "IBM 704",
+      "label_en": "IBM 704",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1954,
+      "weight": "major",
+      "master": false,
+      "summary": "首台量产磁芯存储计算机，引入索引寄存器与浮点硬件，FORTRAN 的目标机。",
+      "concepts": ["magnetic-core memory", "index registers", "floating point"],
+      "people": ["IBM", "Gene Amdahl"],
+      "sources": [
+        "https://www.ibm.com/history/john-backus",
+        "https://www.computerhistory.org/collections/catalog/102653985/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "fortran-1957",
+      "label": "FORTRAN",
+      "label_en": "FORTRAN",
+      "layer": "L2_language",
+      "column": "algol-family",
+      "year": 1957,
+      "weight": "epic",
+      "master": false,
+      "summary": "Backus 团队为 IBM 704 设计的首个高级编程语言，编译器与数组语法奠基。",
+      "concepts": ["compiler", "high-level language", "scientific computing"],
+      "people": ["John Backus", "IBM"],
+      "sources": [
+        "https://www.ibm.com/history/fortran",
+        "https://softwarepreservation.computerhistory.org/FORTRAN/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
       "id": "integrated-circuit-1958",
       "label": "集成电路",
       "label_en": "Integrated Circuit",
@@ -94,6 +163,290 @@
       "checked_at": "2026-10-04"
     },
     {
+      "id": "cobol-1959",
+      "label": "COBOL",
+      "label_en": "COBOL",
+      "layer": "L2_language",
+      "column": "algol-family",
+      "year": 1959,
+      "weight": "major",
+      "master": false,
+      "summary": "以 FLOW-MATIC 与 CODASYL 会议为基础制定的商业数据处理语言，跨厂商标准。",
+      "concepts": ["business data processing", "record structure", "CODASYL"],
+      "people": ["Grace Hopper", "CODASYL", "Mary K. Hawes"],
+      "sources": [
+        "https://archives.upenn.edu/exhibits/penn-history/after-eniac/part-4/",
+        "https://www.computerhistory.org/timeline/1960/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ibm-7090-1959",
+      "label": "IBM 7090",
+      "label_en": "IBM 7090",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1959,
+      "weight": "minor",
+      "master": false,
+      "summary": "全晶体管大型机，性能数倍于 709，成为科学计算与分时系统的 1960 年代主力。",
+      "concepts": ["transistorized mainframe", "scientific computing", "time-sharing"],
+      "people": ["IBM", "MIT Computation Center"],
+      "sources": [
+        "https://en.wikipedia.org/wiki/IBM_7090",
+        "https://www.computerhistory.org/revolution/story/111"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "algol-60-1960",
+      "label": "ALGOL 60",
+      "label_en": "ALGOL 60",
+      "layer": "L2_language",
+      "column": "algol-family",
+      "year": 1960,
+      "weight": "major",
+      "master": false,
+      "summary": "首份以 BNF 形式化定义的语言报告，块结构与语法形式化影响此后所有语言。",
+      "concepts": ["BNF", "block structure", "formal specification"],
+      "people": ["Peter Naur", "John Backus", "IFIP"],
+      "sources": [
+        "https://doi.org/10.1145/367236.367262",
+        "https://en.wikipedia.org/wiki/ALGOL"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "adaline-1960",
+      "label": "ADALINE",
+      "label_en": "ADALINE",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 1960,
+      "weight": "minor",
+      "master": false,
+      "summary": "Widrow 与 Hoff 的自适应线性神经元与 LMS 学习律，神经网络工程化前奏。",
+      "concepts": ["least mean squares", "adaptive filter", "linear neuron"],
+      "people": ["Bernard Widrow", "Marcian Hoff", "Stanford University"],
+      "sources": [
+        "https://doi.org/10.7551/mitpress/4943.003.0012",
+        "https://en.wikipedia.org/wiki/ADALINE"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ctss-1961",
+      "label": "CTSS",
+      "label_en": "Compatible Time-Sharing System",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1961,
+      "weight": "major",
+      "master": false,
+      "year_note": "1961-11 首演于 IBM 709；1962 年迁至 7090 提供日常服务。",
+      "summary": "MIT 首个实用分时系统，多用户交互共享一台大型机，分时时代开端。",
+      "concepts": ["time-sharing", "multi-user", "interactive computing"],
+      "people": ["Fernando Corbato", "MIT Computation Center"],
+      "sources": [
+        "https://www.computerhistory.org/timeline/1961/",
+        "https://en.wikipedia.org/wiki/Compatible_Time-Sharing_System"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "basic-1964",
+      "label": "BASIC",
+      "label_en": "BASIC",
+      "layer": "L2_language",
+      "column": "algol-family",
+      "year": 1964,
+      "weight": "major",
+      "master": false,
+      "summary": "Kemeny 与 Kurtz 为达特茅斯学生设计的交互式语言，语法极简，随微机普及。",
+      "concepts": ["interactive programming", "line numbers", "teaching language"],
+      "people": ["John G. Kemeny", "Thomas E. Kurtz", "Dartmouth College"],
+      "sources": [
+        "https://www.computerhistory.org/timeline/1964/",
+        "https://www.dartmouth.edu/basicfifty/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ibm-system-360-1964",
+      "label": "IBM System/360",
+      "label_en": "IBM System/360",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 1964,
+      "weight": "major",
+      "master": false,
+      "summary": "首个系列化兼容指令集架构，终结商用与科学计算机的分野。",
+      "concepts": ["instruction set architecture", "compatibility", "mainframe family"],
+      "people": ["IBM", "Gene Amdahl", "Fred Brooks"],
+      "sources": [
+        "https://www.ibm.com/history/system-360",
+        "https://www.computerhistory.org/revolution/mainframe-computers/7/161"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "pdp-8-1965",
+      "label": "PDP-8",
+      "label_en": "DEC PDP-8",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1965,
+      "weight": "major",
+      "master": false,
+      "summary": "首台量产成功的小型机，以晶体管与低价打开实验室与教育市场。",
+      "concepts": ["minicomputer", "transistorized", "low-cost computing"],
+      "people": ["DEC", "Ken Olsen"],
+      "sources": [
+        "https://www.computinghistory.org.uk/det/175/Digital-PDP-8-E",
+        "http://museum.ipsj.or.jp/en/computer/mini/history.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "os-360-1966",
+      "label": "OS/360",
+      "label_en": "OS/360",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1966,
+      "weight": "major",
+      "master": false,
+      "summary": "为 System/360 全系列编写的单一操作系统，其工程失控成为软件工程经典教训。",
+      "concepts": ["operating system", "batch processing", "software engineering"],
+      "people": ["IBM", "Fred Brooks"],
+      "sources": ["https://www.computerhistory.org/revolution/mainframe-computers/7/164"],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "simula-67-1967",
+      "label": "Simula 67",
+      "label_en": "Simula 67",
+      "layer": "L2_language",
+      "column": "algol-family",
+      "year": 1967,
+      "weight": "major",
+      "master": false,
+      "summary": "Dahl 与 Nygaard 在 ALGOL 60 上加类与子类，首个面向对象语言。",
+      "concepts": ["class", "subclass", "discrete event simulation"],
+      "people": ["Ole-Johan Dahl", "Kristen Nygaard", "Norwegian Computing Center"],
+      "sources": [
+        "https://www.ub.uio.no/english/subjects/informatics/themes/dns/index.html",
+        "https://www.ub.uio.no/fag/informatikk/faglig/dns/dokumenter/classandsubclass1967.pdf"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "arpanet-1969",
+      "label": "ARPANET",
+      "label_en": "ARPANET",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 1969,
+      "weight": "major",
+      "master": false,
+      "summary": "首个分组交换网络，1969 年底四节点互联，互联网的直接祖先。",
+      "concepts": ["packet switching", "IMP", "resource sharing"],
+      "people": ["ARPA", "BBN", "Lawrence Roberts"],
+      "sources": [
+        "https://www.internetsociety.org/internet/history-internet/brief-history-internet/",
+        "https://computerhistory.org/press-releases/museum-celebrates-arpanet-anniversary/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "multics-1969",
+      "label": "Multics",
+      "label_en": "Multics",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1969,
+      "weight": "major",
+      "master": false,
+      "summary": "MIT/贝尔实验室/GE 的分时系统，首创分级文件系统与安全设计，UNIX 前身。",
+      "concepts": ["time-sharing", "hierarchical file system", "security"],
+      "people": ["MIT", "Bell Labs", "General Electric", "Fernando Corbato"],
+      "sources": ["https://www.multicians.org/history.html", "https://www.multicians.org/features.html"],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "relational-model-1970",
+      "label": "关系模型",
+      "label_en": "Relational Model",
+      "layer": "L3_data",
+      "column": "relational",
+      "year": 1970,
+      "weight": "major",
+      "master": true,
+      "summary": "Codd 以集合论与谓词逻辑定义数据关系，数据库从导航式走向声明式。",
+      "concepts": ["relational algebra", "predicate logic", "data independence"],
+      "people": ["Edgar F. Codd", "IBM"],
+      "sources": [
+        "https://doi.org/10.1145/362384.362685",
+        "https://www.ibm.com/history/relational-database"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "pascal-1970",
+      "label": "Pascal",
+      "label_en": "Pascal",
+      "layer": "L2_language",
+      "column": "algol-family",
+      "year": 1970,
+      "weight": "major",
+      "master": false,
+      "summary": "Wirth 设计的结构化教学语言，以 ALGOL 60 为基，广泛用于教学与早期微机。",
+      "concepts": ["structured programming", "type safety", "ALGOL family"],
+      "people": ["Niklaus Wirth", "ETH Zurich"],
+      "sources": [
+        "https://inf.ethz.ch/news-and-events/spotlights/infk-news-channel/2021/04/niklaus-wirth-pascal-conquers-the-world.html",
+        "https://link.springer.com/article/10.1007/BF00264291"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "pdp-11-1970",
+      "label": "PDP-11",
+      "label_en": "DEC PDP-11",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1970,
+      "weight": "major",
+      "master": false,
+      "summary": "DEC 小型机线主力：统一总线与全系兼容，UNIX 与 C 的宿主。",
+      "concepts": ["minicomputer", "UNIBUS", "software compatibility"],
+      "people": ["DEC", "Ken Olsen"],
+      "sources": [
+        "https://www.computerhistory.org/revolution/minicomputers/11/366",
+        "https://www.computerhistory.org/collections/catalog/102630380"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "unix-1971",
+      "label": "UNIX",
+      "label_en": "UNIX",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1971,
+      "weight": "epic",
+      "master": true,
+      "year_note": "1969 年于 PDP-7 首版；1971-11-03 首版手册（首个公开可用版本，J2 裁定）。",
+      "summary": "贝尔实验室的可移植分时系统，简洁工具链与「一切皆文件」影响至今。",
+      "concepts": ["portability", "hierarchical file system", "C language", "shell"],
+      "people": ["Ken Thompson", "Dennis Ritchie", "Bell Labs"],
+      "sources": [
+        "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/1stEdman.html",
+        "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/hist.html"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
       "id": "intel-4004-1971",
       "label": "Intel 4004",
       "label_en": "Intel 4004",
@@ -107,6 +460,329 @@
       "people": ["Federico Faggin", "Ted Hoff", "Masatoshi Shima", "Intel"],
       "sources": ["https://www.intel.com/content/www/us/en/history/virtual-vault/articles/the-intel-4004.html"],
       "checked_at": "2026-10-04"
+    },
+    {
+      "id": "email-1971",
+      "label": "电子邮件",
+      "label_en": "Network Email",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 1971,
+      "weight": "minor",
+      "master": false,
+      "year_note": "BBN 记录与博物馆定 1971；CHM 互联网史时间线归 1972。",
+      "summary": "Tomlinson 为 ARPANET 选定 @ 地址格式的网络邮件，首个大规模网络应用。",
+      "concepts": ["network mail", "@ notation", "ARPANET"],
+      "people": ["Ray Tomlinson", "BBN"],
+      "sources": [
+        "https://www.computinghistory.org.uk/det/6116/first-e-mail-/",
+        "https://www.computerhistory.org/internethistory/1970s/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "sh-1971",
+      "label": "Unix shell",
+      "label_en": "Unix Shell",
+      "layer": "L2_language",
+      "column": "scripting",
+      "year": 1971,
+      "weight": "minor",
+      "master": false,
+      "summary": "Thompson 为 UNIX 写的命令解释器，脚本化系统操作的起点。",
+      "concepts": ["command interpreter", "interactive shell", "UNIX"],
+      "people": ["Ken Thompson", "Bell Labs"],
+      "sources": [
+        "https://www.tuhs.org/cgi-bin/utree.pl?file=V1/man/man1/sh.1",
+        "https://doi.org/10.1145/361011.361061"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "c-language-1972",
+      "label": "C 语言",
+      "label_en": "C Programming Language",
+      "layer": "L2_language",
+      "column": "c-family",
+      "year": 1972,
+      "weight": "epic",
+      "master": true,
+      "summary": "Ritchie 为在 PDP-11 上重写 UNIX 设计的系统语言，指针与可移植性兼备。",
+      "concepts": ["systems programming", "pointers", "portability", "static typing"],
+      "people": ["Dennis Ritchie", "Bell Labs"],
+      "sources": [
+        "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html",
+        "https://doi.org/10.1145/155360.155580"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ml-1973",
+      "label": "ML",
+      "label_en": "ML (Meta Language)",
+      "layer": "L2_language",
+      "column": "ml-family",
+      "year": 1973,
+      "weight": "major",
+      "master": false,
+      "summary": "Milner 为 LCF 证明器设计的函数式语言，首创 Hindley–Milner 类型推断。",
+      "concepts": ["type inference", "Hindley–Milner", "functional programming"],
+      "people": ["Robin Milner", "University of Edinburgh"],
+      "sources": [
+        "https://smlfamily.github.io/history/SML-history.pdf",
+        "https://doi.org/10.1016/0022-0000(78)90014-4"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "ethernet-1973",
+      "label": "以太网",
+      "label_en": "Ethernet",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 1973,
+      "weight": "major",
+      "master": false,
+      "summary": "Metcalfe 在 PARC 发明的局域网，共享介质与 CSMA/CD 连接工作站。",
+      "concepts": ["CSMA/CD", "local area network", "shared medium"],
+      "people": ["Robert Metcalfe", "Xerox PARC", "David Boggs"],
+      "sources": [
+        "https://www.computerhistory.org/internethistory/1970s/",
+        "https://doi.org/10.1145/360248.360253"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "xerox-alto-1973",
+      "label": "Xerox Alto",
+      "label_en": "Xerox Alto",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1973,
+      "weight": "major",
+      "master": false,
+      "summary": "PARC 个人工作站原型：位图显示、鼠标与窗口菜单的桌面隐喻。",
+      "concepts": ["bitmap display", "mouse", "desktop metaphor"],
+      "people": ["Xerox PARC", "Charles Thacker", "Butler Lampson"],
+      "sources": ["https://computerhistory.org/press-releases/xerox-alto/"],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "tcp-ip-1974",
+      "label": "TCP/IP",
+      "label_en": "TCP/IP",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 1974,
+      "weight": "epic",
+      "master": true,
+      "summary": "Cerf 与 Kahn 的异构网络互联协议设计，多张网连成一张互联网。",
+      "concepts": ["internetworking", "packet switching", "gateway"],
+      "people": ["Vint Cerf", "Bob Kahn", "DARPA"],
+      "sources": [
+        "https://doi.org/10.1109/TCOM.1974.1092259",
+        "https://www.computerhistory.org/internethistory/1970s/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "sql-1974",
+      "label": "SQL",
+      "label_en": "SQL",
+      "layer": "L3_data",
+      "column": "relational",
+      "year": 1974,
+      "weight": "major",
+      "master": false,
+      "summary": "System R 的 SEQUEL 查询语言，关系模型的声明式操作界面。",
+      "concepts": ["declarative query", "relational database", "SEQUEL"],
+      "people": ["Donald Chamberlin", "Raymond Boyce", "IBM"],
+      "sources": [
+        "https://research.ibm.com/publications/sequel-a-struciured-english-query-language",
+        "https://doi.org/10.1145/800296.811515"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "intel-8080-1974",
+      "label": "Intel 8080",
+      "label_en": "Intel 8080",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1974,
+      "weight": "major",
+      "master": false,
+      "summary": "首款广泛使用的 8 位微处理器：Altair 与 CP/M 生态的硬件基础。",
+      "concepts": ["8-bit microprocessor", "NMOS", "microcomputer"],
+      "people": ["Federico Faggin", "Masatoshi Shima", "Intel"],
+      "sources": [
+        "https://www.computinghistory.org.uk/det/6184/Intel%20introduces%20the%208080%20microprocessor",
+        "https://computerhistory.org/press-releases/cp-m-release/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "backpropagation-1974",
+      "label": "反向传播",
+      "label_en": "Backpropagation",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 1974,
+      "weight": "minor",
+      "master": false,
+      "summary": "Werbos 博士论文提出多层网络的反向传播训练法，深度学习数学基础。",
+      "concepts": ["backpropagation", "gradient descent", "multi-layer network"],
+      "people": ["Paul Werbos", "Harvard University"],
+      "sources": [
+        "https://www.wiley.com/en-us/The+Roots+of+Backpropagation%3A+From+Ordered+Derivatives+to+Neural+Networks+and+Political+Forecasting-p-9780471598978",
+        "https://doi.org/10.1109/ICNN.1988.23866"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "cpm-1974",
+      "label": "CP/M",
+      "label_en": "CP/M",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1974,
+      "weight": "major",
+      "master": false,
+      "summary": "Kildall 的微机操作系统，成为 8080 机器的软件标准。",
+      "concepts": ["microcomputer OS", "BDOS", "command line"],
+      "people": ["Gary Kildall", "Digital Research"],
+      "sources": [
+        "https://computerhistory.org/press-releases/cp-m-release/",
+        "https://computerhistory.org/blog/early-digital-research-cpm-source-code/"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "scheme-1975",
+      "label": "Scheme",
+      "label_en": "Scheme",
+      "layer": "L2_language",
+      "column": "lisp-family",
+      "year": 1975,
+      "weight": "minor",
+      "master": false,
+      "summary": "Sussman 与 Steele 的极简 Lisp 方言，λ 演算语义与尾调用的实践载体。",
+      "concepts": ["lambda calculus", "tail call", "minimalism"],
+      "people": ["Gerald Sussman", "Guy Steele", "MIT"],
+      "sources": [
+        "https://hdl.handle.net/1721.1/5794",
+        "https://doi.org/10.1023/A:1010035624696"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "mos-6502-1975",
+      "label": "MOS 6502",
+      "label_en": "MOS Technology 6502",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1975,
+      "weight": "major",
+      "master": false,
+      "summary": "以 25 美元定价打开市场的 8 位 CPU，驱动 Apple II 与家用计算机浪潮。",
+      "concepts": ["8-bit microprocessor", "cost reduction", "home computer"],
+      "people": ["Chuck Peddle", "MOS Technology"],
+      "sources": [
+        "https://spectrum.ieee.org/chip-hall-of-fame-mos-technology-6502-microprocessor",
+        "https://www.computerhistory.org/collections/catalog/102739938"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "yacc-1975",
+      "label": "yacc",
+      "label_en": "yacc (Yet Another Compiler-Compiler)",
+      "layer": "L2_language",
+      "column": "toolchain",
+      "year": 1975,
+      "weight": "minor",
+      "master": false,
+      "summary": "Johnson 的语法分析器生成器（CSTR #32），编译器构造的 UNIX 工具。",
+      "concepts": ["parser generator", "LALR(1)", "compiler construction"],
+      "people": ["Stephen C. Johnson", "Bell Labs"],
+      "sources": [
+        "https://www.cs.utexas.edu/~novak/yaccpaper.htm",
+        "https://www.tuhs.org/cgi-bin/utree.pl?file=V7/usr/man/man1/yacc.1"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "apple-ii-1977",
+      "label": "Apple II",
+      "label_en": "Apple II",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1977,
+      "weight": "major",
+      "master": false,
+      "summary": "Wozniak 设计的消费级计算机：彩色图形与扩展槽定义家用机形态。",
+      "concepts": ["home computer", "color graphics", "expansion slots"],
+      "people": ["Steve Wozniak", "Steve Jobs", "Apple"],
+      "sources": [
+        "https://ieeemilestones.ethw.org/Milestones:Introduction_of_the_Apple_II_Computer:_1977-1978",
+        "https://www.computerhistory.org/revolution/personal-computers/17/300"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "vms-1977",
+      "label": "OpenVMS",
+      "label_en": "OpenVMS (VAX/VMS)",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 1977,
+      "weight": "minor",
+      "master": false,
+      "year_note": "VAX/VMS 随 VAX-11 于 1977 年发布；V1.0 正式版 1978-10。",
+      "summary": "随 VAX-11 发布的旗舰操作系统：虚拟内存与集群能力延续数十年。",
+      "concepts": ["virtual memory", "clustering", "VAX"],
+      "people": ["DEC", "Dave Cutler"],
+      "sources": [
+        "https://vmssoftware.com/products/openvms/",
+        "https://wiki.vmssoftware.com/OpenVMS"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "intel-8086-1978",
+      "label": "Intel 8086",
+      "label_en": "Intel 8086",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 1978,
+      "weight": "major",
+      "master": false,
+      "summary": "16 位 CPU，x86 架构起点，此后 PC 处理器的共同祖先。",
+      "concepts": ["x86", "16-bit", "instruction set"],
+      "people": ["Intel", "Stephen Morse"],
+      "sources": [
+        "https://www.intel.com/content/www/us/en/history/virtual-vault/articles/the-intel-8086.html",
+        "https://www.computerhistory.org/revolution/digital-logic/12/330"
+      ],
+      "checked_at": "2026-10-05"
+    },
+    {
+      "id": "oracle-1979",
+      "label": "Oracle",
+      "label_en": "Oracle Database",
+      "layer": "L3_data",
+      "column": "relational",
+      "year": 1979,
+      "weight": "major",
+      "master": false,
+      "summary": "首个商用 SQL 关系数据库产品（Oracle v2），关系模型商业化开端。",
+      "concepts": ["commercial RDBMS", "SQL", "relational database"],
+      "people": ["Larry Ellison", "Bob Miner", "Ed Oates"],
+      "sources": [
+        "https://docs.oracle.com/cd/B12037_01/server.101/b10759/intro001.htm",
+        "https://docs.oracle.com/cd/E11882_01/server.112/e41084/intro001.htm"
+      ],
+      "checked_at": "2026-10-05"
     }
   ],
   "edges": [
@@ -139,6 +815,252 @@
       "target": "perceptron-1958",
       "relation": "conceptual_inf",
       "citation": "Rosenblatt 感知机模型基于 M–P 形式神经元（1958 论文引 M–P 1943）。来源：https://doi.org/10.1037/h0042519"
+    },
+    {
+      "source": "eniac-1945",
+      "target": "univac-1-1951",
+      "relation": "enables",
+      "citation": "Eckert–Mauchly 以 ENIAC/EDVAC 经验承接人口普查局合同，建造首台商用电子计算机（1951 交付）。来源：https://www.census.gov/about/history/bureau-history/census-innovations/technology/univac-i.html"
+    },
+    {
+      "source": "hollerith-tabulator-1890",
+      "target": "ibm-701-1952",
+      "relation": "direct_fork",
+      "citation": "IBM 由打孔卡数据处理业务转入电子计算，701 为其首台商用科学计算机（1952-05 宣布）。来源：https://www.computerhistory.org/timeline/1953/"
+    },
+    {
+      "source": "ibm-701-1952",
+      "target": "ibm-704-1954",
+      "relation": "direct_fork",
+      "citation": "704 为 701 后继：磁芯存储、索引寄存器与浮点硬件（首台量产磁芯存储计算机）。来源：https://www.ibm.com/history/john-backus"
+    },
+    {
+      "source": "ibm-704-1954",
+      "target": "fortran-1957",
+      "relation": "enables",
+      "citation": "FORTRAN 由 Backus 团队为 IBM 704 设计（1957），首个高级编程语言。来源：https://www.ibm.com/history/fortran"
+    },
+    {
+      "source": "fortran-1957",
+      "target": "cobol-1959",
+      "relation": "conceptual_inf",
+      "citation": "FORTRAN 证明自动编程可行；COBOL 由 CODASYL 以 FLOW-MATIC 等为基制定（1959）。来源：https://www.computerhistory.org/timeline/1960/"
+    },
+    {
+      "source": "ibm-704-1954",
+      "target": "ibm-7090-1959",
+      "relation": "direct_fork",
+      "citation": "7090 为 704 线的全晶体管化后继（性能约 6 倍，1959-12 首装）。来源：https://en.wikipedia.org/wiki/IBM_7090"
+    },
+    {
+      "source": "transistor-1947",
+      "target": "ibm-7090-1959",
+      "relation": "enables",
+      "citation": "晶体管使大型机全固态化：7090 以晶体管取代电子管，成为 1960 年代科学计算主力。来源：https://www.computerhistory.org/revolution/story/111"
+    },
+    {
+      "source": "fortran-1957",
+      "target": "algol-60-1960",
+      "relation": "conceptual_inf",
+      "citation": "ALGOL 60 报告（IFIP 小组）吸收当时语言实践并以 BNF 完整形式化定义。来源：https://doi.org/10.1145/367236.367262"
+    },
+    {
+      "source": "perceptron-1958",
+      "target": "adaline-1960",
+      "relation": "conceptual_inf",
+      "citation": "Widrow–Hoff 的 LMS 学习律延续感知机学习规则线（1960 WESCON 论文）。来源：https://doi.org/10.7551/mitpress/4943.003.0012"
+    },
+    {
+      "source": "ibm-7090-1959",
+      "target": "ctss-1961",
+      "relation": "enables",
+      "citation": "MIT 计算中心在 IBM 709（1961-11 首演）与 7090（1962 起日常服务）上建成 CTSS。来源：https://www.computerhistory.org/timeline/1961/"
+    },
+    {
+      "source": "fortran-1957",
+      "target": "basic-1964",
+      "relation": "conceptual_inf",
+      "citation": "BASIC 语法取自 FORTRAN，面向非专业学生（Kemeny–Kurtz，1964-05 上线）。来源：https://www.dartmouth.edu/basicfifty/"
+    },
+    {
+      "source": "ibm-704-1954",
+      "target": "ibm-system-360-1964",
+      "relation": "direct_fork",
+      "citation": "IBM 主机线集大成：S/360 系列兼容架构（1964-04-07 发布，一套架构覆盖全价位）。来源：https://www.ibm.com/history/system-360"
+    },
+    {
+      "source": "transistor-1947",
+      "target": "pdp-8-1965",
+      "relation": "enables",
+      "citation": "晶体管化使低成本小型机成为可能（PDP-8 1965 年发布，约 18,000 美元）。来源：http://museum.ipsj.or.jp/en/computer/mini/history.html"
+    },
+    {
+      "source": "ibm-system-360-1964",
+      "target": "os-360-1966",
+      "relation": "enables",
+      "citation": "OS/360 为 S/360 全系列开发的单一操作系统家族，其超支成为软件工程经典案例。来源：https://www.computerhistory.org/revolution/mainframe-computers/7/164"
+    },
+    {
+      "source": "algol-60-1960",
+      "target": "simula-67-1967",
+      "relation": "direct_fork",
+      "citation": "Simula 为 ALGOL 60 扩展：类与子类声明（Dahl–Nygaard，1967）。来源：https://www.ub.uio.no/fag/informatikk/faglig/dns/dokumenter/classandsubclass1967.pdf"
+    },
+    {
+      "source": "ctss-1961",
+      "target": "arpanet-1969",
+      "relation": "conceptual_inf",
+      "citation": "ARPANET 动因即分时计算机资源共享（Licklider 构想；1969 年底四节点互联）。来源：https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+    },
+    {
+      "source": "ctss-1961",
+      "target": "multics-1969",
+      "relation": "conceptual_inf",
+      "citation": "Multics 由 MIT/贝尔实验室/GE 共建（1969 分时服务），承 CTSS 分时经验并首创分级文件系统。来源：https://www.multicians.org/history.html"
+    },
+    {
+      "source": "russell-principia-mathematica-1910",
+      "target": "relational-model-1970",
+      "relation": "conceptual_inf",
+      "citation": "Codd 1970 论文以谓词逻辑与集合论定义关系演算与关系代数（CACM 1970-06）。来源：https://doi.org/10.1145/362384.362685"
+    },
+    {
+      "source": "algol-60-1960",
+      "target": "pascal-1970",
+      "relation": "conceptual_inf",
+      "citation": "Wirth 以 ALGOL 60 为基设计 Pascal（1970），ETH 官方史。来源：https://link.springer.com/article/10.1007/BF00264291"
+    },
+    {
+      "source": "pdp-8-1965",
+      "target": "pdp-11-1970",
+      "relation": "direct_fork",
+      "citation": "DEC 小型机线延续：PDP-11/20 于 1970 年发布，全系软件兼容。来源：https://www.computerhistory.org/revolution/minicomputers/11/366"
+    },
+    {
+      "source": "multics-1969",
+      "target": "unix-1971",
+      "relation": "conceptual_inf",
+      "citation": "Thompson/Ritchie 参与 Multics 后做简化版 UNIX（1969 于 PDP-7 首版；1971 首版手册）。来源：https://www.nokia.com/bell-labs/about/dennis-m-ritchie/hist.html"
+    },
+    {
+      "source": "arpanet-1969",
+      "target": "email-1971",
+      "relation": "enables",
+      "citation": "网络邮件随 ARPANET 主机间通信演化（Tomlinson 选定 @ 格式，1971）。来源：https://www.computinghistory.org.uk/det/6116/first-e-mail-/"
+    },
+    {
+      "source": "unix-1971",
+      "target": "sh-1971",
+      "relation": "enables",
+      "citation": "sh 为 UNIX 的命令解释器（V1 手册 1971-11-03：shell — command interpreter）。来源：https://www.tuhs.org/cgi-bin/utree.pl?file=V1/man/man1/sh.1"
+    },
+    {
+      "source": "unix-1971",
+      "target": "c-language-1972",
+      "relation": "enables",
+      "citation": "C 为在 PDP-11 上重写 UNIX 而设计（Ritchie，1972；Ritchie 自述史）。来源：https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    },
+    {
+      "source": "algol-60-1960",
+      "target": "c-language-1972",
+      "relation": "convergence",
+      "citation": "多源汇聚标记：ALGOL→CPL→BCPL→C 语言血统（Ritchie 自述：C 由 B/BCPL 发展）。来源：https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    },
+    {
+      "source": "algol-60-1960",
+      "target": "ml-1973",
+      "relation": "enables",
+      "citation": "ML 为 LCF 证明器元语言，块结构语法取 ALGOL 传统（Milner，1973 起）。来源：https://smlfamily.github.io/history/SML-history.pdf"
+    },
+    {
+      "source": "lisp-1958",
+      "target": "ml-1973",
+      "relation": "convergence",
+      "citation": "多源汇聚标记：函数式/λ 演算传统（Lisp）汇入 ML 设计。来源：https://smlfamily.github.io/history/SML-history.pdf"
+    },
+    {
+      "source": "arpanet-1969",
+      "target": "ethernet-1973",
+      "relation": "conceptual_inf",
+      "citation": "Metcalfe 由 ARPANET/ALOHAnet 经验设计以太网（1973，Xerox PARC）。来源：https://www.computerhistory.org/internethistory/1970s/"
+    },
+    {
+      "source": "ctss-1961",
+      "target": "xerox-alto-1973",
+      "relation": "conceptual_inf",
+      "citation": "PARC 个人工作站承接 ARPA 分时社区的交互计算议程（Alto 1973 设计，位图显示与鼠标）。来源：https://computerhistory.org/press-releases/xerox-alto/"
+    },
+    {
+      "source": "arpanet-1969",
+      "target": "tcp-ip-1974",
+      "relation": "enables",
+      "citation": "TCP/IP 为互联异构分组网而设计（Cerf–Kahn，IEEE Trans. Comm. 1974-05），后取代 NCP。来源：https://doi.org/10.1109/TCOM.1974.1092259"
+    },
+    {
+      "source": "relational-model-1970",
+      "target": "sql-1974",
+      "relation": "enables",
+      "citation": "SEQUEL 为关系模型的查询语言实现（System R，1974-05 SIGFIDET）。来源：https://research.ibm.com/publications/sequel-a-struciured-english-query-language"
+    },
+    {
+      "source": "intel-4004-1971",
+      "target": "intel-8080-1974",
+      "relation": "direct_fork",
+      "citation": "Intel 微处理器线：4004 → 8008 → 8080（1974-04 发布，Altair 与 CP/M 的硬件基础）。来源：https://www.computinghistory.org.uk/det/6184/Intel%20introduces%20the%208080%20microprocessor"
+    },
+    {
+      "source": "perceptron-1958",
+      "target": "backpropagation-1974",
+      "relation": "conceptual_inf",
+      "citation": "多层网络训练问题源自感知机局限；Werbos 1974 博士论文提出反向传播。来源：https://www.wiley.com/en-us/The+Roots+of+Backpropagation%3A+From+Ordered+Derivatives+to+Neural+Networks+and+Political+Forecasting-p-9780471598978"
+    },
+    {
+      "source": "intel-8080-1974",
+      "target": "cpm-1974",
+      "relation": "enables",
+      "citation": "CP/M 为 8080 机器而写（Kildall，1974），后成微机软件标准。来源：https://computerhistory.org/press-releases/cp-m-release/"
+    },
+    {
+      "source": "lisp-1958",
+      "target": "scheme-1975",
+      "relation": "direct_fork",
+      "citation": "Scheme 为 Lisp 的 λ 演算极简方言（MIT AI Memo 349，Sussman–Steele，1975-12）。来源：https://hdl.handle.net/1721.1/5794"
+    },
+    {
+      "source": "intel-8080-1974",
+      "target": "mos-6502-1975",
+      "relation": "conceptual_inf",
+      "citation": "第二代 8 位微处理器：6502 以 25 美元定价打开大众市场（1975）。来源：https://spectrum.ieee.org/chip-hall-of-fame-mos-technology-6502-microprocessor"
+    },
+    {
+      "source": "c-language-1972",
+      "target": "yacc-1975",
+      "relation": "enables",
+      "citation": "yacc 以 C 实现并服务 UNIX 工具链（Johnson，Bell Labs CSTR #32，1975）。来源：https://www.cs.utexas.edu/~novak/yaccpaper.htm"
+    },
+    {
+      "source": "mos-6502-1975",
+      "target": "apple-ii-1977",
+      "relation": "enables",
+      "citation": "Apple II 采用 6502（Wozniak 设计，1977-06 上市）。来源：https://ieeemilestones.ethw.org/Milestones:Introduction_of_the_Apple_II_Computer:_1977-1978"
+    },
+    {
+      "source": "pdp-11-1970",
+      "target": "vms-1977",
+      "relation": "conceptual_inf",
+      "citation": "VMS 由 RSX-11M（PDP-11 系统）团队设计，随 VAX-11 于 1977 年发布。来源：https://vmssoftware.com/products/openvms/"
+    },
+    {
+      "source": "intel-8080-1974",
+      "target": "intel-8086-1978",
+      "relation": "direct_fork",
+      "citation": "8086 为 8080 线延续、x86 起点（1978-06 发布）。来源：https://www.intel.com/content/www/us/en/history/virtual-vault/articles/the-intel-8086.html"
+    },
+    {
+      "source": "sql-1974",
+      "target": "oracle-1979",
+      "relation": "enables",
+      "citation": "Oracle v2 为首个商用 SQL 关系数据库（Relational Software Inc.，1979）。来源：https://docs.oracle.com/cd/B12037_01/server.101/b10759/intro001.htm"
     },
     {
       "source": "transistor-1947",
