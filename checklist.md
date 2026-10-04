@@ -133,7 +133,7 @@ M1 批交付物（复核用，基线 = `b52eed2`；已成批提交 = `da20600` +
 - 代码：`src/components/TechEdge.tsx`（新增）· `src/App.tsx` · `src/components/{TechBlock,Toolbar}.tsx` · `src/lib/{types,volumes,layout,data}.ts` · `scripts/{validate,measure}.ts`
 - 数据：`data/vol-0.json`（13 节点 / 8 边）· `data/vol-1.json`（7 节点 / 8 边）· `data/meta.json`（+`PRE_theory` 注册列）· `data/master-candidates.json`（theory 行改 `PRE_theory`）
 
-M2 批交付物（复核用，基线 = `9eb2a71`；已成批提交 = `c6ef0ce`（feat）+ `6c9bb3b`（docs）+ `3dec5f7`（提交号）+ `98bfb92`（验收修复）+ 验收报告批，未推送）：
+M2 批交付物（复核用，基线 = `9eb2a71`；已成批提交 = `c6ef0ce`（feat）+ `6c9bb3b`（docs）+ `3dec5f7`（提交号）+ `98bfb92`（验收修复）+ `6a6d0fd`（验收报告 + 修复记录入档），未推送）：
 
 - 文档：`docs/m2-acceptance.md`（验收报告 + §7 修复记录）· `docs/ui-spec.md`（v0.10：§8 控件布局 + §2/§4/§5/§7 落值）· `docs/prd2.md`（v6 · schema v5.3：`year_note`、§6 搜索域 +`label_en`、§9 +1 规则、§10 测量口径）· `docs/content-spec.md`（v0.10：§3 截断层级注）· 本 checklist
 - 代码（新增）：`src/lib/{graph,url,labels,interaction,bench-fixture}.ts` · `src/components/{DetailPanel,SearchBox,EdgeTooltip,FlowBridge}.tsx` · `scripts/bench-bfs.ts`
