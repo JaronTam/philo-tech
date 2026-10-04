@@ -124,6 +124,14 @@ for (const [id, d] of mainInDeg) {
   if (d > 8) errors.push(`[主图入边] ${id}：${d} 条 > 8`);
 }
 
+// 主图「前史」入口标记（ui-spec §6）：id 必须存在、master（主图可见）、year < 1947（防 id 漂移）
+for (const id of meta.preEntryNodes ?? []) {
+  const n = byId.get(id);
+  if (!n) errors.push(`[前史入口] ${id}：节点不存在`);
+  else if (!n.master) errors.push(`[前史入口] ${id}：非 master，主图不可见`);
+  else if (n.year >= 1947) errors.push(`[前史入口] ${id}：year ${n.year} ≥ 1947`);
+}
+
 const volIdx = new Map<string, number>();
 volFiles.forEach((v, i) => v.nodes.forEach((n) => volIdx.set(n.id, i)));
 const crossPairs = new Map<string, number>();

@@ -39,6 +39,7 @@ import { DetailPanel } from './components/DetailPanel';
 import { SearchBox } from './components/SearchBox';
 import { EdgeTooltip, type EdgeTip } from './components/EdgeTooltip';
 import { FlowBridge } from './components/FlowBridge';
+import { ZoomControls } from './components/ZoomControls';
 
 const nodeTypes = { grid: GridLayer, tech: TechBlock };
 const edgeTypes = { tech: TechEdge };
@@ -47,6 +48,7 @@ const SIDE_PANEL_PX = 360; // ui-spec §4
 const NARROW_MQ = '(max-width: 1023.98px)'; // 与 index.css 断点一致
 const MAIN_INBOUND_CAP = 8; // content-spec §3
 const EMPTY_SET: ReadonlySet<string> = new Set();
+const PRE_ENTRY: ReadonlySet<string> = new Set(meta.preEntryNodes ?? []); // ui-spec §6
 
 /** 面板补偿：宽屏右侧 360px 面板 / 窄屏底部抽屉 45vh（ui-spec §4） */
 function panelInsets(open: boolean, canvas: HTMLElement | null): { x: number; y: number } {
@@ -74,10 +76,20 @@ export default function App() {
   const searchOpenRef = useRef(false);
   const tipTimer = useRef<number | undefined>(undefined);
   const flashTimer = useRef<number | undefined>(undefined);
+  const zoomPctRef = useRef(100);
+  const [zoomPct, setZoomPct] = useState(100);
+  const [narrow, setNarrow] = useState(() => window.matchMedia(NARROW_MQ).matches);
 
   useEffect(() => {
     panelOpenRef.current = panelOpen;
   }, [panelOpen]);
+
+  useEffect(() => {
+    const mq = window.matchMedia(NARROW_MQ);
+    const onChange = () => setNarrow(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   // dev 压测数据（?fixture=1）：250 节点合成图，覆盖真实数据暂缺的 convergence / 入边超限（prod 构建剔除）
   useEffect(() => {
@@ -138,6 +150,7 @@ export default function App() {
         weight: p.item.weight ?? 'major',
         layer: p.item.layer,
         hideConcepts: degraded.has(p.item.id ?? ''),
+        preEntry: viewKey === 'main' && PRE_ENTRY.has(p.item.id ?? ''),
       },
     }));
 
@@ -169,6 +182,20 @@ export default function App() {
   // ---- 高亮派生 ----
   const lit = useMemo(() => deriveLit(highlight, null, g), [highlight, g]);
   const neighbors = useMemo(() => (hoveredId ? neighborsOf(g, hoveredId) : EMPTY_SET), [hoveredId, g]);
+
+  // ---- 缩放控件（D-8）：onMove 只在整数 % 变化时 setState（平移不触发重渲染）----
+  const syncZoom = useCallback(() => {
+    const z = rfRef.current?.getZoom();
+    if (z === undefined) return;
+    const pct = Math.max(1, Math.round(z * 100));
+    if (pct !== zoomPctRef.current) {
+      zoomPctRef.current = pct;
+      setZoomPct(pct);
+    }
+  }, []);
+  const zoomIn = useCallback(() => void rfRef.current?.zoomIn({ duration: 150 }), []);
+  const zoomOut = useCallback(() => void rfRef.current?.zoomOut({ duration: 150 }), []);
+  const zoomFit = useCallback(() => void rfRef.current?.fitView({ padding: 0.03, duration: 150 }), []);
 
   // ---- 居中 ----
   const focusNode = useCallback((id: string, flash: boolean) => {
@@ -350,12 +377,25 @@ export default function App() {
   const handleNodeSelect = useCallback((id: string) => selectNode(id, 'trace'), [selectNode]);
   const handlePanelGoto = useCallback((id: string) => selectNode(id, 'trace'), [selectNode]);
   const handleSearchSelect = useCallback((id: string) => selectNode(id, 'search', true), [selectNode]);
+  const handlePreEntry = useCallback((id: string) => {
+    // ui-spec §6：chip = 切前史卷 + 落地选中（不走 BFS）；不复用 selectNode——ensureVisible 对 master 在主图不切卷
+    setNotice(null);
+    setViewKey('pre');
+    setSelectedId(id);
+    setPanelOpen(true);
+    setPanelFocusOnOpen(true);
+    setHighlight(HL_NONE);
+    setEdgeTip(null);
+    setHoveredId(null);
+    setCenterRequest({ id, flash: true });
+    writeHash({ vol: 'pre', node: id });
+  }, []);
   const handleSearchOpenChange = useCallback((open: boolean) => {
     searchOpenRef.current = open;
   }, []);
   const interaction = useMemo<Interaction>(
-    () => ({ selectedId, flashId, lit, inboundBadge, onSelect: handleNodeSelect }),
-    [selectedId, flashId, lit, inboundBadge, handleNodeSelect],
+    () => ({ selectedId, flashId, lit, inboundBadge, onSelect: handleNodeSelect, onPreEntry: handlePreEntry }),
+    [selectedId, flashId, lit, inboundBadge, handleNodeSelect, handlePreEntry],
   );
   const hover = useMemo<Hover>(() => ({ hoveredId, neighbors, hover: setHoveredId }), [hoveredId, neighbors]);
 
@@ -414,6 +454,7 @@ export default function App() {
               fitView
               fitViewOptions={{ padding: 0.03 }}
               onPaneClick={clearAll}
+              onMove={syncZoom}
               onMoveStart={() => setEdgeTip(null)}
               onEdgeClick={pinTip}
               onEdgeMouseEnter={showTip}
@@ -431,6 +472,13 @@ export default function App() {
           </HoverContext.Provider>
         </InteractionContext.Provider>
         <EdgeTooltip tip={edgeTip} onEnter={cancelHideTip} onLeave={hideTipSoon} />
+        <ZoomControls
+          zoomPct={zoomPct}
+          raised={panelOpen && narrow}
+          onZoomIn={zoomIn}
+          onZoomOut={zoomOut}
+          onFit={zoomFit}
+        />
         {panelOpen && (
           <DetailPanel
             graph={g}

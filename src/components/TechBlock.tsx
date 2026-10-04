@@ -10,6 +10,8 @@ export interface TechBlockData {
   weight: Weight;
   layer: string;
   hideConcepts?: boolean;
+  /** 主图「前史」入口 chip（ui-spec §6） */
+  preEntry?: boolean;
 }
 
 const FONT: Record<Weight, { size: number; weight: number; color?: string }> = {
@@ -36,7 +38,7 @@ export function TechBlock({ id, data }: NodeProps) {
   const d = data as unknown as TechBlockData;
   // 只订阅 zoom：useViewport 会在每帧 pan 时重渲染
   const zoom = useStore((s) => s.transform[2]);
-  const { selectedId, flashId, lit, inboundBadge, onSelect } = useInteraction();
+  const { selectedId, flashId, lit, inboundBadge, onSelect, onPreEntry } = useInteraction();
   const { hoveredId, neighbors, hover } = useHover();
 
   if (d.weight === 'minor' && zoom < 0.5) return null;
@@ -107,6 +109,34 @@ export function TechBlock({ id, data }: NodeProps) {
         >
           +{badge}
         </span>
+      )}
+      {d.preEntry && (
+        <button
+          type="button"
+          data-pre-entry={id}
+          title="跳到前史卷"
+          onClick={(e) => {
+            e.stopPropagation(); // 独立 chip 点击区：不触发节点 onSelect（BFS + 面板）
+            onPreEntry(id);
+          }}
+          style={{
+            position: 'absolute',
+            left: -24, // 左槽（theory 单列最左列，左侧为画布边距/栏间空隙）
+            top: '50%',
+            transform: 'translateY(-50%)',
+            fontSize: 10,
+            lineHeight: '14px',
+            padding: '1px 4px',
+            color: 'var(--accent)',
+            border: '1px solid var(--accent)',
+            borderRadius: 3,
+            background: 'var(--bg)',
+            cursor: 'pointer',
+            opacity: dim ? 0.1 : 1,
+          }}
+        >
+          前史
+        </button>
       )}
       <Handle type="target" position={Position.Top} style={HANDLE_STYLE} />
       <Handle type="source" position={Position.Bottom} style={HANDLE_STYLE} />

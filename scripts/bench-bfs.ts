@@ -1,7 +1,9 @@
 // M2 性能验收：上下游追溯在 250 节点下 < 100ms（prd2 §10）。
-// ① 手工图断言 traceLineage / capInbound / convergenceHighlight 语义；② 合成 250 节点测 p50/p95；③ p95 > 100ms 退出码 1。
-// M3 真实数据齐后复跑（脚本与 App 共用 src/lib/graph.ts，同一实现）。
+// ① 手工图断言 traceLineage / capInbound / convergenceHighlight 语义；② 合成 250 节点测 p50/p95；③ p95 > 100ms 退出码 1；④ 真实数据复跑（报告，不设 gate）。
+// 脚本与 App 共用 src/lib/graph.ts，同一实现。
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 import {
   buildGraphIndex,
@@ -137,8 +139,93 @@ sq.sort((a, b) => a - b);
 console.log(`bench：deriveLit（= 单次追溯全量计算，${samples.length} 次） p50 ${p50.toFixed(3)}ms / p95 ${p95.toFixed(3)}ms / max ${max.toFixed(3)}ms`);
 console.log(`bench：searchNodes（500 次） p95 ${sq[Math.floor(0.95 * (sq.length - 1))].toFixed(3)}ms`);
 
+// ---- ④ 真实数据复跑（M3）：报告口径，p95 gate 以合成 250 节点为准（prd2 §10）----
+{
+  const root = join(import.meta.dirname, '..');
+  const load = <T,>(rel: string): T => JSON.parse(readFileSync(join(root, rel), 'utf8')) as T;
+  const volNames = ['vol-0', 'vol-1', 'vol-2', 'vol-3', 'vol-4'] as const;
+  const volKeys: VolumeKey[] = ['pre', 'v1', 'v2', 'v3', 'v4'];
+  const rNodes: TechNode[] = [];
+  const rEdges: TechEdge[] = [];
+  const nodeVol = new Map<string, number>();
+  volNames.forEach((v, i) => {
+    const f = load<{ nodes: TechNode[]; edges: TechEdge[] }>(`data/${v}.json`);
+    f.nodes.forEach((n) => {
+      rNodes.push(n);
+      nodeVol.set(n.id, i);
+    });
+    rEdges.push(...f.edges);
+  });
+  const volumeOf = new Map<string, VolumeKey>(rNodes.map((n) => [n.id, volKeys[nodeVol.get(n.id)!]]));
+  const rg = buildGraphIndex(rNodes, rEdges, volumeOf);
+
+  let outMax = 0;
+  let inMax = 0;
+  let outArg = '';
+  let inArg = '';
+  for (const n of rNodes) {
+    const o = rg.outEdges.get(n.id)?.length ?? 0;
+    const i = rg.inEdges.get(n.id)?.length ?? 0;
+    if (o > outMax) {
+      outMax = o;
+      outArg = n.label;
+    }
+    if (i > inMax) {
+      inMax = i;
+      inArg = n.label;
+    }
+  }
+  const masterIds = new Set(rNodes.filter((n) => n.master).map((n) => n.id));
+  const mmIn = new Map<string, number>();
+  for (const e of rEdges) {
+    if (masterIds.has(e.source) && masterIds.has(e.target)) mmIn.set(e.target, (mmIn.get(e.target) ?? 0) + 1);
+  }
+  const mmTop = [...mmIn]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([id, c]) => `${rg.byId.get(id)?.label ?? id} ${c}`)
+    .join(' / ');
+  const pairs = new Map<string, number>();
+  for (const e of rEdges) {
+    const a = nodeVol.get(e.source);
+    const b = nodeVol.get(e.target);
+    if (a === undefined || b === undefined || Math.abs(a - b) !== 1) continue;
+    const key = `${volNames[Math.min(a, b)]}→${volNames[Math.max(a, b)]}`;
+    pairs.set(key, (pairs.get(key) ?? 0) + 1);
+  }
+  const pairStr = ['vol-0→vol-1', 'vol-1→vol-2', 'vol-2→vol-3', 'vol-3→vol-4']
+    .map((k) => `${k} ${pairs.get(k) ?? 0}`)
+    .join(' / ');
+  console.log(
+    `bench：真实数据 nodes ${rNodes.length}（master ${masterIds.size}） / edges ${rEdges.length} · 出度 max ${outMax}（${outArg}） / 入度 max ${inMax}（${inArg}）`,
+  );
+  console.log(`bench：真实数据 master→master 入度 top：${mmTop || '无'} · convergence ${rg.convergence.edgeIds.size} 条 · 跨卷 ${pairStr}`);
+
+  const rs: number[] = [];
+  for (let round = 0; round < 20; round++) {
+    for (const n of rNodes) {
+      const t0 = performance.now();
+      deriveLit({ kind: 'trace', origin: n.id }, null, rg);
+      rs.push(performance.now() - t0);
+    }
+  }
+  rs.sort((a, b) => a - b);
+  const rp = (q: number) => rs[Math.floor(q * (rs.length - 1))];
+  const rIdx = buildSearchIndex(rNodes);
+  const rq: number[] = [];
+  for (let i = 0; i < 500; i++) {
+    const t0 = performance.now();
+    searchNodes(rIdx, i % 2 ? '计算机' : 'transistor');
+    rq.push(performance.now() - t0);
+  }
+  rq.sort((a, b) => a - b);
+  console.log(
+    `bench：真实数据 deriveLit（${rs.length} 次） p50 ${rp(0.5).toFixed(3)}ms / p95 ${rp(0.95).toFixed(3)}ms / max ${rs[rs.length - 1].toFixed(3)}ms · searchNodes p95 ${rq[Math.floor(0.95 * (rq.length - 1))].toFixed(3)}ms`,
+  );
+}
+
 if (p95 > 100) {
   console.log(`\n未达标：p95 ${p95.toFixed(3)}ms > 100ms`);
   process.exit(1);
 }
-console.log(`\n达标：p95 ${p95.toFixed(3)}ms < 100ms（口径 = 250 节点单次追溯计算；M3 真实数据复跑）`);
+console.log(`\n达标：p95 ${p95.toFixed(3)}ms < 100ms（口径 = 250 节点合成图单次追溯计算，prd2 §10；真实数据复跑见 ④）`);

@@ -9,6 +9,8 @@ export interface Interaction {
   /** 主图入边超限时的 `+N` 计数（target id → N） */
   inboundBadge: Map<string, number>;
   onSelect: (id: string) => void;
+  /** 主图「前史」chip：切前史卷 + 落地选中（ui-spec §6；不走 BFS） */
+  onPreEntry: (id: string) => void;
 }
 
 export interface Hover {

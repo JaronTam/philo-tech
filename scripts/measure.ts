@@ -1,8 +1,9 @@
 // M1 实测（ui-spec §1）：真实数据（vol-0..4）试排 → 同列间距检查 + 段高建议 + 连通性
 // 两轮口径：主标轮（去 concepts，段高定标依据，对应 LOD scale < 0.75）；带 concepts 轮（放大读，敏感性阅读）
+// M3 增：--draft <path> 候选草稿模式（data/candidates/vol-N.draft.json → 预检 + 列占用矩阵 + 测高）
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { MetaFile, TechNode, VolumeFile } from '../src/lib/types';
+import type { Layer, MetaFile, TechNode, VolumeFile } from '../src/lib/types';
 import {
   AVOID_LIMIT,
   placeInColumns,
@@ -99,6 +100,116 @@ function report(name: string, def: VolumeDef, nodes: TechNode[], suggest: boolea
   printViolations('带 concepts', full.violations);
   printViolations('实排', real.violations);
   return label.need;
+}
+
+// ---- M3 候选草稿模式：npm run measure -- --draft data/candidates/vol-1.draft.json ----
+interface DraftNode {
+  id: string;
+  label: string;
+  label_en?: string;
+  layer: Layer;
+  column: string;
+  year: number;
+  weight?: 'epic' | 'major' | 'minor';
+  master?: boolean;
+  summary?: string;
+  concepts?: string[];
+}
+
+interface DraftFile {
+  volume: 'v1' | 'v2' | 'v3' | 'v4';
+  nodes: DraftNode[];
+}
+
+const draftArgIdx = process.argv.indexOf('--draft');
+if (draftArgIdx >= 0) {
+  const draftPath = process.argv[draftArgIdx + 1];
+  if (!draftPath) {
+    console.error('用法：npm run measure -- --draft data/candidates/vol-N.draft.json');
+    process.exit(1);
+  }
+  const draft = load<DraftFile>(draftPath);
+  const def = VOLUME_BY_KEY[draft.volume];
+  if (!def || def.key === 'main' || def.key === 'pre' || def.segments) {
+    console.error(`--draft 仅支持 v1..v4（收到 ${draft.volume}）`);
+    process.exit(1);
+  }
+  const existing = new Set(allNodes.map((n) => n.id));
+  const fresh = draft.nodes.filter((n) => !existing.has(n.id));
+  console.log(`=== 候选草稿测高（${draftPath}）===`);
+  console.log(
+    `${def.title} [${def.start}, ${def.end}) · 草稿 ${draft.nodes.length} 节点（新增 ${fresh.length} / 沿用既有 ${draft.nodes.length - fresh.length}）· 现 H ${fmt(def.height)}\n`,
+  );
+
+  const errors: string[] = [];
+  const warns: string[] = [];
+  const kebab = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+  const seenId = new Set<string>();
+  const occ = new Map<string, DraftNode[]>();
+  for (const n of draft.nodes) {
+    if (!kebab.test(n.id)) errors.push(`[id 格式] ${n.id}`);
+    else if (!n.id.endsWith(`-${n.year}`)) warns.push(`[id 年份] ${n.id} 未以 -${n.year} 结尾`);
+    if (seenId.has(n.id)) errors.push(`[id 重复] ${n.id}`);
+    seenId.add(n.id);
+    const banned = meta.bannedWords.find((w) =>
+      /[a-z]/i.test(w) ? n.label.toLowerCase().includes(w.toLowerCase()) : n.label.includes(w),
+    );
+    if (banned) errors.push(`[禁用词] ${n.label} 命中「${banned}」`);
+    if (n.summary !== undefined && [...n.summary].length > 60) {
+      errors.push(`[summary] ${n.label} ${[...n.summary].length} 字符 > 60`);
+    }
+    const cols = meta.columns[n.layer];
+    if (!cols) errors.push(`[layer] ${n.label} 未知 layer ${n.layer}`);
+    else if (!cols.includes(n.column)) errors.push(`[column] ${n.label} 的 ${n.column} 不在 ${n.layer}`);
+    if (n.layer === 'PRE_theory' && n.year >= 1947) errors.push(`[layer] ${n.label} PRE_theory 限 year < 1947`);
+    if (n.year < def.start || n.year >= def.end) {
+      errors.push(`[year] ${n.label} ${n.year} 越出 [${def.start}, ${def.end})`);
+    }
+    const key = `${n.layer}/${n.column}`;
+    occ.set(key, [...(occ.get(key) ?? []), n]);
+  }
+  const byYearPerColumn = new Map<string, number>();
+  for (const [key, list] of occ) {
+    for (const n of list) {
+      byYearPerColumn.set(`${key}@${n.year}`, (byYearPerColumn.get(`${key}@${n.year}`) ?? 0) + 1);
+    }
+  }
+  for (const [key, count] of byYearPerColumn) {
+    if (count > 1) {
+      const [group, year] = key.split('@');
+      const dupes = occ
+        .get(group)!
+        .filter((n) => n.year === Number(year))
+        .map((n) => n.label);
+      errors.push(`[同列同年] ${group} @ ${year}：${dupes.join(' / ')}`);
+    }
+  }
+  console.log(`预检：error ${errors.length} / warn ${warns.length}`);
+  for (const e of errors) console.log(`  ERROR ${e}`);
+  for (const w of warns) console.log(`  warn  ${w}`);
+
+  console.log('\n列占用矩阵（layer/column → 年份）：');
+  for (const [key, list] of [...occ].sort(([a], [b]) => a.localeCompare(b))) {
+    console.log(`  ${key}：${[...list].sort((a, b) => a.year - b.year).map((n) => n.year).join(' ')}`);
+  }
+
+  console.log('');
+  const draftAsNodes: TechNode[] = draft.nodes.map((n) => ({
+    id: n.id,
+    label: n.label,
+    label_en: n.label_en ?? '',
+    layer: n.layer,
+    column: n.column,
+    year: n.year,
+    weight: n.weight ?? 'major',
+    master: n.master ?? false,
+    summary: n.summary ?? '',
+    concepts: n.concepts,
+    sources: [],
+    checked_at: '',
+  }));
+  report(`${def.title}（草稿）`, def, draftAsNodes, true);
+  process.exit(errors.length > 0 ? 1 : 0);
 }
 
 console.log(`=== M1 实测报告（真实数据：nodes ${allNodes.length} / edges ${allEdges.length}）===`);

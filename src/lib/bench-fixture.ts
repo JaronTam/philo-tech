@@ -5,7 +5,7 @@ import type { Layer, TechEdge, TechNode, VolumeKey } from './types';
 const LANE_COLUMNS: [Layer, string[]][] = [
   ['L0_hardware', ['device', 'arch', 'accelerator']],
   ['L1_system', ['os', 'net']],
-  ['L2_language', ['c-family', 'lisp-family', 'ml-family', 'jvm-family', 'toolchain', 'scripting']],
+  ['L2_language', ['c-family', 'lisp-family', 'ml-family', 'jvm-family', 'toolchain', 'scripting', 'algol-family', 'dotnet-family']],
   ['L3_data', ['relational', 'nosql', 'distributed']],
   ['L4_delivery', ['web', 'container', 'cloud-api']],
   ['L5_ai', ['nn', 'framework']],

@@ -58,6 +58,8 @@ export interface MetaFile {
   columns: Record<Layer, string[]>;
   bannedWords: string[];
   bands: ParadigmBand[];
+  /** 主图「前史」入口标记（ui-spec §6，渲染层概念，与入度无关）：这些 id 在主图带 chip，点击跳前史卷 */
+  preEntryNodes?: string[];
 }
 
 export type VolumeKey = 'main' | 'pre' | 'v1' | 'v2' | 'v3' | 'v4';

@@ -125,3 +125,53 @@ body {
   border-radius: 4px;
   z-index: 50;
 }
+
+/* ---- M3：缩放控件（D-8）---- */
+
+.zoom-cluster {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 5; /* 面板 20 / 下拉 30 / tooltip 40 之下（左槽不与它们重叠） */
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+.zoom-cluster button {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.zoom-cluster button:hover:not(:disabled) {
+  background: #00000010;
+}
+
+.zoom-cluster button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.zoom-pct {
+  min-width: 42px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 窄屏详情抽屉（45vh）打开时的抬升，由 App 侧 panelOpen && narrow 控制 */
+.zoom-cluster-raised {
+  bottom: calc(45vh + 12px);
+}
