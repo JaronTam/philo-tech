@@ -294,7 +294,7 @@ jobs:
 | `node.summary` 字符数 ≤ 60（含标点；M1 验收 B1 补） | summary 超限 |
 | 每条 edge 的 `citation` 含可点击 URL（`https?://`；M2 批补） | citation 无来源链接（tooltip / 详情框无法给外链） |
 | 主图（两端皆 `master`）单节点入边 ≤ 8 | 主图入边爆炸 |
-| 相邻卷跨卷边 ≤ 8（总量）/ ≤ 5（master→master，M3 修订）——下限 3 为建设期目标，不足仅 warn | 跨卷边失控 |
+| 相邻卷跨卷边 ≤ 12（总量）/ ≤ 5（master→master，M3 修订 J5）——下限 3 为建设期目标，不足仅 warn | 跨卷边失控 |
 
 校验器能拦住结构性错误，拦不住事实错误（如"TPU v1 支持训练"）。事实靠第 1、2 步的出处。
 
@@ -365,3 +365,4 @@ M1 是关键闸门：如果列对齐在 M1 站不住，整个坐标系要重做�
 | M2 | §10 | M2 验收注测量口径（`npm run bench` 250 节点合成图 p95 < 100ms + dev fixture 实排；M3 复跑） |
 | M3 | §3.2 | L2 增补两列 `algol-family`（FORTRAN / ALGOL 60 / COBOL / PL/I / BASIC / Pascal / Simula）与 `dotnet-family`（C# / .NET / F#）——「C#/.NET 暂无槽位」条款落定；泳道 L2 6 → 8 列（704 → 928px，ui-spec §1 同步） |
 | M3 | §9 | 跨卷边上限修订（J1 裁定）：相邻卷 ≤5 → **≤8（总量）/ ≤5（master→master）**——非 master 跨卷边在任何视图不渲染，纯血统用途；卷首节点（UNIVAC / IBM 701 / 关系模型）父源在 pre 卷所需 |
+| M3 | §9 | 跨卷边上限再修订（J5 裁定，V2 批）：总量 8 → **12**（master→master 仍 ≤5）——45 节点/卷下多线植根前卷（GUI / RISC / CNN / SQL 标准 / 语言链），实测 V2 需 11 条/对 |

@@ -149,9 +149,9 @@ for (const e of edges) {
     crossMasterPairs.set(key, (crossMasterPairs.get(key) ?? 0) + 1);
   }
 }
-// M3 修订（J1）：总量 ≤8；master→master ≤5（唯一会渲染的类型：主图要求两端皆 master，分卷视图要求两端同卷）
+// M3 修订（J1 → J5）：总量 ≤12；master→master ≤5（唯一会渲染的类型：主图要求两端皆 master，分卷视图要求两端同卷）
 for (const [key, count] of crossPairs) {
-  if (count > 8) errors.push(`[跨卷边] ${key}：${count} 条 > 8`);
+  if (count > 12) errors.push(`[跨卷边] ${key}：${count} 条 > 12`);
   else if (count < 3) warnings.push(`[跨卷边] ${key}：${count} 条 < 3（M3 全量前补足）`);
 }
 for (const [key, count] of crossMasterPairs) {
