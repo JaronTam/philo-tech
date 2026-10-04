@@ -4,7 +4,7 @@
 
 图例：`[x]` 已定或已完成 / `[ ]` 待补充或待开工
 
-> 进度快照（2026-10-05 M2 批 · 下次接续点）：M2 完成（代码层）——交互四项 + 详情框全落：新增 `src/lib/{graph,url,labels,interaction,bench-fixture}.ts` + `src/components/{DetailPanel,SearchBox,EdgeTooltip,FlowBridge}.tsx`；`App.tsx` 状态机（`selectedId` / `panelOpen` / `highlight` 单值联合，三态互斥由结构保证）；`npm run bench` 通过（合成 250 节点、383 边 p95 0.21ms < 100ms 预算；fixture 含 convergence 42 条 + 入边 11 hub）；dev 站 DOM 实测全表见 §4 M2 行；`?fixture=1` dev 压测（62 节点实排，click→面板出现 37–65ms）。M1 潜在缺陷修正：① 边 `inactive` class（RF v12：无 `onClick` 的边 = `pointer-events:none`）致 M1 原生 tooltip 从未显示过；② 节点 wrapper `pointer-events:none`（M1 预期内惰性）。实测修订：ui-spec v0.10（§8 控件布局 F-E-3 落值）/ prd2 v6（schema v5.3：`year_note`）/ content-spec v0.10；`validate` +1 规则（citation 含可点击 URL，旧注「M2 后启用」收敛）。待办：① M2 第三方验收（`docs/m2-acceptance.md` 待写，同 M1 格式）；② M3 全量 150–250 节点（卷 2–4 数据 + theory 列复跑 + Node.js 归属终裁死线）；③ 主图前史入口标记（ui-spec §6）登记 M3（与「单击 = BFS」冲突，解法 = 独立 chip）。M1 上线状态沿用：`b4ccc2a` / `9eb2a71` 已推；deploy run `37137250391` success。
+> 进度快照（2026-10-05 M2 批 · 下次接续点）：M2 完成（代码层）——交互四项 + 详情框全落：新增 `src/lib/{graph,url,labels,interaction,bench-fixture}.ts` + `src/components/{DetailPanel,SearchBox,EdgeTooltip,FlowBridge}.tsx`；`App.tsx` 状态机（`selectedId` / `panelOpen` / `highlight` 单值联合，三态互斥由结构保证）；`npm run bench` 通过（合成 250 节点、383 边 p95 0.21ms < 100ms 预算；fixture 含 convergence 42 条 + 入边 11 hub）；dev 站 DOM 实测全表见 §4 M2 行；`?fixture=1` dev 压测（62 节点实排，click→面板出现 37–65ms）。M1 潜在缺陷修正：① 边 `inactive` class（RF v12：无 `onClick` 的边 = `pointer-events:none`）致 M1 原生 tooltip 从未显示过；② 节点 wrapper `pointer-events:none`（M1 预期内惰性）。实测修订：ui-spec v0.10（§8 控件布局 F-E-3 落值）/ prd2 v6（schema v5.3：`year_note`）/ content-spec v0.10；`validate` +1 规则（citation 含可点击 URL，旧注「M2 后启用」收敛）。M2 第三方验收 2026-10-05 完成（`docs/m2-acceptance.md`，`[STATUS: AC]`：47 项 DOM 断言全过、bench p95 0.206ms 复现；1 小缺陷 D-3 + 5 登记 D-4–D-8）；修复批 = `98bfb92`（D-3 tooltip 固定态短路 / D-5 注释 / D-6 fixture year 钳制 / D-7 口径注），D-4 / D-8 留 M3。待办：① M3 全量 150–250 节点（卷 2–4 数据 + theory 列复跑 + Node.js 归属终裁死线）；② 主图前史入口标记（ui-spec §6）登记 M3（与「单击 = BFS」冲突，解法 = 独立 chip）；③ D-4 复查（minor 桥接语义）。M1 上线状态沿用：`b4ccc2a` / `9eb2a71` 已推；deploy run `37137250391` success。
 
 ## 0. 基建与仓库（2026-10-03）
 
@@ -133,9 +133,9 @@ M1 批交付物（复核用，基线 = `b52eed2`；已成批提交 = `da20600` +
 - 代码：`src/components/TechEdge.tsx`（新增）· `src/App.tsx` · `src/components/{TechBlock,Toolbar}.tsx` · `src/lib/{types,volumes,layout,data}.ts` · `scripts/{validate,measure}.ts`
 - 数据：`data/vol-0.json`（13 节点 / 8 边）· `data/vol-1.json`（7 节点 / 8 边）· `data/meta.json`（+`PRE_theory` 注册列）· `data/master-candidates.json`（theory 行改 `PRE_theory`）
 
-M2 批交付物（复核用，基线 = `9eb2a71`；已成批提交 = `c6ef0ce`（feat）+ `6c9bb3b`（docs），未推送）：
+M2 批交付物（复核用，基线 = `9eb2a71`；已成批提交 = `c6ef0ce`（feat）+ `6c9bb3b`（docs）+ `3dec5f7`（提交号）+ `98bfb92`（验收修复）+ 验收报告批，未推送）：
 
-- 文档：`docs/ui-spec.md`（v0.10：§8 控件布局 + §2/§4/§5/§7 落值）· `docs/prd2.md`（v6 · schema v5.3：`year_note`、§6 搜索域 +`label_en`、§9 +1 规则、§10 测量口径）· `docs/content-spec.md`（v0.10：§3 截断层级注）· 本 checklist
+- 文档：`docs/m2-acceptance.md`（验收报告 + §7 修复记录）· `docs/ui-spec.md`（v0.10：§8 控件布局 + §2/§4/§5/§7 落值）· `docs/prd2.md`（v6 · schema v5.3：`year_note`、§6 搜索域 +`label_en`、§9 +1 规则、§10 测量口径）· `docs/content-spec.md`（v0.10：§3 截断层级注）· 本 checklist
 - 代码（新增）：`src/lib/{graph,url,labels,interaction,bench-fixture}.ts` · `src/components/{DetailPanel,SearchBox,EdgeTooltip,FlowBridge}.tsx` · `scripts/bench-bfs.ts`
 - 代码（修改）：`src/App.tsx`（状态机 + RF 事件接线 + 深链 + 居中）· `src/components/{TechBlock,TechEdge,Toolbar}.tsx` · `src/lib/{data,types}.ts` · `src/index.css`（面板/抽屉/tooltip/flash）· `scripts/validate.ts`（+citation URL 规则）· `package.json`（`bench`）
 - 数据：无改动（真实数据 20/16 不变）
@@ -164,7 +164,7 @@ P2（8 项，M1 中途修 —— 2026-10-04 M1 批处置完毕）：F-B-2（**�
 
 - [x] M0 骨架页：纵轴刻度 + 6 泳道带 + 时间网格——2026-10-03 完成：Vite 8 + TS 7 + React 19 + React Flow 12 + Tailwind 4 脚手架；主图 / 前史 / 卷 1–4 六视图（主图分段刻度）；master 候选表试排开关；`validate` / `measure` 脚本；`deploy.yml`（prd2 §8）已入库。验收：刻度与年份对得上、泳道分隔可辨（dev 实测截图核对）。残留 = ↑快照所列 3 项。
 - [x] M1 20 个手写节点 + 边（关键闸门：语义列对齐肉眼可辨）——2026-10-04 完成：前史 13 定稿全写 + 卷 1 七条（闭合集：晶体管 / Baby / Mark 1 / 集成电路 / 感知机 / LISP / Intel 4004）落 `data/vol-0.json` / `vol-1.json`；16 条边（跨卷 5）；`validate` 全绿；列对齐 DOM 断言（theory 6 条同 x = 569、device 4 条同 x = 611）+ dev 截图复核（0.79–1.03 缩放）；六视图无 console error；build gzip 135.1KB
-- [x] M2 交互四项 + 详情框——2026-10-05 完成：上下游追溯（双向 BFS 全链、非相关 α=0.1、全局边集）、搜索（label/label_en/concepts/people、前缀>子串>其余排序、≤8 行下拉、Enter 选中、无结果提示、跨卷自动切卷、命中闪烁+居中）、深链（`#vol=&node=` 解析/写回 replaceState、非 master 自动切卷、无效 id「节点不存在」、手改 URL 生效）、收敛高亮（convergence 边及两端、非参与 dim、与搜索/BFS 三态互斥）；详情框（360px 侧栏 / <1024px 45vh 抽屉、焦点管理 + Esc 归还、入边全列 + 出边 + citation 可点击 + 核验行 + `+N`）；边 tooltip（自定义浮层、点击固定、180ms 收起）；控件布局 F-E-3（顶栏右侧 = 搜索 + 收敛 toggle）。验收证据：`npm run bench` p95 0.21ms（250 节点合成图，p95 > 100ms 则退出码 1）；DOM 实测 20 项全过（居中 780/780 ±0、Esc 焦点归还、深链矩阵 5 例、tooltip 链接、抽屉 900px 补偿居中 ±0、六视图 0 error、history.length 不变、三态互斥 3 例）；view 纯函数断言 6 组
+- [x] M2 交互四项 + 详情框——2026-10-05 完成：上下游追溯（双向 BFS 全链、非相关 α=0.1、全局边集）、搜索（label/label_en/concepts/people、前缀>子串>其余排序、≤8 行下拉、Enter 选中、无结果提示、跨卷自动切卷、命中闪烁+居中）、深链（`#vol=&node=` 解析/写回 replaceState、非 master 自动切卷、无效 id「节点不存在」、手改 URL 生效）、收敛高亮（convergence 边及两端、非参与 dim、与搜索/BFS 三态互斥）；详情框（360px 侧栏 / <1024px 45vh 抽屉、焦点管理 + Esc 归还、入边全列 + 出边 + citation 可点击 + 核验行 + `+N`）；边 tooltip（自定义浮层、点击固定、180ms 收起）；控件布局 F-E-3（顶栏右侧 = 搜索 + 收敛 toggle）。验收证据：`npm run bench` p95 0.21ms（250 节点合成图，p95 > 100ms 则退出码 1）；DOM 实测 20 项全过（居中 780/780 ±0、Esc 焦点归还、深链矩阵 5 例、tooltip 链接、抽屉 900px 补偿居中 ±0、六视图 0 error、history.length 不变、三态互斥 3 例）；view 纯函数断言 6 组。〔口径注（D-7）：`780`、`569/611` 系 ~1920 视口下 fitView 屏幕坐标，非布局常量；1440 视口对应 323/366〕
 - [ ] M3 主图 + 4 卷，150–250 节点（validate 全绿）
 - [ ] M4 部署 GitHub Pages（深链可分享）——部署链 2026-10-03 已提前验证（run `37128586547`）；M4 剩 = 全量数据上线 + 深链可用
 
