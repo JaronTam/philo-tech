@@ -1,6 +1,6 @@
 # 技术史图谱站 PRD
 
-状态：v5 · 冻结 schema v5.2（2026-10-04：M1 批〔`PRE_theory` 哨兵层；§4 分段数值实测修订；§6 深链 vol 域；§9 校验器 +2〕，见 §13）· 素材见 subject-matter/0–6.jpg
+状态：v6 · 冻结 schema v5.3（2026-10-05：M2 批〔§6 搜索域补 `label_en`；§10 M2 验收注测量口径；`year_note` 字段（只增不删）〕，见 §13）· 素材见 subject-matter/0–6.jpg
 
 ## 0. 一句话
 
@@ -196,7 +196,7 @@ interface ParadigmBand {
 | 交互 | 行为 | 实现 |
 |---|---|---|
 | 上下游追溯 | 点节点，BFS 提取祖先链与影响链，其余节点与边 α=0.1 | 图数据在内存，BFS 双向各一次 |
-| 搜索 | 索引 `label` / `concepts` / `people`，选中后平移视口并高亮 | 客户端索引，250 节点无需服务端 |
+| 搜索 | 索引 `label` / `label_en` / `concepts` / `people`（M2 批补 `label_en`，判归 ui-spec §5），选中后平移视口并高亮 | 客户端索引，250 节点无需服务端 |
 | 深链 | 状态写入 URL：`/#vol=<main\|pre\|v1..v4>&node=<id>`（缺省 `vol=main`） | hash 路由，无依赖 |
 | 收敛高亮 | 一键高亮所有 `convergence` 边及其多源 | 过滤 `relation === 'convergence'` |
 
@@ -292,6 +292,7 @@ jobs:
 | 每条 edge 的 `source.year ≤ target.year` | 时间倒流（Borg 2015→K8s 2014 那类） |
 | `column` 在 `layer` 下已声明 | 拼写漂移导致的隐性列分裂 |
 | `node.summary` 字符数 ≤ 60（含标点；M1 验收 B1 补） | summary 超限 |
+| 每条 edge 的 `citation` 含可点击 URL（`https?://`；M2 批补） | citation 无来源链接（tooltip / 详情框无法给外链） |
 | 主图（两端皆 `master`）单节点入边 ≤ 8 | 主图入边爆炸 |
 | 相邻卷跨卷边 ≤ 5（下限 3 为建设期目标，不足仅 warn） | 跨卷边失控 |
 
@@ -303,7 +304,7 @@ jobs:
 |---|---|---|
 | M0 | 骨架页：空数据，画出 1854–2026 纵轴刻度（含前史卷，主图按分段刻度）、6 条泳道带、时间网格 | 时间刻度与年份对得上；泳道分隔可辨 |
 | M1 | 20 个手写节点 + 边 | **语义列对齐肉眼可辨**（同 `column` 的节点成一列） |
-| M2 | 交互四项 | 上下游追溯在 250 节点下响应 < 100ms |
+| M2 | 交互四项 | 上下游追溯在 250 节点下响应 < 100ms（测量口径 = `npm run bench` 合成 250 节点 p95 + dev fixture 实排，见 ui-spec §7；M3 真实数据复跑） |
 | M3 | 主图 + 4 卷，150–250 节点 | `npm run validate` 全绿 |
 | M4 | 部署 GitHub Pages | 线上可访问，深链可分享 |
 
@@ -358,3 +359,7 @@ M1 是关键闸门：如果列对齐在 M1 站不住，整个坐标系要重做�
 | F-B-2 | §3.2 | c-family 示例与注册表对齐（C/C++；Java → jvm-family；C# 暂无槽位） |
 | F-B-7 | §9 | 校验器 +2：主图入边 ≤ 8、相邻卷跨卷边 ≤ 5 |
 | — | §11 | 已定项登记（起点年份 / 双语标签 / 淘汰分支 / 卷界） |
+| M2 | §3.3 | `TechNode` 增可选 `year_note`（争议年备注），schema v5.3（只增不删） |
+| M2 | §6 | 搜索域补 `label_en`（消 ui-spec §5 冲突，判归 ui-spec） |
+| M2 | §9 | 校验器 +1：`citation` 含可点击 URL（`https?://`）；旧注「citation 可点击性等 M2 后启用」据此收敛 |
+| M2 | §10 | M2 验收注测量口径（`npm run bench` 250 节点合成图 p95 < 100ms + dev fixture 实排；M3 复跑） |
