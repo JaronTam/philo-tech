@@ -4,7 +4,7 @@
 
 图例：`[x]` 已定或已完成 / `[ ]` 待补充或待开工
 
-> 进度快照（2026-10-05 M2 批 · 下次接续点）：M2 完成（代码层）——交互四项 + 详情框全落：新增 `src/lib/{graph,url,labels,interaction,bench-fixture}.ts` + `src/components/{DetailPanel,SearchBox,EdgeTooltip,FlowBridge}.tsx`；`App.tsx` 状态机（`selectedId` / `panelOpen` / `highlight` 单值联合，三态互斥由结构保证）；`npm run bench` 通过（合成 250 节点、383 边 p95 0.21ms < 100ms 预算；fixture 含 convergence 42 条 + 入边 11 hub）；dev 站 DOM 实测全表见 §4 M2 行；`?fixture=1` dev 压测（62 节点实排，click→面板出现 37–65ms）。M1 潜在缺陷修正：① 边 `inactive` class（RF v12：无 `onClick` 的边 = `pointer-events:none`）致 M1 原生 tooltip 从未显示过；② 节点 wrapper `pointer-events:none`（M1 预期内惰性）。实测修订：ui-spec v0.10（§8 控件布局 F-E-3 落值）/ prd2 v6（schema v5.3：`year_note`）/ content-spec v0.10；`validate` +1 规则（citation 含可点击 URL，旧注「M2 后启用」收敛）。M2 第三方验收 2026-10-05 完成（`docs/m2-acceptance.md`，`[STATUS: AC]`：47 项 DOM 断言全过、bench p95 0.206ms 复现；1 小缺陷 D-3 + 5 登记 D-4–D-8）；修复批 = `98bfb92`（D-3 tooltip 固定态短路 / D-5 注释 / D-6 fixture year 钳制 / D-7 口径注），D-4 / D-8 留 M3。待办：① M3 全量 150–250 节点（卷 2–4 数据 + theory 列复跑 + Node.js 归属终裁死线）；② 主图前史入口标记（ui-spec §6）登记 M3（与「单击 = BFS」冲突，解法 = 独立 chip）；③ D-4 复查（minor 桥接语义）。**M2 批已推**（`9eb2a71..aa528e6`，6 提交，fast-forward）；deploy run `37225320041` success（head `aa528e6`）；站点 `https://jarontam.github.io/philo-tech/` HTTP 200，资源 `assets/index-Dz-3X_mV.js` 200（440.6KB，含 M2 代码）——M2 已上线，替换 M1 版。
+> 进度快照（2026-10-05 M3 B0 批 · 下次接续点）：M3 开工计划获批——每卷 45（前史 13 不动，总量 ~193）· 每卷先审候选清单再落数据 · Node.js 维持 `L4-web` · 代码批 = 前史 chip + `D-8` 缩放 + 重标 + bench/fixture 复跑 + L2 双列 · ParadigmBand 缓 · 移动端不做。**B0 代码准备批完成并上线**：① `measure --draft` 候选草稿模式（预检 6 项 + 列占用矩阵 + 测高；预检 error 即 EXIT=1）；② 前史 chip（ui-spec §6：`meta.preEntryNodes` + validate 前史入口规则 + `TechBlock` 左槽 chip〔`stopPropagation`〕+ 切前史卷落地选中，不走 BFS）；③ `D-8` 缩放控件（画布左下 `−` / % 读数 / `+` / 适配；实测 29% → 87% 步进、87% 出灰字 concepts、25% 处 `−` 禁用）；④ `bench` ④ 真实数据段（报告口径；p95 gate 仍为合成 250）；⑤ L2 双列 `algol-family` + `dotnet-family`（6 → 8 列 = 928px，追加末尾保既有列 x）。G0 实测：`typecheck` / `validate`（20/16）/ `measure` / `bench`（p95 0.236ms）/ `build`（gzip 141.54KB）全绿 + DOM 断言（chip 恰 2 处且点击落 `#vol=pre&node=`、不触发 dim、`history.length` 不变；缩放四钮 + LOD 三档；搜索 / 深链 / tooltip pin / BFS dim / 六视图 0 console error 回归全过）。提交 `4bef487`（feat）+ `08dd894`（docs）已推；deploy run `37226881285` success（head `08dd894`）；线上 `assets/index-Dntz4j5O.js` 200。Node.js 归属终裁 = **维持 `L4-web`**（2026-10-05，改判面 0 处，§2 押后登记已关）。待办：**V1 候选清单（G-A 审）→ V1 落数据/核验/push → V2 → V3 → V4 → B5 校准 + D-4 裁定 → B6 验收 + M4 线上深链**；V1 附带裁定 = Plankalkül 年份口径（可选收录）。M2 批（交互四项 + 详情框 + 验收 `[STATUS: AC]` + 修复 `98bfb92`，D-4 / D-8 登记）摘要见 §4 M2 行。
 
 ## 0. 基建与仓库（2026-10-03）
 
@@ -84,7 +84,7 @@
 - [x] F-D-3：定前史节点 `layer` / `column` 映射（或理论单列）——布尔 / 哥德尔 / 图灵 / 丘奇 / 香农 / McCulloch–Pitts 6 项理论节点无列可挂；2026-10-03 修复：`docs/content-spec.md` §4 定前史单列（理论节点 `column=theory`、`layer` 占位 `L0_hardware`，不参与六泳道布局；硬件节点照常挂泳道）
 - [x] F-A-1：定卷 4 区间口径（推荐 `[2015, 2027)` 12 年，与 §9 并集联动）——现写闭区间 12 年 ≠ 表内 11 年；2026-10-03 修复：`docs/ui-spec.md` §1 卷表 / 分段表卷 4 → [2015, 2027)、12 年、55px；`docs/prd2.md` §9 并集 → [1854, 2027)（连带）；checklist 2.4 同步
 - [x] F-B-1：schema 增补落点（`label_en` / `checked_at` / `archive_url`），升 v5.1 或撤销增补；2026-10-03 修复（选 a）：`docs/prd2.md` §3.3 增三字段升 v5.1，状态行 + §13 同步；`docs/content-spec.md` §1 同步；checklist 2.2「label 语言方案」定案
-- [x] F-D-1：注册表加 `scripting` 列并定 JS 归属；2026-10-03 修复：`docs/content-spec.md` §2 增列 + 归属判据（语言规范 / 实现 → L2-scripting；宿主平台 / 交付物 → L4-web；Node.js 归 L4-web）；L2 示例（ui-spec §1、content-spec §2）改 6×112+32 = 704px
+- [x] F-D-1：注册表加 `scripting` 列并定 JS 归属；2026-10-03 修复：`docs/content-spec.md` §2 增列 + 归属判据（语言规范 / 实现 → L2-scripting；宿主平台 / 交付物 → L4-web；Node.js 归 L4-web）；L2 示例（ui-spec §1、content-spec §2）改 6×112+32 = 704px〔M3 B0（2026-10-05）：L2 再增 `algol-family` / `dotnet-family` → 8 列 = 928px，content-spec §2 / ui-spec §1 / prd2 §3.2 同步〕
 
 P1 非 blocking：
 
@@ -145,7 +145,7 @@ P2（8 项，M1 中途修 —— 2026-10-04 M1 批处置完毕）：F-B-2（**�
 押后登记（2026-10-03：终裁未决 / 递延项，一律不勾）：
 
 - ~~F-D-3 编码终裁（`theory` + `L0_hardware` 占位 vs 哨兵枚举）~~——2026-10-04 裁定：**哨兵枚举** `PRE_theory`（schema v5.2；改判面 5 处已同步：content-spec §4 / prd2 §3.3 / master-candidates v0.3 六行 / types.ts + meta.json / validate.ts 去特判）
-- Node.js 归属终裁（现 `L4-web`）——死线 = 写该节点前（M1 / M3）；改判面 3 处（content-spec §2 判据行、节点列值、候选表 #30）
+- ~~Node.js 归属终裁（现 `L4-web`）~~——2026-10-05 裁定：**维持 `L4-web`**（F-D-1 判据「宿主平台 / 交付物 → L4-web」，Node.js 为服务端运行时平台）；改判面 0 处，候选表 #30 维持
 - prd2 §0 / §2「1947–2026」表述 + §11 已定行（起点年份 / 双语标签 / 淘汰分支）同步——随 F-B-6 §6 深链面同批（M1 中途 P2）
 - 年份抽查（PyTorch 2016、WWW 1991、IC / TPU / ENIAC 备注项）——随 content-spec §5 核验流程 M1 兜底；PyTorch 若改 2017，重跑卷 4 段 TF↔PyTorch 间距判定。〔2026-10-04 部分：集成电路 1958（Kilby 1958-09-12 演示，TI 官方史）、ENIAC 1945（Penn 工程史页）已随 M1 核验；PyTorch / WWW / TPU 不在 M1 切片，留 M3 写作时核〕
 - ~~前史单列 x 槽位（ui-spec 未写）~~——2026-10-03 M0 已补：视图含理论节点时最左增设 144px 单列（ui-spec §1 v0.7 + `src/lib/layout.ts`）
@@ -165,7 +165,7 @@ P2（8 项，M1 中途修 —— 2026-10-04 M1 批处置完毕）：F-B-2（**�
 - [x] M0 骨架页：纵轴刻度 + 6 泳道带 + 时间网格——2026-10-03 完成：Vite 8 + TS 7 + React 19 + React Flow 12 + Tailwind 4 脚手架；主图 / 前史 / 卷 1–4 六视图（主图分段刻度）；master 候选表试排开关；`validate` / `measure` 脚本；`deploy.yml`（prd2 §8）已入库。验收：刻度与年份对得上、泳道分隔可辨（dev 实测截图核对）。残留 = ↑快照所列 3 项。
 - [x] M1 20 个手写节点 + 边（关键闸门：语义列对齐肉眼可辨）——2026-10-04 完成：前史 13 定稿全写 + 卷 1 七条（闭合集：晶体管 / Baby / Mark 1 / 集成电路 / 感知机 / LISP / Intel 4004）落 `data/vol-0.json` / `vol-1.json`；16 条边（跨卷 5）；`validate` 全绿；列对齐 DOM 断言（theory 6 条同 x = 569、device 4 条同 x = 611）+ dev 截图复核（0.79–1.03 缩放）；六视图无 console error；build gzip 135.1KB
 - [x] M2 交互四项 + 详情框——2026-10-05 完成：上下游追溯（双向 BFS 全链、非相关 α=0.1、全局边集）、搜索（label/label_en/concepts/people、前缀>子串>其余排序、≤8 行下拉、Enter 选中、无结果提示、跨卷自动切卷、命中闪烁+居中）、深链（`#vol=&node=` 解析/写回 replaceState、非 master 自动切卷、无效 id「节点不存在」、手改 URL 生效）、收敛高亮（convergence 边及两端、非参与 dim、与搜索/BFS 三态互斥）；详情框（360px 侧栏 / <1024px 45vh 抽屉、焦点管理 + Esc 归还、入边全列 + 出边 + citation 可点击 + 核验行 + `+N`）；边 tooltip（自定义浮层、点击固定、180ms 收起）；控件布局 F-E-3（顶栏右侧 = 搜索 + 收敛 toggle）。验收证据：`npm run bench` p95 0.21ms（250 节点合成图，p95 > 100ms 则退出码 1）；DOM 实测 20 项全过（居中 780/780 ±0、Esc 焦点归还、深链矩阵 5 例、tooltip 链接、抽屉 900px 补偿居中 ±0、六视图 0 error、history.length 不变、三态互斥 3 例）；view 纯函数断言 6 组。〔口径注（D-7）：`780`、`569/611` 系 ~1920 视口下 fitView 屏幕坐标，非布局常量；1440 视口对应 323/366〕
-- [ ] M3 主图 + 4 卷，150–250 节点（validate 全绿）
+- [ ] M3 主图 + 4 卷，150–250 节点（validate 全绿）——2026-10-05 开工：B0 代码准备批完成并上线（前史 chip / `D-8` 缩放 / `measure --draft` / bench 真实段 / L2 双列；见快照与 §2.5 F-D-1 注）；数据批 V1–V4 进行中（每卷 45）
 - [ ] M4 部署 GitHub Pages（深链可分享）——部署链 2026-10-03 已提前验证（run `37128586547`）；2026-10-05 M2 批上线后深链已线上可用（`#vol=&node=`）；M4 剩 = 全量数据上线 + 线上深链验收
 
 开工顺序：specs v0.5–v0.7（2026-10-03 已出并随四批升版，§2.1 / §2.2 全覆盖）→ 整体审计（2026-10-03 完成，见 §2.5）→ 修 blocking 5 项（2026-10-03 完成）→ 终审勾 §2.1 / §2.2（2026-10-03 二轮完成）→ §2.4 裁定 + 前史定稿（2026-10-03 二轮完成）→ 禁用词清单定稿（2026-10-03）→ M0（2026-10-03 完成：骨架 + 实测）→ M1（2026-10-04 完成：20 节点 + 边 + 列对齐闸门）→ M2（2026-10-05 完成：交互四项 + 详情框 + bench）。
