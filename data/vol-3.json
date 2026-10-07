@@ -1,4 +1,1138 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "mac-os-x-2001",
+      "label": "Mac OS X",
+      "label_en": "Mac OS X",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 2001,
+      "weight": "major",
+      "master": false,
+      "summary": "以 NeXTSTEP 技术重建的 UNIX 桌面系统（Aqua 界面）。",
+      "concepts": ["Aqua", "Darwin", "Mach", "BSD", "Cocoa"],
+      "people": ["Apple", "Steve Jobs", "Avie Tevanian"],
+      "sources": [
+        "https://www.apple.com/newsroom/2001/01/09Apples-Mac-OS-X-to-Ship-on-March-24/",
+        "https://en.wikipedia.org/wiki/Mac_OS_X_10.0"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "rest-2000",
+      "label": "REST",
+      "label_en": "REST (Representational State Transfer)",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2000,
+      "weight": "major",
+      "master": false,
+      "summary": "Fielding 博士论文总结的 Web 架构风格（资源与统一接口）。",
+      "concepts": ["Representational State Transfer", "Uniform Interface", "Statelessness", "HATEOAS"],
+      "people": ["Roy Fielding", "UC Irvine"],
+      "sources": [
+        "https://ics.uci.edu/~fielding/pubs/dissertation/top.htm",
+        "https://roy.gbiv.com/pubs/dissertation/top.htm"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "c-sharp-2000",
+      "label": "C#",
+      "label_en": "C#",
+      "layer": "L2_language",
+      "column": "dotnet-family",
+      "year": 2000,
+      "weight": "major",
+      "master": false,
+      "year_note": "2000-07 PDC 公开演示；1.0 随 .NET Framework 2002 首发",
+      "summary": "微软 .NET 平台旗舰语言（托管执行、类型安全）。",
+      "concepts": ["CLR", "Managed Code", "Garbage Collection", "Type Safety"],
+      "people": ["Microsoft", "Anders Hejlsberg"],
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history",
+        "https://learn.microsoft.com/en-us/shows/pdc-2000/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "sqlite-2000",
+      "label": "SQLite",
+      "label_en": "SQLite",
+      "layer": "L3_data",
+      "column": "relational",
+      "year": 2000,
+      "weight": "minor",
+      "master": false,
+      "summary": "嵌入式 SQL 引擎（单文件、零配置、无服务进程）。",
+      "concepts": ["Embedded Database", "ACID", "Zero-configuration", "Public Domain"],
+      "people": ["D. Richard Hipp"],
+      "sources": [
+        "https://www.sqlite.org/",
+        "https://www.sqlite.org/about.html",
+        "https://www.sqlite.org/chronology.html"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "wikipedia-2001",
+      "label": "维基百科",
+      "label_en": "Wikipedia",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2001,
+      "weight": "major",
+      "master": false,
+      "summary": "协作编辑的网络百科（wiki 模式大众化）。",
+      "concepts": ["Wiki", "Crowdsourcing", "MediaWiki", "Free Content"],
+      "people": ["Jimmy Wales", "Larry Sanger", "Wikimedia Foundation"],
+      "sources": [
+        "https://www.wikipedia.org/",
+        "https://wikimediafoundation.org/news/2016/01/14/wikipedia-15-foundation-endowment/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "dotnet-framework-2002",
+      "label": ".NET Framework",
+      "label_en": ".NET Framework",
+      "layer": "L2_language",
+      "column": "dotnet-family",
+      "year": 2002,
+      "weight": "major",
+      "master": false,
+      "summary": "微软托管运行时平台（CLR 与基础类库）。",
+      "concepts": ["CLR", "JIT", "BCL", "Assembly"],
+      "people": ["Microsoft"],
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/framework/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "llvm-2003",
+      "label": "LLVM",
+      "label_en": "LLVM",
+      "layer": "L2_language",
+      "column": "toolchain",
+      "year": 2003,
+      "weight": "major",
+      "master": true,
+      "summary": "模块化编译器基础设施（统一中间表示与可复用后端）。",
+      "concepts": ["LLVM IR", "JIT", "Optimizer", "Clang"],
+      "people": ["Chris Lattner", "Vikram Adve", "UIUC"],
+      "sources": [
+        "https://llvm.org/",
+        "https://releases.llvm.org/1.0/docs/ReleaseNotes.html"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "amd64-2003",
+      "label": "AMD64",
+      "label_en": "AMD64 (x86-64)",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 2003,
+      "weight": "major",
+      "master": false,
+      "year_note": "Opteron 2003-04-22 首发；Athlon 64 2003-09 跟进",
+      "summary": "x86 的 64 位扩展（AMD 定义，Opteron 首发）。",
+      "concepts": ["x86-64", "Long Mode", "Backward Compatibility", "Register File"],
+      "people": ["AMD"],
+      "sources": [
+        "https://www.amd.com/en/support/tech-docs/amd64-architecture-programmers-manual-volumes-1-5",
+        "https://www.pcper.com/2013/04/10-years-ago-saw-amd-reach-x64/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "gfs-2003",
+      "label": "GFS",
+      "label_en": "Google File System",
+      "layer": "L3_data",
+      "column": "distributed",
+      "year": 2003,
+      "weight": "major",
+      "master": false,
+      "summary": "谷歌集群文件系统论文（大数据存储奠基）。",
+      "concepts": ["Distributed File System", "Chunk", "Replication", "Single Master"],
+      "people": ["Sanjay Ghemawat", "Howard Gobioff", "Shun-Tak Leung", "Google"],
+      "sources": [
+        "https://doi.org/10.1145/945445.945450",
+        "https://research.google/pubs/pub51/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "firefox-2004",
+      "label": "Firefox",
+      "label_en": "Mozilla Firefox",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2004,
+      "weight": "major",
+      "master": false,
+      "summary": "Mozilla 开源浏览器（承 Netscape 代码线）。",
+      "concepts": ["Gecko", "Tabbed Browsing", "Extensions", "Standards Compliance"],
+      "people": ["Mozilla Foundation", "Blake Ross", "Dave Hyatt"],
+      "sources": [
+        "https://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/firefox/releases/1.0.html",
+        "https://www.mozilla.org/en-US/about/history/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "ubuntu-2004",
+      "label": "Ubuntu",
+      "label_en": "Ubuntu",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 2004,
+      "weight": "minor",
+      "master": false,
+      "summary": "Debian 系 Linux 发行版（定期发布、面向大众）。",
+      "concepts": ["Debian", "APT", "LTS", "Live CD"],
+      "people": ["Canonical", "Mark Shuttleworth"],
+      "sources": [
+        "https://ubuntu.com/",
+        "https://lists.ubuntu.com/archives/ubuntu-announce/2004-October/000003.html"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "mapreduce-2004",
+      "label": "MapReduce",
+      "label_en": "MapReduce",
+      "layer": "L3_data",
+      "column": "distributed",
+      "year": 2004,
+      "weight": "epic",
+      "master": true,
+      "summary": "分布式批处理编程模型（大规模并行、容错）。",
+      "concepts": ["Map", "Reduce", "Fault Tolerance", "Commodity Clusters"],
+      "people": ["Jeffrey Dean", "Sanjay Ghemawat", "Google"],
+      "sources": [
+        "https://www.usenix.org/conference/osdi-04/mapreduce-simplified-data-processing-large-clusters",
+        "https://doi.org/10.1145/1327452.1327492"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "git-2005",
+      "label": "Git",
+      "label_en": "Git",
+      "layer": "L2_language",
+      "column": "toolchain",
+      "year": 2005,
+      "weight": "major",
+      "master": false,
+      "summary": "分布式版本控制（为 Linux 内核开发创建）。",
+      "concepts": ["Distributed VCS", "Content-addressable Storage", "Branching", "Merging"],
+      "people": ["Linus Torvalds", "Junio Hamano"],
+      "sources": [
+        "https://git-scm.com/",
+        "https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git",
+        "https://lwn.net/Articles/163419/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "nvidia-g80-2006",
+      "label": "NVIDIA G80",
+      "label_en": "NVIDIA GeForce 8800 (G80)",
+      "layer": "L0_hardware",
+      "column": "accelerator",
+      "year": 2006,
+      "weight": "major",
+      "master": false,
+      "summary": "统一着色器 GPU 架构（GPGPU 与 CUDA 的硬件基础）。",
+      "concepts": ["Unified Shader", "Stream Processor", "GPGPU", "DirectX 10"],
+      "people": ["NVIDIA"],
+      "sources": [
+        "https://developer.nvidia.com/cuda/gpus",
+        "https://www.pcper.com/2006/11/nvidia-geforce-8800-gtx-review-dx10-and-unified-architecture/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "bigtable-2006",
+      "label": "BigTable",
+      "label_en": "Google BigTable",
+      "layer": "L3_data",
+      "column": "nosql",
+      "year": 2006,
+      "weight": "major",
+      "master": false,
+      "summary": "谷歌宽列存储模型论文（HBase 等系统之祖）。",
+      "concepts": ["Column Family", "SSTable", "Tablet", "Distributed Storage"],
+      "people": ["Fay Chang", "Jeffrey Dean", "Sanjay Ghemawat", "Google"],
+      "sources": [
+        "https://www.usenix.org/conference/osdi-06/bigtable-distributed-storage-system-structured-data",
+        "https://doi.org/10.1145/1365815.1365816"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "hadoop-2006",
+      "label": "Hadoop",
+      "label_en": "Apache Hadoop",
+      "layer": "L3_data",
+      "column": "distributed",
+      "year": 2006,
+      "weight": "major",
+      "master": false,
+      "year_note": "0.1.0 2006-04-02 发布；1.0.0 2011-12-27",
+      "summary": "开源 MapReduce 与 HDFS 大数据栈（Apache 项目）。",
+      "concepts": ["HDFS", "YARN", "MapReduce", "Commodity Hardware"],
+      "people": ["Doug Cutting", "Apache Software Foundation"],
+      "sources": [
+        "https://hadoop.apache.org/",
+        "https://hadoop.apache.org/docs/stable2/hadoop-project-dist/hadoop-common/release/0.1.0/CHANGES.0.1.0.html"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "dbn-2006",
+      "label": "DBN",
+      "label_en": "Deep Belief Network",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2006,
+      "weight": "minor",
+      "master": false,
+      "summary": "深度信念网络（分层预训练复兴神经网络）。",
+      "concepts": ["Deep Belief Network", "Restricted Boltzmann Machine", "Pretraining", "Generative Model"],
+      "people": ["Geoffrey Hinton", "Yoshua Bengio"],
+      "sources": [
+        "https://doi.org/10.1126/science.1127647"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "amazon-s3-2006",
+      "label": "Amazon S3",
+      "label_en": "Amazon Simple Storage Service",
+      "layer": "L4_delivery",
+      "column": "cloud-api",
+      "year": 2006,
+      "weight": "epic",
+      "master": true,
+      "summary": "对象存储即服务（云基础设施起点）。",
+      "concepts": ["Object Storage", "REST API", "Buckets", "Eventual Consistency"],
+      "people": ["Amazon Web Services"],
+      "sources": [
+        "https://press.aboutamazon.com/2006/3/amazon-web-services-launches",
+        "https://aws.amazon.com/s3/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "iphone-2007",
+      "label": "iPhone",
+      "label_en": "Apple iPhone",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 2007,
+      "weight": "epic",
+      "master": true,
+      "year_note": "2007-01-09 发布；2007-06-29 美国上市",
+      "summary": "多点触控智能手机（移动计算转折点）。",
+      "concepts": ["Multi-touch", "App Store", "Mobile Safari", "iOS"],
+      "people": ["Apple", "Steve Jobs"],
+      "sources": [
+        "https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/",
+        "https://www.apple.com/iphone/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "ios-2007",
+      "label": "iOS",
+      "label_en": "iPhone OS / iOS",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 2007,
+      "weight": "major",
+      "master": false,
+      "year_note": "2007 首发（时称 iPhone OS）；2010-06-07 更名 iOS",
+      "summary": "基于 Mac OS X 技术的移动操作系统（首发搭载 iPhone）。",
+      "concepts": ["Cocoa Touch", "UIKit", "App Store", "Sandboxing"],
+      "people": ["Apple", "Scott Forstall"],
+      "sources": [
+        "https://developer.apple.com/ios/",
+        "https://www.apple.com/newsroom/2010/06/07Apple-Presents-iPhone-4/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "clojure-2007",
+      "label": "Clojure",
+      "label_en": "Clojure",
+      "layer": "L2_language",
+      "column": "lisp-family",
+      "year": 2007,
+      "weight": "minor",
+      "master": false,
+      "summary": "JVM 上的 Lisp 方言（不可变数据与并发设计）。",
+      "concepts": ["Immutable Data", "Software Transactional Memory", "Persistent Data Structures", "REPL"],
+      "people": ["Rich Hickey"],
+      "sources": [
+        "https://clojure.org/",
+        "https://clojure.org/about/rationale"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "cuda-2007",
+      "label": "CUDA",
+      "label_en": "CUDA",
+      "layer": "L2_language",
+      "column": "toolchain",
+      "year": 2007,
+      "weight": "epic",
+      "master": true,
+      "year_note": "随 G80 于 2006-11 宣布；SDK 1.0 于 2007 公开",
+      "summary": "GPU 通用计算平台（并行编程模型与工具链）。",
+      "concepts": ["GPGPU", "Kernel", "Thread Block", "NVCC"],
+      "people": ["NVIDIA", "Ian Buck"],
+      "sources": [
+        "https://developer.nvidia.com/cuda-toolkit",
+        "https://developer.nvidia.com/cuda-toolkit-archive",
+        "https://docs.nvidia.com/cuda/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "dynamo-2007",
+      "label": "Dynamo",
+      "label_en": "Amazon Dynamo",
+      "layer": "L3_data",
+      "column": "distributed",
+      "year": 2007,
+      "weight": "minor",
+      "master": false,
+      "summary": "亚马逊高可用键值存储设计（最终一致、去中心化）。",
+      "concepts": ["Key-value Store", "Consistent Hashing", "Vector Clocks", "Eventual Consistency"],
+      "people": ["Giuseppe DeCandia", "Werner Vogels", "Amazon"],
+      "sources": [
+        "https://doi.org/10.1145/1294261.1294281",
+        "https://www.amazon.science/publications/dynamo-amazons-highly-available-key-value-store"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "scikit-learn-2010",
+      "label": "scikit-learn",
+      "label_en": "scikit-learn",
+      "layer": "L5_ai",
+      "column": "framework",
+      "year": 2010,
+      "weight": "minor",
+      "master": false,
+      "year_note": "2007 GSoC 立项；首个公开发布 2010-02-01",
+      "summary": "Python 统计学习库（NumPy/SciPy 科学栈）。",
+      "concepts": ["Supervised Learning", "Pipeline", "Cross-validation", "NumPy"],
+      "people": ["David Cournapeau", "Gaël Varoquaux", "INRIA"],
+      "sources": [
+        "https://scikit-learn.org/stable/about.html",
+        "https://jmlr.org/papers/v12/pedregosa11a.html"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "v8-2008",
+      "label": "V8",
+      "label_en": "V8 (JavaScript Engine)",
+      "layer": "L2_language",
+      "column": "scripting",
+      "year": 2008,
+      "weight": "major",
+      "master": false,
+      "summary": "JavaScript 高性能引擎（JIT 编译，Chrome 首发）。",
+      "concepts": ["JIT", "Hidden Classes", "Garbage Collection", "Inline Caching"],
+      "people": ["Google", "Lars Bak"],
+      "sources": [
+        "https://v8.dev/",
+        "https://v8.dev/blog/10-years"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "android-2008",
+      "label": "Android",
+      "label_en": "Android",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 2008,
+      "weight": "major",
+      "master": false,
+      "summary": "基于 Linux 内核的开源移动操作系统。",
+      "concepts": ["Linux Kernel", "ART", "Play Store", "Open Handset Alliance"],
+      "people": ["Google", "Andy Rubin", "Open Handset Alliance"],
+      "sources": [
+        "https://www.android.com/",
+        "https://source.android.com/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "github-2008",
+      "label": "GitHub",
+      "label_en": "GitHub",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2008,
+      "weight": "major",
+      "master": false,
+      "summary": "Git 托管与协作开发平台（PR 工作流）。",
+      "concepts": ["Git Hosting", "Pull Request", "Fork", "Issue Tracking"],
+      "people": ["Tom Preston-Werner", "Chris Wanstrath", "GitHub"],
+      "sources": [
+        "https://github.blog/news-insights/the-library/only-the-beginning/",
+        "https://github.com/about"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "lxc-2008",
+      "label": "LXC",
+      "label_en": "Linux Containers (LXC)",
+      "layer": "L4_delivery",
+      "column": "container",
+      "year": 2008,
+      "weight": "minor",
+      "master": false,
+      "summary": "Linux 容器工具（基于 cgroups 与 namespaces）。",
+      "concepts": ["cgroups", "Namespaces", "Container", "Isolation"],
+      "people": ["Daniel Lezcano", "Stéphane Graber", "Canonical"],
+      "sources": [
+        "https://linuxcontainers.org/",
+        "https://linuxcontainers.org/lxc/introduction/",
+        "https://lwn.net/Articles/907613/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "cassandra-2008",
+      "label": "Cassandra",
+      "label_en": "Apache Cassandra",
+      "layer": "L3_data",
+      "column": "nosql",
+      "year": 2008,
+      "weight": "minor",
+      "master": false,
+      "year_note": "2008-07 Facebook 开源；2010-02 成为 Apache TLP",
+      "summary": "宽列与去中心化合流的分布式数据库（Facebook 起源）。",
+      "concepts": ["Column Family", "Consistent Hashing", "Replication", "Tunable Consistency"],
+      "people": ["Avinash Lakshman", "Prashant Malik", "Apache Software Foundation"],
+      "sources": [
+        "https://cassandra.apache.org/",
+        "https://news.apache.org/foundation/entry/the_apache_software_foundation_announces55"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "spdy-2009",
+      "label": "SPDY",
+      "label_en": "SPDY",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 2009,
+      "weight": "minor",
+      "master": false,
+      "summary": "HTTP 传输改良协议（HTTP/2 前身）。",
+      "concepts": ["Multiplexing", "Header Compression", "Server Push", "TLS"],
+      "people": ["Google", "Mike Belshe", "Ian Fette"],
+      "sources": [
+        "https://www.chromium.org/spdy/",
+        "https://www.rfc-editor.org/rfc/rfc7540"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "go-2009",
+      "label": "Go",
+      "label_en": "Go",
+      "layer": "L2_language",
+      "column": "scripting",
+      "year": 2009,
+      "weight": "major",
+      "master": true,
+      "summary": "谷歌系统语言（并发内建、快速编译、GC）。",
+      "concepts": ["Goroutine", "Channel", "Garbage Collection", "Static Binary"],
+      "people": ["Google", "Rob Pike", "Ken Thompson", "Robert Griesemer"],
+      "sources": [
+        "https://go.dev/",
+        "https://go.dev/doc/faq"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "nodejs-2009",
+      "label": "Node.js",
+      "label_en": "Node.js",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2009,
+      "weight": "major",
+      "master": true,
+      "summary": "服务端 JavaScript 运行时（V8 与事件循环）。",
+      "concepts": ["Event Loop", "Non-blocking I/O", "npm", "V8"],
+      "people": ["Ryan Dahl", "OpenJS Foundation"],
+      "sources": [
+        "https://nodejs.org/",
+        "https://en.wikipedia.org/wiki/Node.js"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "windows-7-2009",
+      "label": "Windows 7",
+      "label_en": "Windows 7",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 2009,
+      "weight": "major",
+      "master": false,
+      "summary": "NT 内核线的大众版本桌面系统。",
+      "concepts": ["NT Kernel", "Aero", "DirectX", "Windows Update"],
+      "people": ["Microsoft"],
+      "sources": [
+        "https://learn.microsoft.com/en-us/lifecycle/products/windows-7"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "ipad-2010",
+      "label": "iPad",
+      "label_en": "Apple iPad",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 2010,
+      "weight": "major",
+      "master": false,
+      "year_note": "2010-01-27 发布；2010-04-03 美国上市",
+      "summary": "平板计算品类确立（触控大屏生态）。",
+      "concepts": ["Tablet", "Multi-touch", "App Store", "Retina"],
+      "people": ["Apple", "Steve Jobs"],
+      "sources": [
+        "https://www.apple.com/newsroom/2010/01/27Apple-Launches-iPad/",
+        "https://www.apple.com/newsroom/2010/03/05iPad-Available-in-US-on-April-3/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "risc-v-2010",
+      "label": "RISC-V",
+      "label_en": "RISC-V",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 2010,
+      "weight": "minor",
+      "master": false,
+      "summary": "开放指令集架构（Berkeley 起源、模块化扩展）。",
+      "concepts": ["Open ISA", "RISC", "Extensions", "Modular Design"],
+      "people": ["Krste Asanović", "David Patterson", "UC Berkeley"],
+      "sources": [
+        "https://riscv.org/about/history/",
+        "https://riscv.org/specifications/ratified/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "spark-2010",
+      "label": "Spark",
+      "label_en": "Apache Spark",
+      "layer": "L3_data",
+      "column": "distributed",
+      "year": 2010,
+      "weight": "major",
+      "master": false,
+      "year_note": "2010 开源发布；RDD 论文 2012（NSDI）",
+      "summary": "内存化集群计算框架（对 MapReduce 的改进）。",
+      "concepts": ["RDD", "In-memory Computing", "DAG Scheduler", "Scala"],
+      "people": ["Matei Zaharia", "UC Berkeley", "AMPLab"],
+      "sources": [
+        "https://spark.apache.org/history.html",
+        "https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/zaharia"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "c-plus-plus-11-2011",
+      "label": "C++11",
+      "label_en": "C++11",
+      "layer": "L2_language",
+      "column": "c-family",
+      "year": 2011,
+      "weight": "major",
+      "master": false,
+      "year_note": "2011-08-12 ISO 投票通过；2011-09-01 正式出版",
+      "summary": "C++ 现代标准（lambda、移动语义、并发库）。",
+      "concepts": ["Lambda", "Move Semantics", "Concurrency", "auto"],
+      "people": ["ISO C++ Committee", "Bjarne Stroustrup"],
+      "sources": [
+        "https://webstore.iec.ch/en/publication/21240",
+        "https://stroustrup.com/C++11FAQ.html"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "typescript-2012",
+      "label": "TypeScript",
+      "label_en": "TypeScript",
+      "layer": "L2_language",
+      "column": "scripting",
+      "year": 2012,
+      "weight": "major",
+      "master": false,
+      "summary": "JavaScript 超集（可选静态类型，编译到 JS）。",
+      "concepts": ["Static Typing", "Type Inference", "Transpiler", "Structural Types"],
+      "people": ["Microsoft", "Anders Hejlsberg"],
+      "sources": [
+        "https://www.typescriptlang.org/",
+        "https://learn.microsoft.com/en-us/archive/blogs/somasegar/typescript-javascript-development-at-application-scale"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "alexnet-2012",
+      "label": "AlexNet",
+      "label_en": "AlexNet",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2012,
+      "weight": "epic",
+      "master": true,
+      "summary": "ImageNet 夺冠的卷积网络（深度网络时代引爆点）。",
+      "concepts": ["CNN", "ReLU", "Dropout", "GPU Training"],
+      "people": ["Alex Krizhevsky", "Ilya Sutskever", "Geoffrey Hinton"],
+      "sources": [
+        "https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+        "https://doi.org/10.1145/3065386"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "raspberry-pi-2012",
+      "label": "Raspberry Pi",
+      "label_en": "Raspberry Pi",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 2012,
+      "weight": "minor",
+      "master": false,
+      "summary": "低成本单板计算机（教育与创客普及）。",
+      "concepts": ["Single-board Computer", "ARM", "GPIO", "Education"],
+      "people": ["Raspberry Pi Foundation", "Eben Upton"],
+      "sources": [
+        "https://www.raspberrypi.com/news/the-raspberry-pi-launch/",
+        "https://www.raspberrypi.org/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "docker-2013",
+      "label": "Docker",
+      "label_en": "Docker",
+      "layer": "L4_delivery",
+      "column": "container",
+      "year": 2013,
+      "weight": "epic",
+      "master": true,
+      "summary": "容器镜像化交付（应用打包与分发标准）。",
+      "concepts": ["Container Image", "Layered Filesystem", "Registry", "Dockerfile"],
+      "people": ["Solomon Hykes", "dotCloud", "Docker Inc."],
+      "sources": [
+        "https://docs.docker.com/",
+        "https://lwn.net/Articles/907613/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "html5-2014",
+      "label": "HTML5",
+      "label_en": "HTML5",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2014,
+      "weight": "major",
+      "master": false,
+      "year_note": "2014-10 W3C 推荐标准；草案自 2008",
+      "summary": "Web 平台标准（多媒体与语义化元素）。",
+      "concepts": ["Semantic Elements", "Canvas", "Video", "Web Storage"],
+      "people": ["W3C", "WHATWG"],
+      "sources": [
+        "https://www.w3.org/TR/2014/REC-html5-20141028/",
+        "https://www.w3.org/standards/history/html5/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "swift-2014",
+      "label": "Swift",
+      "label_en": "Swift",
+      "layer": "L2_language",
+      "column": "c-family",
+      "year": 2014,
+      "weight": "major",
+      "master": false,
+      "summary": "Apple 现代系统语言（接 Objective-C 生态位）。",
+      "concepts": ["Optional", "Type Inference", "Protocols", "Playgrounds"],
+      "people": ["Apple", "Chris Lattner"],
+      "sources": [
+        "https://swift.org/",
+        "https://swift.org/about/",
+        "https://www.apple.com/newsroom/2014/06/02Apple-Releases-iOS-8-SDK-With-Over-4-000-New-APIs/"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "gan-2014",
+      "label": "GAN",
+      "label_en": "Generative Adversarial Networks",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2014,
+      "weight": "major",
+      "master": false,
+      "summary": "对抗训练的生成网络（生成模型转折）。",
+      "concepts": ["Generator", "Discriminator", "Adversarial Training", "Generative Model"],
+      "people": ["Ian Goodfellow", "Yoshua Bengio", "Université de Montréal"],
+      "sources": [
+        "https://arxiv.org/abs/1406.2661",
+        "https://doi.org/10.1145/3422622"
+      ],
+      "checked_at": "2026-10-07"
+    },
+    {
+      "id": "kubernetes-2014",
+      "label": "Kubernetes",
+      "label_en": "Kubernetes",
+      "layer": "L4_delivery",
+      "column": "container",
+      "year": 2014,
+      "weight": "epic",
+      "master": true,
+      "year_note": "2014-06-06 首次提交；2014-06-10 DockerCon 公布",
+      "summary": "容器编排系统（Borg 血统，CNCF 托管）。",
+      "concepts": ["Orchestration", "Pod", "Declarative Config", "Scheduling"],
+      "people": ["Google", "Joe Beda", "Brendan Burns", "CNCF"],
+      "sources": [
+        "https://kubernetes.io/",
+        "https://kubernetes.io/blog/2018/06/06/4-years-of-k8s/"
+      ],
+      "checked_at": "2026-10-07"
+    }
+  ],
+  "edges": [
+    {
+      "source": "c-plus-plus-1985",
+      "target": "llvm-2003",
+      "relation": "enables",
+      "citation": "LLVM 以 C++ 实现并提供 C/C++ 编译基础设施（clang/后端）。https://llvm.org/"
+    },
+    {
+      "source": "c-plus-plus-1985",
+      "target": "c-plus-plus-11-2011",
+      "relation": "direct_fork",
+      "citation": "C++ 标准委员会修订（C++0x）。https://isocpp.org/"
+    },
+    {
+      "source": "c-plus-plus-1985",
+      "target": "go-2009",
+      "relation": "conceptual_inf",
+      "citation": "Go 诞生于对 C++ 服务端复杂度的回应（Rob Pike 自述）。https://go.dev/doc/faq"
+    },
+    {
+      "source": "javascript-1995",
+      "target": "v8-2008",
+      "relation": "enables",
+      "citation": "V8 为 JavaScript 的高性能引擎。https://v8.dev/"
+    },
+    {
+      "source": "javascript-1995",
+      "target": "typescript-2012",
+      "relation": "direct_fork",
+      "citation": "TypeScript 为 JavaScript 超集（编译到 JS）。https://www.typescriptlang.org/"
+    },
+    {
+      "source": "javascript-1995",
+      "target": "nodejs-2009",
+      "relation": "enables",
+      "citation": "Node.js 以 V8 执行 JavaScript（服务端运行时）。https://nodejs.org/en/about"
+    },
+    {
+      "source": "linux-1991",
+      "target": "android-2008",
+      "relation": "enables",
+      "citation": "Android 基于 Linux 内核。https://source.android.com/"
+    },
+    {
+      "source": "linux-1991",
+      "target": "ubuntu-2004",
+      "relation": "direct_fork",
+      "citation": "发行版：内核打包为产品（同 red-hat 先例）。https://ubuntu.com/"
+    },
+    {
+      "source": "linux-1991",
+      "target": "git-2005",
+      "relation": "enables",
+      "citation": "Torvalds 为 Linux 内核协作开发 Git。https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git"
+    },
+    {
+      "source": "linux-1991",
+      "target": "lxc-2008",
+      "relation": "enables",
+      "citation": "LXC 基于 Linux cgroups 与 namespaces。https://linuxcontainers.org/lxc/introduction/"
+    },
+    {
+      "source": "http-1-1-1997",
+      "target": "amazon-s3-2006",
+      "relation": "enables",
+      "citation": "S3 以 HTTP/REST API 暴露对象存储。https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+    },
+    {
+      "source": "http-1-1-1997",
+      "target": "spdy-2009",
+      "relation": "direct_fork",
+      "citation": "SPDY 为 HTTP 传输改良线（HTTP/2 前身）。https://www.chromium.org/spdy/"
+    },
+    {
+      "source": "java-1995",
+      "target": "c-sharp-2000",
+      "relation": "conceptual_inf",
+      "citation": "C# 与 Java 同期竞位（VM 平台语言，Hejlsberg 主持）。https://learn.microsoft.com/en-us/dotnet/csharp/"
+    },
+    {
+      "source": "java-1995",
+      "target": "clojure-2007",
+      "relation": "enables",
+      "citation": "Clojure 运行于 JVM（Java 平台）。https://clojure.org/about/rationale"
+    },
+    {
+      "source": "java-1995",
+      "target": "mapreduce-2004",
+      "relation": "enables",
+      "citation": "MapReduce 主流实现（Hadoop 栈）运行于 JVM。https://hadoop.apache.org/"
+    },
+    {
+      "source": "lenet-1989",
+      "target": "alexnet-2012",
+      "relation": "conceptual_inf",
+      "citation": "卷积网络血统（AlexNet 论文承 LeNet 传统）。https://doi.org/10.1145/3065386"
+    },
+    {
+      "source": "lenet-1989",
+      "target": "dbn-2006",
+      "relation": "conceptual_inf",
+      "citation": "神经网络复兴期（梯度法传统，近似同侪）。https://doi.org/10.1126/science.1127647"
+    },
+    {
+      "source": "netscape-navigator-1994",
+      "target": "firefox-2004",
+      "relation": "direct_fork",
+      "citation": "Mozilla/Firefox 源自 Netscape 开源代码。https://www.mozilla.org/en-US/about/history/"
+    },
+    {
+      "source": "html-4-0-1997",
+      "target": "html5-2014",
+      "relation": "direct_fork",
+      "citation": "HTML 标准演进（WHATWG/W3C）。https://www.w3.org/TR/html5/"
+    },
+    {
+      "source": "apache-http-server-1995",
+      "target": "rest-2000",
+      "relation": "conceptual_inf",
+      "citation": "REST 出自 HTTP/Apache 设计者 Fielding 的博士论文。https://ics.uci.edu/~fielding/pubs/dissertation/top.htm"
+    },
+    {
+      "source": "mosaic-1993",
+      "target": "wikipedia-2001",
+      "relation": "conceptual_inf",
+      "citation": "图形浏览器普及催生 Web 协作内容形态。https://wikimediafoundation.org/"
+    },
+    {
+      "source": "google-search-1998",
+      "target": "gfs-2003",
+      "relation": "enables",
+      "citation": "搜索规模驱动 GFS 集群存储。https://research.google/pubs/pub51/"
+    },
+    {
+      "source": "next-workstation-1988",
+      "target": "mac-os-x-2001",
+      "relation": "direct_fork",
+      "citation": "NeXTSTEP 技术线成为 Mac OS X 基础（Apple 收购 NeXT）。https://en.wikipedia.org/wiki/Mac_OS_X_10.0"
+    },
+    {
+      "source": "intel-80386-1985",
+      "target": "amd64-2003",
+      "relation": "direct_fork",
+      "citation": "x86 64 位扩展（AMD 定义）。https://www.amd.com/system/files/TechDocs/24592.pdf"
+    },
+    {
+      "source": "berkeley-risc-1981",
+      "target": "risc-v-2010",
+      "relation": "direct_fork",
+      "citation": "RISC-V 出自 Berkeley（RISC 血统）。https://riscv.org/"
+    },
+    {
+      "source": "playstation-1994",
+      "target": "nvidia-g80-2006",
+      "relation": "conceptual_inf",
+      "citation": "游戏图形需求推动 GPU 统一着色器架构。https://developer.nvidia.com/cuda-gpus"
+    },
+    {
+      "source": "ibm-pc-1981",
+      "target": "iphone-2007",
+      "relation": "conceptual_inf",
+      "citation": "个人计算平台的移动化延伸（PC 产业生态到智能手机生态）。https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/"
+    },
+    {
+      "source": "sql-92-1992",
+      "target": "sqlite-2000",
+      "relation": "conceptual_inf",
+      "citation": "嵌入式 SQL 引擎实现（SQL 语义）。https://www.sqlite.org/"
+    },
+    {
+      "source": "python-1991",
+      "target": "scikit-learn-2010",
+      "relation": "enables",
+      "citation": "scikit-learn 为 Python 科学计算栈的库。https://scikit-learn.org/"
+    },
+    {
+      "source": "arm-1985",
+      "target": "raspberry-pi-2012",
+      "relation": "enables",
+      "citation": "Raspberry Pi 采用 ARM 平台。https://www.raspberrypi.com/"
+    },
+    {
+      "source": "windows-nt-1993",
+      "target": "windows-7-2009",
+      "relation": "direct_fork",
+      "citation": "NT 内核线延续。https://learn.microsoft.com/en-us/lifecycle/products/windows-7"
+    },
+    {
+      "source": "mac-os-x-2001",
+      "target": "ios-2007",
+      "relation": "direct_fork",
+      "citation": "iOS 基于 Mac OS X（Apple 自述）。https://developer.apple.com/ios/"
+    },
+    {
+      "source": "ios-2007",
+      "target": "iphone-2007",
+      "relation": "enables",
+      "citation": "iPhone 首发搭载 iPhone OS。https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/"
+    },
+    {
+      "source": "iphone-2007",
+      "target": "ipad-2010",
+      "relation": "direct_fork",
+      "citation": "iPad 放大 iPhone（同 OS 产品线）。https://www.apple.com/newsroom/2010/01/27Apple-Launches-iPad/"
+    },
+    {
+      "source": "llvm-2003",
+      "target": "swift-2014",
+      "relation": "enables",
+      "citation": "Swift 编译器建于 LLVM。https://swift.org/"
+    },
+    {
+      "source": "c-sharp-2000",
+      "target": "dotnet-framework-2002",
+      "relation": "conceptual_inf",
+      "citation": "C# 为 .NET 平台旗舰语言（同期设计）。https://learn.microsoft.com/en-us/dotnet/"
+    },
+    {
+      "source": "nvidia-g80-2006",
+      "target": "cuda-2007",
+      "relation": "enables",
+      "citation": "CUDA 随 G80 架构首发。https://developer.nvidia.com/cuda-toolkit"
+    },
+    {
+      "source": "gfs-2003",
+      "target": "bigtable-2006",
+      "relation": "enables",
+      "citation": "BigTable 以 GFS 为存储层。https://research.google/pubs/pub27898/"
+    },
+    {
+      "source": "gfs-2003",
+      "target": "hadoop-2006",
+      "relation": "conceptual_inf",
+      "citation": "HDFS 借鉴 GFS 设计。https://hadoop.apache.org/"
+    },
+    {
+      "source": "mapreduce-2004",
+      "target": "hadoop-2006",
+      "relation": "convergence",
+      "citation": "第二入边：MapReduce 计算与 GFS 存储合流。https://hadoop.apache.org/"
+    },
+    {
+      "source": "bigtable-2006",
+      "target": "cassandra-2008",
+      "relation": "conceptual_inf",
+      "citation": "Cassandra 数据模型基于 BigTable。https://cassandra.apache.org/"
+    },
+    {
+      "source": "dynamo-2007",
+      "target": "cassandra-2008",
+      "relation": "convergence",
+      "citation": "第二入边：去中心化（Dynamo）与宽列（BigTable）合流。https://cassandra.apache.org/"
+    },
+    {
+      "source": "amazon-s3-2006",
+      "target": "dynamo-2007",
+      "relation": "conceptual_inf",
+      "citation": "AWS 存储基础设施的另一线（高可用键值存储设计）。https://www.amazon.science/publications/dynamo-amazons-highly-available-key-value-store"
+    },
+    {
+      "source": "mapreduce-2004",
+      "target": "spark-2010",
+      "relation": "conceptual_inf",
+      "citation": "RDD 对 MapReduce 的内存化改进。https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/zaharia"
+    },
+    {
+      "source": "git-2005",
+      "target": "github-2008",
+      "relation": "enables",
+      "citation": "GitHub 以 Git 为核心。https://github.com/about"
+    },
+    {
+      "source": "v8-2008",
+      "target": "nodejs-2009",
+      "relation": "enables",
+      "citation": "Node.js 构建于 V8。https://nodejs.org/en/about"
+    },
+    {
+      "source": "lxc-2008",
+      "target": "docker-2013",
+      "relation": "direct_fork",
+      "citation": "Docker 初版基于 LXC。https://docs.docker.com/"
+    },
+    {
+      "source": "docker-2013",
+      "target": "kubernetes-2014",
+      "relation": "conceptual_inf",
+      "citation": "容器编排兴起（Google Borg 血统）。https://kubernetes.io/blog/2018/06/06/4-years-of-k8s/"
+    },
+    {
+      "source": "cuda-2007",
+      "target": "alexnet-2012",
+      "relation": "enables",
+      "citation": "AlexNet 以 CUDA 训练（物质使能，非概念借鉴）。https://doi.org/10.1145/3065386"
+    },
+    {
+      "source": "dbn-2006",
+      "target": "alexnet-2012",
+      "relation": "conceptual_inf",
+      "citation": "深度网络复兴传统（Hinton 路线）。https://doi.org/10.1145/3065386"
+    },
+    {
+      "source": "alexnet-2012",
+      "target": "gan-2014",
+      "relation": "conceptual_inf",
+      "citation": "深度网络上的生成模型转折。https://arxiv.org/abs/1406.2661"
+    }
+  ]
 }
