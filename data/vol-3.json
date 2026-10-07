@@ -67,7 +67,7 @@
       "master": false,
       "summary": "嵌入式 SQL 引擎（单文件、零配置、无服务进程）。",
       "concepts": ["Embedded Database", "ACID", "Zero-configuration", "Public Domain"],
-      "people": ["D. Richard Hipp"],
+      "people": ["D. Richard Hipp", "SQLite Consortium"],
       "sources": [
         "https://www.sqlite.org/",
         "https://www.sqlite.org/about.html",
@@ -104,7 +104,7 @@
       "master": false,
       "summary": "微软托管运行时平台（CLR 与基础类库）。",
       "concepts": ["CLR", "JIT", "BCL", "Assembly"],
-      "people": ["Microsoft"],
+      "people": ["Microsoft", "Anders Hejlsberg"],
       "sources": [
         "https://learn.microsoft.com/en-us/dotnet/framework/"
       ],
@@ -140,7 +140,7 @@
       "year_note": "Opteron 2003-04-22 首发；Athlon 64 2003-09 跟进",
       "summary": "x86 的 64 位扩展（AMD 定义，Opteron 首发）。",
       "concepts": ["x86-64", "Long Mode", "Backward Compatibility", "Register File"],
-      "people": ["AMD"],
+      "people": ["AMD", "Hector Ruiz"],
       "sources": [
         "https://www.amd.com/en/support/tech-docs/amd64-architecture-programmers-manual-volumes-1-5",
         "https://www.pcper.com/2013/04/10-years-ago-saw-amd-reach-x64/"
@@ -249,7 +249,7 @@
       "master": false,
       "summary": "统一着色器 GPU 架构（GPGPU 与 CUDA 的硬件基础）。",
       "concepts": ["Unified Shader", "Stream Processor", "GPGPU", "DirectX 10"],
-      "people": ["NVIDIA"],
+      "people": ["NVIDIA", "Jen-Hsun Huang"],
       "sources": [
         "https://developer.nvidia.com/cuda/gpus",
         "https://www.pcper.com/2006/11/nvidia-geforce-8800-gtx-review-dx10-and-unified-architecture/"
@@ -321,7 +321,7 @@
       "master": true,
       "summary": "对象存储即服务（云基础设施起点）。",
       "concepts": ["Object Storage", "REST API", "Buckets", "Eventual Consistency"],
-      "people": ["Amazon Web Services"],
+      "people": ["Amazon Web Services", "Andy Jassy"],
       "sources": [
         "https://press.aboutamazon.com/2006/3/amazon-web-services-launches",
         "https://aws.amazon.com/s3/"
@@ -377,7 +377,7 @@
       "master": false,
       "summary": "JVM 上的 Lisp 方言（不可变数据与并发设计）。",
       "concepts": ["Immutable Data", "Software Transactional Memory", "Persistent Data Structures", "REPL"],
-      "people": ["Rich Hickey"],
+      "people": ["Rich Hickey", "Alex Miller"],
       "sources": [
         "https://clojure.org/",
         "https://clojure.org/about/rationale"
@@ -598,7 +598,7 @@
       "master": false,
       "summary": "NT 内核线的大众版本桌面系统。",
       "concepts": ["NT Kernel", "Aero", "DirectX", "Windows Update"],
-      "people": ["Microsoft"],
+      "people": ["Microsoft", "Steven Sinofsky"],
       "sources": [
         "https://learn.microsoft.com/en-us/lifecycle/products/windows-7"
       ],
@@ -970,7 +970,7 @@
       "source": "intel-80386-1985",
       "target": "amd64-2003",
       "relation": "direct_fork",
-      "citation": "x86 64 位扩展（AMD 定义）。https://www.amd.com/system/files/TechDocs/24592.pdf"
+      "citation": "x86 64 位扩展（AMD 定义，Opteron 2003-04 首发）。https://www.pcper.com/2013/04/10-years-ago-saw-amd-reach-x64/"
     },
     {
       "source": "berkeley-risc-1981",
@@ -1054,7 +1054,7 @@
       "source": "gfs-2003",
       "target": "bigtable-2006",
       "relation": "enables",
-      "citation": "BigTable 以 GFS 为存储层。https://research.google/pubs/pub27898/"
+      "citation": "BigTable 以 GFS 为存储层（论文自述）。https://www.usenix.org/conference/osdi-06/bigtable-distributed-storage-system-structured-data"
     },
     {
       "source": "gfs-2003",

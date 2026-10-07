@@ -63,6 +63,9 @@ for (const n of nodes) {
   else if ([...n.summary].length > 60) {
     errors.push(`[summary] ${where}：${[...n.summary].length} 字符 > 60`);
   }
+  if (!n.people || n.people.length < 2 || n.people.length > 4) {
+    errors.push(`[people] ${where}：${n.people?.length ?? 0} 条（需 2–4）`);
+  }
   if (!n.sources || n.sources.length < 1) errors.push(`[sources] ${where}：空`);
   if (!n.checked_at) errors.push(`[checked_at] ${where}：缺失`);
   const hit = bannedHit(n.label);
@@ -111,7 +114,7 @@ for (const n of nodes) {
   }
 }
 
-// 边预算（content-spec §3，F-B-7）：主图入边 ≤8；相邻卷跨卷边 ≤5
+// 边预算（content-spec §3，F-B-7 → J7）：主图入边 ≤8；相邻卷跨卷边 ≤32（master→master ≤7）
 // （下限 3 为 M3 全量目标，建设期降级为 warning）
 const masterIds = new Set(nodes.filter((n) => n.master).map((n) => n.id));
 const mainInDeg = new Map<string, number>();
