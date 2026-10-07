@@ -107,4 +107,12 @@
 - D-11 / D-12 / D-13 留给修复会话（本会话按纪律只记不修）
 - 路线（照 checklist 待办）：V4 候选（G-A）→ V4 落数据/核验/push → B5 校准 + D-4 裁定 → B6 验收 + M4 线上深链
 
-## 10. 修复记录（留空——待修复会话）
+## 10. 修复记录（2026-10-07，修复会话）
+
+| # | 位置 | 修复 |
+|---|---|---|
+| D-11 | `data/vol-3.json` 边 citation（2 处） | `intel-80386 → amd64` 边 → `pcper.com` Opteron 报道（2003-04-22 首发）；`gfs → bigtable` 边 → USENIX OSDI-06 页；6-URL 回归 grep 全 0（`pub51` 保留属预期） |
+| D-12 | `data/vol-3.json` 7 节点 + `scripts/validate.ts` | 补第二人（规格 §1 的 2–4）：`sqlite-2000` +SQLite Consortium / `dotnet-framework-2002` +Anders Hejlsberg / `amd64-2003` +Hector Ruiz / `nvidia-g80-2006` +Jen-Hsun Huang / `amazon-s3-2006` +Andy Jassy / `clojure-2007` +Alex Miller / `windows-7-2009` +Steven Sinofsky；validator 增 people 2–4 档（防再发） |
+| D-13 | `checklist.md` 快照 | build gzip → **167.12kB**（修复批复测；原 166.26 系修复前读数）；顺带清 `validate.ts` :114 陈旧注释（评审 remark） |
+
+复验：`typecheck` 无错 / `validate` 148/155 全绿（含新 people 档）/ `measure` 卷 3 1886.7/2000 · 主图段 [2000,2015) 510/525 · master 子图 35/27 / `build` gzip 167.12kB 全过。提交 = `0a7bbd3`（修复批）；本记录随文档批。
