@@ -79,7 +79,7 @@
 | 5 | http-2-2015 | HTTP/2 | L1/net | 2015 | major | HTTP/2 标准（RFC 7540，SPDY 演化入标） | rfc-editor.org / ietf.org |
 | 6 | graphql-2015 | GraphQL | L4/web | 2015 | major | Facebook 开源查询式 API 规范 | graphql.org / api.github.com |
 | 7 | vs-code-2015 | VS Code | L2/toolchain | 2015 | major | 跨平台代码编辑器（Electron 系）；1.0 于 2016-04 | code.visualstudio.com / techcrunch.com |
-| 8 | kotlin-1-0-2016 | Kotlin 1.0 | L2/jvm-family | 2016 | major | JetBrains JVM 语言 1.0（2011-08 公布立项入 year_note） | kotlinlang.org / blog.jetbrains.com |
+| 8 | kotlin-1-0-2016 | Kotlin 1.0 | L2/jvm-family | 2016 | major | JetBrains JVM 语言 1.0（2011-07-19 公布立项入 year_note；2026-10-09 验收同步） | kotlinlang.org / blog.jetbrains.com |
 | 9 | dotnet-core-2016 | .NET Core | L2/dotnet-family | 2016 | major | .NET 跨平台开源重写（1.0 GA） | devblogs.microsoft.com / microsoft.com |
 | 10 | grpc-2016 | gRPC | L1/net | 2016 | major | 谷歌 RPC 框架 1.0（HTTP/2 承载；2015 开源入 year_note） | grpc.io / api.github.com |
 | 11 | helm-2016 | Helm | L4/container | 2016 | major | Kubernetes 包管理器（2.0；2015-10 初版入 year_note） | helm.sh / api.github.com |
@@ -104,7 +104,7 @@
 | 30 | apple-m1-2020 | Apple M1 | L0/arch | 2020 | major | Apple 自研 ARM SoC（Mac 平台迁移） | apple.com |
 | 31 | openai-api-2020 | OpenAI API | L4/cloud-api | 2020 | major | GPT-3 API 开放（模型即服务；J12 B 案） | openai.com〔403〕 / techcrunch.com / zdnet.com |
 | 32 | macos-big-sur-2020 | macOS Big Sur | L1/os | 2020 | major | macOS 11（Apple 芯片过渡首发系统） | apple.com |
-| 33 | vite-2020 | Vite | L2/toolchain | 2020 | minor | 前端构建工具（esbuild/Rollup；1.0 于 2021-02 入 year_note） | vite.dev / registry.npmjs.org |
+| 33 | vite-2020 | Vite | L2/toolchain | 2020 | minor | 前端构建工具（esbuild/Rollup；无 1.x 稳定版，首个稳定版 2.0 = 2021-02-16 入 year_note；2026-10-09 验收同步） | vite.dev / registry.npmjs.org |
 | 34 | gpt-3-2020 ★ | GPT-3 | L5/nn | 2020 | epic | 缩放律大模型（few-shot 提示范式） | arxiv.org / openai.com〔403〕 |
 | 35 | quic-2021 | QUIC | L1/net | 2021 | major | 基于 UDP 的传输协议（RFC 9000） | rfc-editor.org / ietf.org |
 | 36 | windows-11-2021 | Windows 11 | L1/os | 2021 | major | NT 内核线大众版本（GA） | microsoft.com / blogs.windows.com |
@@ -222,12 +222,12 @@ L5_ai/nn                  2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025
 
 | 项 | 结论 | 来源 |
 |---|---|---|
-| Kotlin | 2016（1.0 发布 2016-02-15；2011-08 公布入 year_note） | kotlinlang.org ✓ / blog.jetbrains.com（1.0 帖 + 2011 帖）✓ |
+| Kotlin | 2016（1.0 发布 2016-02-15；**2011-07-19** 公布〔JVM Language Summit〕入 year_note——原「2011-08」经验收独立核实后同步修正） | kotlinlang.org ✓ / blog.jetbrains.com（1.0 帖 + 十周年页）✓ |
 | WebAssembly | 2017（MVP 共识 2017-02-28 四引擎；Chrome 57 2017-03-14 默认开启；W3C 推荐 2019-12-05 入 year_note） | lists.w3.org 2017Feb/0002 ✓ / infoq.com 2017-03 / w3.org/TR/wasm-core-1 ✓ |
 | gRPC | 2016（1.0；2015-02 首次开源入 year_note） | api.github.com release v1.0.0 published 2016-08-19 ✓ / grpc.io（落库核） |
 | Helm | 2016（v2.0.0 released 2016-11-17；repo 2015-10-06 创建入 year_note） | api.github.com v2.0.0 ✓ / helm.sh（落库核） |
 | Istio | 2017（0.1.0 released 2017-05-10；官宣 2017-05-24） | api.github.com 0.1.0 ✓ / istio.io（页面 JS 渲染，落库换源） |
-| Vite | 2020（首个公开版 2020-04；repo created 2020-04-21；1.0 2021-02 入 year_note） | api.github.com ✓ / registry.npmjs.org/vite（0.1.x）/ Vue newsletter 2020-05-11 |
+| Vite | 2020（首个公开版 0.1.0 = 2020-04-21；**无 1.x 稳定版**〔1.0.0 仅 beta/rc〕，首个稳定版 **2.0.0 = 2021-02-16** 入 year_note——原「1.0 2021-02」经验收独立核实后同步修正） | api.github.com ✓ / registry.npmjs.org/vite（逐版本）/ vite.dev/blog/announcing-vite2 ✓ |
 | GitHub Actions | 2019（GA 2019-11-13；2018-10-16 公测入 year_note） | github.blog changelog 2018-10-16 / techcrunch.com 2019-08-08（GA 预告） |
 | Julia 1.0 | 2018（2018-08-08） | julialang.org/blog/2018/08/one-point-zero ✓ / api.github.com（落库核） |
 | .NET Core | 2016（1.0 GA 2016-06-27） | devblogs.microsoft.com ✓ / microsoft.com（落库核） |

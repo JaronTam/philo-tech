@@ -109,6 +109,12 @@
 - D-14 留给修复会话（本会话按纪律只记不修）
 - 路线（照 checklist 待办）：D-14 修复批 → B5 校准 + D-4 裁定 → B6 验收 + M4 线上深链
 
-## 10. 修复记录
+## 10. 修复记录（2026-10-09，修复会话）
 
-（留空——待修复会话填写）
+| # | 位置 | 修复 |
+|---|---|---|
+| D-14 | `data/vol-4.json:990`（边 citation） | `windows-7-2009 → windows-11-2021` 边 citation 换为节点现源 `https://blogs.windows.com/windowsexperience/2021/06/24/introducing-windows-11/`；13 串回归 grep 全 0（节点源 ↔ 边 citation 同步） |
+
+顺带（§7 建议，防再发）：`content-spec` §5 增「换源同步」规则（v0.16）——替换 / 删除 source URL 时须全仓库 grep（节点 `sources` + 边 `citation`）归零后落库。
+
+复验：`npm run typecheck` 无错 / `validate` 193/203 全绿 0 warn / 13 串回归 grep 全 0。提交 = `f06dd6d`（修复批）；本记录随文档批。
