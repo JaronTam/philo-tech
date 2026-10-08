@@ -987,7 +987,7 @@
       "source": "windows-7-2009",
       "target": "windows-11-2021",
       "relation": "direct_fork",
-      "citation": "NT 内核线延续（经 8/10，同 windows-nt → windows-7 先例）。https://www.microsoft.com/en-us/windows/windows-11"
+      "citation": "NT 内核线延续（经 8/10，同 windows-nt → windows-7 先例）。https://blogs.windows.com/windowsexperience/2021/06/24/introducing-windows-11/"
     },
     {
       "source": "github-2008",
