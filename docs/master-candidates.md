@@ -1,6 +1,6 @@
 # Master 候选表（M0 试排输入）
 
-状态：2026-10-05 · v0.4（J6 裁定：+Intel 8086 1978——主图 `IBM PC` 孤点消解；44 → 45 条候选〔触顶 ≤45〕）· v0.3（F-D-3 终裁：theory 行 `layer` 改 `PRE_theory` 哨兵层）· v0.2（F-D-4：+罗素 +EDVAC 报告、−图灵机 −ENIAC）· 依据 checklist §2.5 F-D-2 / F-D-4 与 ui-spec §1 主图实测 · 与 prd2 冲突时以 prd2 为准
+状态：2026-10-09 · v0.5（M3 V4 准备批：PyTorch 定年 2016 → 2017〔J10 裁定——2016-09 起 alpha 为 invite-only closed alpha；公开可用 = 2017-01-19〕）· v0.4（J6 裁定：+Intel 8086 1978——主图 `IBM PC` 孤点消解；44 → 45 条候选〔触顶 ≤45〕）· v0.3（F-D-3 终裁：theory 行 `layer` 改 `PRE_theory` 哨兵层）· v0.2（F-D-4：+罗素 +EDVAC 报告、−图灵机 −ENIAC）· 依据 checklist §2.5 F-D-2 / F-D-4 与 ui-spec §1 主图实测 · 与 prd2 冲突时以 prd2 为准
 
 - 判据（content-spec §1）：`weight=epic`，或跨 ≥2 泳道的枢纽；主图目标 40±5 条，本表 45 条候选（ui-spec §7 主图上限 ≤45）。
 - 取材：prd2 §3.1 正例、content-spec §4 前史候选池（布尔 / 图灵 / 香农等已定项直接入选）、content-spec §2 注册表列。
@@ -51,7 +51,7 @@
 | 36 | Rust 1.0 | L2_language | ml-family | 2015 | |
 | 37 | TensorFlow | L5_ai | framework | 2015 | |
 | 38 | ResNet | L5_ai | nn | 2015 | |
-| 39 | PyTorch | L5_ai | framework | 2016 | |
+| 39 | PyTorch | L5_ai | framework | 2017 | J10 裁定：2016 alpha 为邀请制封闭内测；公开可用 2017-01-19 |
 | 40 | AlphaGo | L5_ai | nn | 2016 | 围棋 4:1（2016-03） |
 | 41 | TPU v1 | L0_hardware | accelerator | 2016 | 2015 起内部部署；2016 公开 |
 | 42 | Transformer | L5_ai | nn | 2017 | prd2 §3.1 正例 |

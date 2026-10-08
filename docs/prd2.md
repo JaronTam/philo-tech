@@ -145,7 +145,7 @@ interface ParadigmBand {
 | `enables` | target 缺了 source 就无法存在 | AlexNet→ResNet（是架构后继，不是使能） |
 | `direct_fork` | 有共享代码或共享设计血统 | UNIX→Linux（重写，非 fork）、C→Java（跳过 C++ 与 Simula/Smalltalk） |
 | `conceptual_inf` | 有可引用的文献级借鉴 | CUDA→AlexNet（是物质使能，不是概念借鉴） |
-| `paradigm_shift` | 后者取代前者的主导地位 | WWW→Docker（无关，编造） |
+| `paradigm_shift` | 后者取代前者的主导地位——限「领域方法路径换代」（不替换血脉语义；血脉线走 `direct_fork` / `conceptual_inf`）；2026-10-09 M3 V4 批 J11 收窄 | WWW→Docker（无关，编造） |
 | `convergence` | target 入度 ≥ 2 | MapReduce→Kafka/Spark（1→2 发散，方向反） |
 | `composition` | target 由 source 组合而成 | TCP/IP→WWW（WWW 跑在 TCP/IP 上，是使能） |
 
@@ -367,3 +367,4 @@ M1 是关键闸门：如果列对齐在 M1 站不住，整个坐标系要重做�
 | M3 | §9 | 跨卷边上限修订（J1 裁定）：相邻卷 ≤5 → **≤8（总量）/ ≤5（master→master）**——非 master 跨卷边在任何视图不渲染，纯血统用途；卷首节点（UNIVAC / IBM 701 / 关系模型）父源在 pre 卷所需 |
 | M3 | §9 | 跨卷边上限再修订（J5 裁定，V2 批）：总量 8 → **12**（master→master 仍 ≤5）——45 节点/卷下多线植根前卷（GUI / RISC / CNN / SQL 标准 / 语言链），实测 V2 需 11 条/对 |
 | M3 | §9 | 跨卷边上限三修（J7 裁定，V3 批）：总量 12 → **32**（master→master 5 → **7**）——V3（2000–2015）早期节点（2000–2007 生）同卷无父源，血统全部植根 v2（PC / Web 时代），实测需 31 条 / MM 6 条；非 master 跨卷边任何视图不渲染 |
+| M3 | §3.4 | `paradigm_shift` 成立条件收窄（J11 裁定，V4 准备批）：限「领域方法路径换代」——target 范式取代 source 在其领域的主导方法路径，不替换血脉语义；首用 3 条（`transformer → gpt-3` 架构创新 → 规模化 / `gan → stable-diffusion` 对抗 → 扩散 / `gpt-3 → chatgpt` 补全交互 → 对话 + 对齐），站内 0 → 3（§9 上限 8 不变） |
