@@ -1,4 +1,1125 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "rust-1-0-2015",
+      "label": "Rust 1.0",
+      "label_en": "Rust 1.0",
+      "layer": "L2_language",
+      "column": "ml-family",
+      "year": 2015,
+      "weight": "major",
+      "master": true,
+      "year_note": "0.1 首个公开版 2012-01-20；1.0 于 2015-05-15",
+      "summary": "内存安全与并发安全的系统编程语言 1.0（稳定承诺起点）。",
+      "concepts": ["Memory Safety", "Ownership", "Borrow Checker", "Zero-cost Abstraction"],
+      "people": ["Mozilla", "Graydon Hoare"],
+      "sources": [
+        "https://blog.rust-lang.org/2015/05/15/Rust-1.0/",
+        "https://raw.githubusercontent.com/rust-lang/rust/master/RELEASES.md"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "tensorflow-2015",
+      "label": "TensorFlow",
+      "label_en": "TensorFlow",
+      "layer": "L5_ai",
+      "column": "framework",
+      "year": 2015,
+      "weight": "epic",
+      "master": true,
+      "summary": "谷歌公开的数据流图深度学习框架（CPU/GPU 与分布式训练）。",
+      "concepts": ["Dataflow Graph", "Tensor", "Automatic Differentiation", "TensorBoard"],
+      "people": ["Google Brain", "Jeff Dean", "Sanjay Ghemawat"],
+      "sources": [
+        "https://www.tensorflow.org/",
+        "https://github.com/tensorflow/tensorflow"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "resnet-2015",
+      "label": "ResNet",
+      "label_en": "Residual Network",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2015,
+      "weight": "major",
+      "master": true,
+      "summary": "残差连接的超深卷积网络（ILSVRC 2015 图像分类冠军）。",
+      "concepts": ["Residual Learning", "Skip Connection", "Batch Normalization", "CNN"],
+      "people": ["Kaiming He", "Jian Sun", "Microsoft Research"],
+      "sources": [
+        "https://arxiv.org/abs/1512.03385",
+        "https://image-net.org/challenges/LSVRC/2015/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "apple-watch-2015",
+      "label": "Apple Watch",
+      "label_en": "Apple Watch",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 2015,
+      "weight": "major",
+      "master": false,
+      "year_note": "2014-09-09 发布；2015-04-24 上市",
+      "summary": "Apple 的可穿戴计算平台（watchOS 基于 iOS）。",
+      "concepts": ["watchOS", "Digital Crown", "Wearable", "Taptic Engine"],
+      "people": ["Apple", "Tim Cook"],
+      "sources": [
+        "https://www.apple.com/newsroom/2014/09/09Apple-Unveils-Apple-Watch-Apples-Most-Personal-Device-Ever/",
+        "https://www.apple.com/newsroom/2015/03/09Apple-Watch-Available-in-Nine-Countries-on-April-24/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "http-2-2015",
+      "label": "HTTP/2",
+      "label_en": "HTTP/2",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 2015,
+      "weight": "major",
+      "master": false,
+      "summary": "HTTP 的二进制多路复用标准（RFC 7540，SPDY 演化入标）。",
+      "concepts": ["Multiplexing", "HPACK", "Server Push", "TLS"],
+      "people": ["IETF HTTP Working Group", "Google"],
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc7540",
+        "https://httpwg.org/specs/rfc7540.html"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "graphql-2015",
+      "label": "GraphQL",
+      "label_en": "GraphQL",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2015,
+      "weight": "major",
+      "master": false,
+      "summary": "Facebook 发布的查询式 API 规范（客户端声明数据形状）。",
+      "concepts": ["Query Language", "Schema", "Type System", "Resolver"],
+      "people": ["Facebook", "Lee Byron", "GraphQL Foundation"],
+      "sources": [
+        "https://graphql.org/",
+        "https://spec.graphql.org/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "vs-code-2015",
+      "label": "VS Code",
+      "label_en": "Visual Studio Code",
+      "layer": "L2_language",
+      "column": "toolchain",
+      "year": 2015,
+      "weight": "major",
+      "master": false,
+      "year_note": "2015-04-29 公开预览；1.0 于 2016-04",
+      "summary": "跨平台代码编辑器（Electron 内核，扩展生态）。",
+      "concepts": ["Electron", "Language Server Protocol", "Extensions", "IntelliSense"],
+      "people": ["Microsoft", "Erich Gamma"],
+      "sources": [
+        "https://code.visualstudio.com/",
+        "https://code.visualstudio.com/blogs/2016/04/14/vscode-1.0"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "kotlin-1-0-2016",
+      "label": "Kotlin 1.0",
+      "label_en": "Kotlin",
+      "layer": "L2_language",
+      "column": "jvm-family",
+      "year": 2016,
+      "weight": "major",
+      "master": false,
+      "year_note": "2011-07-19 公布立项（JVM Language Summit）；1.0 于 2016-02-15",
+      "summary": "JetBrains 的 JVM 静态类型语言 1.0（与 Java 互操作）。",
+      "concepts": ["Null Safety", "Java Interoperability", "Coroutines", "JVM"],
+      "people": ["JetBrains", "Andrey Breslav"],
+      "sources": [
+        "https://kotlinlang.org/",
+        "https://blog.jetbrains.com/kotlin/2016/02/kotlin-1-0-released-pragmatic-language-for-jvm-and-android/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "dotnet-core-2016",
+      "label": ".NET Core",
+      "label_en": ".NET Core",
+      "layer": "L2_language",
+      "column": "dotnet-family",
+      "year": 2016,
+      "weight": "major",
+      "master": false,
+      "year_note": "2014-11-12 开源公布；1.0 GA 于 2016-06-27",
+      "summary": ".NET 的跨平台开源实现（1.0 GA，支持 Windows/Linux/macOS）。",
+      "concepts": ["CLR", "Cross-platform", "NuGet", "JIT"],
+      "people": ["Microsoft", ".NET Foundation"],
+      "sources": [
+        "https://devblogs.microsoft.com/dotnet/announcing-net-core-1-0/",
+        "https://learn.microsoft.com/en-us/dotnet/core/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "grpc-2016",
+      "label": "gRPC",
+      "label_en": "gRPC",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 2016,
+      "weight": "major",
+      "master": false,
+      "year_note": "2015-02 首次开源；1.0 于 2016-08-19",
+      "summary": "谷歌的多语言 RPC 框架（HTTP/2 承载，IDL 代码生成）。",
+      "concepts": ["Protocol Buffers", "HTTP/2", "IDL", "Streaming"],
+      "people": ["Google", "CNCF"],
+      "sources": [
+        "https://grpc.io/",
+        "https://github.com/grpc/grpc"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "helm-2016",
+      "label": "Helm",
+      "label_en": "Helm (Kubernetes package manager)",
+      "layer": "L4_delivery",
+      "column": "container",
+      "year": 2016,
+      "weight": "major",
+      "master": false,
+      "year_note": "repo 2015-10-06 创建；2.0 于 2016-11-17",
+      "summary": "Kubernetes 包管理器（Chart 模板与发布管理）。",
+      "concepts": ["Chart", "Release", "Templating", "Kubernetes"],
+      "people": ["Deis", "Matt Butcher", "CNCF"],
+      "sources": [
+        "https://helm.sh/",
+        "https://github.com/helm/helm"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "oculus-rift-2016",
+      "label": "Oculus Rift",
+      "label_en": "Oculus Rift (CV1)",
+      "layer": "L0_hardware",
+      "column": "device",
+      "year": 2016,
+      "weight": "minor",
+      "master": false,
+      "year_note": "2012-08 Kickstarter 众筹；2013-03 DK1 发货；2016-03-28 CV1 发售",
+      "summary": "面向消费者的 PC VR 头显（CV1，6DoF 坐姿追踪）。",
+      "concepts": ["VR Headset", "Positional Tracking", "OLED", "Oculus Store"],
+      "people": ["Oculus VR", "Palmer Luckey", "Facebook"],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Oculus_Rift_CV1",
+        "https://roadtovr.com/3-years-ago-the-oculus-rift-dk1-shipped-heres-a-quick-look-back/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "alphago-2016",
+      "label": "AlphaGo",
+      "label_en": "AlphaGo (Google DeepMind)",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2016,
+      "weight": "epic",
+      "master": true,
+      "summary": "深度强化学习围棋程序（2016 年以 4:1 击败李世石）。",
+      "concepts": ["Reinforcement Learning", "Monte Carlo Tree Search", "Policy Network", "Self-play"],
+      "people": ["DeepMind", "David Silver", "Demis Hassabis"],
+      "sources": [
+        "https://www.nature.com/articles/nature16961",
+        "https://deepmind.google/technologies/alphago/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "tpu-v1-2016",
+      "label": "TPU v1",
+      "label_en": "Tensor Processing Unit v1",
+      "layer": "L0_hardware",
+      "column": "accelerator",
+      "year": 2016,
+      "weight": "major",
+      "master": true,
+      "year_note": "2015 起内部部署；2016-05-18 I/O 公开",
+      "summary": "谷歌自研推理 ASIC（面向神经网络负载的数据中心部署）。",
+      "concepts": ["ASIC", "Systolic Array", "Inference", "Quantization"],
+      "people": ["Google", "Norm Jouppi"],
+      "sources": [
+        "https://arxiv.org/abs/1704.04760",
+        "https://cloud.google.com/tpu"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "c-plus-plus-17-2017",
+      "label": "C++17",
+      "label_en": "C++17",
+      "layer": "L2_language",
+      "column": "c-family",
+      "year": 2017,
+      "weight": "major",
+      "master": false,
+      "year_note": "2017-09-06 ISO 投票通过；2017-12 正式出版",
+      "summary": "C++ 标准修订（ISO/IEC 14882:2017，含并行算法与结构化绑定）。",
+      "concepts": ["Structured Bindings", "std::optional", "std::filesystem", "Parallel Algorithms"],
+      "people": ["ISO C++ Committee", "Herb Sutter"],
+      "sources": [
+        "https://isocpp.org/",
+        "https://www.iso.org/standard/68564.html"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "webassembly-2017",
+      "label": "WebAssembly",
+      "label_en": "WebAssembly",
+      "layer": "L2_language",
+      "column": "toolchain",
+      "year": 2017,
+      "weight": "major",
+      "master": false,
+      "year_note": "MVP 四引擎共识 2017-02-28；Chrome 57 / Firefox 52 于 2017-03 首发；Safari 11 / Edge 16 于 2017-09/10 补齐；W3C 推荐 2019-12-05",
+      "summary": "浏览器的可移植字节码标准（MVP，2017 年内四引擎落地）。",
+      "concepts": ["Bytecode", "Sandbox", "Portability", "Wasm"],
+      "people": ["W3C", "Mozilla", "Google", "Apple"],
+      "sources": [
+        "https://webassembly.org/",
+        "https://www.w3.org/TR/wasm-core-1/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "istio-2017",
+      "label": "Istio",
+      "label_en": "Istio",
+      "layer": "L4_delivery",
+      "column": "container",
+      "year": 2017,
+      "weight": "major",
+      "master": false,
+      "summary": "Kubernetes 服务网格（流量管理、mTLS 与可观测性）。",
+      "concepts": ["Service Mesh", "Sidecar", "Envoy", "mTLS"],
+      "people": ["Google", "IBM", "Lyft"],
+      "sources": [
+        "https://istio.io/",
+        "https://github.com/istio/istio"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "ray-2017",
+      "label": "Ray",
+      "label_en": "Ray (distributed framework)",
+      "layer": "L3_data",
+      "column": "distributed",
+      "year": 2017,
+      "weight": "minor",
+      "master": false,
+      "summary": "伯克利的分布式计算框架（细粒度任务与 Actor 调度）。",
+      "concepts": ["Task Parallelism", "Actor Model", "Distributed Scheduling", "Ray Core"],
+      "people": ["Robert Nishihara", "Philipp Moritz", "UC Berkeley"],
+      "sources": [
+        "https://www.ray.io/",
+        "https://arxiv.org/abs/1712.05889"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "pytorch-2017",
+      "label": "PyTorch",
+      "label_en": "PyTorch",
+      "layer": "L5_ai",
+      "column": "framework",
+      "year": 2017,
+      "weight": "epic",
+      "master": true,
+      "year_note": "2016-09-01 alpha 起为 invite-only closed alpha；2017-01-19 公开发布；2017-02-02 v0.1.6 beta",
+      "summary": "动态图的深度学习框架（define-by-run，研究向）。",
+      "concepts": ["Define-by-run", "Autograd", "Tensor", "GPU Acceleration"],
+      "people": ["Meta AI", "Soumith Chintala", "Adam Paszke"],
+      "sources": [
+        "https://pytorch.org/",
+        "https://pytorch.org/blog/a-year-in/",
+        "https://raw.githubusercontent.com/pytorch/pytorch/v0.1.3/README.md"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "transformer-2017",
+      "label": "Transformer",
+      "label_en": "Transformer (Attention Is All You Need)",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2017,
+      "weight": "epic",
+      "master": true,
+      "summary": "纯注意力的序列转换架构（《Attention Is All You Need》）。",
+      "concepts": ["Self-Attention", "Multi-Head Attention", "Positional Encoding", "Encoder-Decoder"],
+      "people": ["Google Brain", "Ashish Vaswani", "Noam Shazeer"],
+      "sources": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://papers.nips.cc/paper/7181-attention-is-all-you-need"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "deno-2018",
+      "label": "Deno",
+      "label_en": "Deno",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2018,
+      "weight": "major",
+      "master": false,
+      "year_note": "1.0 于 2020-05",
+      "summary": "TypeScript/JavaScript 运行时（权限沙箱，V8 内核）。",
+      "concepts": ["V8", "TypeScript", "Permissions", "Rust"],
+      "people": ["Ryan Dahl", "Deno Land"],
+      "sources": [
+        "https://deno.com/",
+        "https://github.com/denoland/deno"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "julia-1-0-2018",
+      "label": "Julia 1.0",
+      "label_en": "Julia 1.0",
+      "layer": "L2_language",
+      "column": "scripting",
+      "year": 2018,
+      "weight": "minor",
+      "master": false,
+      "year_note": "2012-02 首个公开版（0.1）；1.0 于 2018-08-08",
+      "summary": "科学计算语言 1.0（LLVM JIT，多重派发）。",
+      "concepts": ["Multiple Dispatch", "LLVM", "JIT", "Scientific Computing"],
+      "people": ["Jeff Bezanson", "Stefan Karpinski", "Viral Shah", "Alan Edelman"],
+      "sources": [
+        "https://julialang.org/",
+        "https://julialang.org/blog/2018/08/one-point-zero/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "jax-2018",
+      "label": "JAX",
+      "label_en": "JAX (Autograd + XLA)",
+      "layer": "L5_ai",
+      "column": "framework",
+      "year": 2018,
+      "weight": "major",
+      "master": false,
+      "summary": "NumPy 风格的自动微分与编译框架（XLA 后端）。",
+      "concepts": ["Autograd", "XLA", "JIT Compilation", "vmap"],
+      "people": ["Google Research", "James Bradbury"],
+      "sources": [
+        "https://jax.readthedocs.io/",
+        "https://github.com/google/jax"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "bert-2018",
+      "label": "BERT",
+      "label_en": "BERT (Bidirectional Encoder Representations from Transformers)",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2018,
+      "weight": "major",
+      "master": true,
+      "summary": "双向 Transformer 预训练语言模型（掩码语言模型目标）。",
+      "concepts": ["Masked Language Model", "Pre-training", "Fine-tuning", "Transformer Encoder"],
+      "people": ["Google AI", "Jacob Devlin"],
+      "sources": [
+        "https://arxiv.org/abs/1810.04805",
+        "https://github.com/google-research/bert"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "sycamore-2019",
+      "label": "Sycamore",
+      "label_en": "Google Sycamore (quantum processor)",
+      "layer": "L0_hardware",
+      "column": "accelerator",
+      "year": 2019,
+      "weight": "major",
+      "master": false,
+      "summary": "谷歌 53 量子比特处理器（量子霸权演示实验）。",
+      "concepts": ["Quantum Supremacy", "Superconducting Qubit", "Random Circuit Sampling"],
+      "people": ["Google AI Quantum", "John Martinis"],
+      "sources": [
+        "https://www.nature.com/articles/s41586-019-1666-5",
+        "https://en.wikipedia.org/wiki/Sycamore_processor"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "delta-lake-2019",
+      "label": "Delta Lake",
+      "label_en": "Delta Lake",
+      "layer": "L3_data",
+      "column": "distributed",
+      "year": 2019,
+      "weight": "minor",
+      "master": false,
+      "summary": "构建在 Spark 之上的事务性表存储（ACID 与时间旅行）。",
+      "concepts": ["ACID", "Parquet", "Time Travel", "Table Format"],
+      "people": ["Databricks", "Michael Armbrust"],
+      "sources": [
+        "https://delta.io/",
+        "https://github.com/delta-io/delta"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "github-actions-2019",
+      "label": "GitHub Actions",
+      "label_en": "GitHub Actions",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2019,
+      "weight": "minor",
+      "master": false,
+      "year_note": "2018-10-16 公测；GA 于 2019-11-13",
+      "summary": "GitHub 内建 CI/CD 工作流（事件触发与矩阵构建）。",
+      "concepts": ["CI/CD", "Workflow", "Runner", "Marketplace"],
+      "people": ["GitHub", "Microsoft"],
+      "sources": [
+        "https://docs.github.com/en/actions",
+        "https://github.blog/news-insights/product-news/universe-day-one/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "gpt-2-2019",
+      "label": "GPT-2",
+      "label_en": "GPT-2 (Generative Pre-trained Transformer 2)",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2019,
+      "weight": "major",
+      "master": false,
+      "summary": "自回归预训练语言模型（分阶段释出权重）。",
+      "concepts": ["Language Model", "Zero-shot", "Transformer Decoder", "Staged Release"],
+      "people": ["OpenAI", "Alec Radford"],
+      "sources": [
+        "https://github.com/openai/gpt-2",
+        "https://raw.githubusercontent.com/openai/gpt-2/master/model_card.md"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "nvidia-a100-2020",
+      "label": "NVIDIA A100",
+      "label_en": "NVIDIA A100 (Ampere)",
+      "layer": "L0_hardware",
+      "column": "accelerator",
+      "year": 2020,
+      "weight": "major",
+      "master": false,
+      "summary": "数据中心 GPU（Ampere 架构，第三代 Tensor Core）。",
+      "concepts": ["Ampere", "Tensor Core", "HBM2e", "NVLink"],
+      "people": ["NVIDIA", "Jensen Huang"],
+      "sources": [
+        "https://www.nvidia.com/en-us/data-center/a100/",
+        "https://developer.nvidia.com/blog/nvidia-ampere-architecture-in-depth/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "apple-m1-2020",
+      "label": "Apple M1",
+      "label_en": "Apple M1",
+      "layer": "L0_hardware",
+      "column": "arch",
+      "year": 2020,
+      "weight": "major",
+      "master": false,
+      "summary": "Apple 自研 ARM 芯片（Mac 迁移首发，统一内存）。",
+      "concepts": ["ARM", "Unified Memory", "SoC", "Rosetta 2"],
+      "people": ["Apple", "Johny Srouji"],
+      "sources": [
+        "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/",
+        "https://www.apple.com/mac/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "openai-api-2020",
+      "label": "OpenAI API",
+      "label_en": "OpenAI API",
+      "layer": "L4_delivery",
+      "column": "cloud-api",
+      "year": 2020,
+      "weight": "major",
+      "master": false,
+      "summary": "GPT-3 等模型的商业 API（模型即服务起步）。",
+      "concepts": ["API", "Token", "Completion", "Model as a Service"],
+      "people": ["OpenAI", "Sam Altman"],
+      "sources": [
+        "https://openai.com/index/openai-api/",
+        "https://platform.openai.com/docs/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "macos-big-sur-2020",
+      "label": "macOS Big Sur",
+      "label_en": "macOS 11 Big Sur",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 2020,
+      "weight": "major",
+      "master": false,
+      "summary": "macOS 11（Apple 芯片过渡首发系统，新界面）。",
+      "concepts": ["Apple Silicon", "Rosetta 2", "SwiftUI", "UNIX"],
+      "people": ["Apple", "Craig Federighi"],
+      "sources": [
+        "https://www.apple.com/newsroom/2020/11/macos-big-sur-is-here/",
+        "https://en.wikipedia.org/wiki/MacOS_Big_Sur"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "vite-2020",
+      "label": "Vite",
+      "label_en": "Vite",
+      "layer": "L2_language",
+      "column": "toolchain",
+      "year": 2020,
+      "weight": "minor",
+      "master": false,
+      "year_note": "首版 0.1.0 于 2020-04-21；首个稳定版 2.0 于 2021-02-16",
+      "summary": "面向 ESM 的前端构建工具（esbuild 预打包，Rollup 产物）。",
+      "concepts": ["ESM", "HMR", "esbuild", "Rollup"],
+      "people": ["Evan You", "Vue.js"],
+      "sources": [
+        "https://vite.dev/",
+        "https://registry.npmjs.org/vite"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "gpt-3-2020",
+      "label": "GPT-3",
+      "label_en": "GPT-3 (Generative Pre-trained Transformer 3)",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2020,
+      "weight": "epic",
+      "master": true,
+      "summary": "1750 亿参数自回归语言模型（few-shot 提示）。",
+      "concepts": ["Few-shot Learning", "Autoregressive", "Transformer Decoder", "Scaling"],
+      "people": ["OpenAI", "Tom Brown"],
+      "sources": [
+        "https://arxiv.org/abs/2005.14165",
+        "https://openai.com/index/language-models-are-few-shot-learners/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "quic-2021",
+      "label": "QUIC",
+      "label_en": "QUIC (RFC 9000)",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 2021,
+      "weight": "major",
+      "master": false,
+      "year_note": "Google 2012 年起研发 QUIC，2013 年 Chrome 小规模实验，2014 年大规模部署；RFC 9000 于 2021-05",
+      "summary": "基于 UDP 的多路复用传输协议（RFC 9000，集成 TLS 1.3）。",
+      "concepts": ["UDP", "Multiplexing", "TLS 1.3", "0-RTT"],
+      "people": ["IETF QUIC Working Group", "Google", "Jim Roskind"],
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9000",
+        "https://www.chromium.org/quic/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "windows-11-2021",
+      "label": "Windows 11",
+      "label_en": "Windows 11",
+      "layer": "L1_system",
+      "column": "os",
+      "year": 2021,
+      "weight": "major",
+      "master": false,
+      "summary": "NT 内核线桌面操作系统（GA，居中任务栏与贴靠布局）。",
+      "concepts": ["NT Kernel", "Snap Layouts", "Microsoft Store", "TPM 2.0"],
+      "people": ["Microsoft", "Panos Panay"],
+      "sources": [
+        "https://blogs.windows.com/windowsexperience/2021/06/24/introducing-windows-11/",
+        "https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "alphafold-2-2021",
+      "label": "AlphaFold 2",
+      "label_en": "AlphaFold 2",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2021,
+      "weight": "major",
+      "master": false,
+      "year_note": "CASP14 于 2020（2020-11 公布）；论文 2021-07-15",
+      "summary": "蛋白质三维结构预测模型（Evoformer 注意力架构）。",
+      "concepts": ["Protein Folding", "Evoformer", "Attention", "CASP14"],
+      "people": ["DeepMind", "John Jumper"],
+      "sources": [
+        "https://www.nature.com/articles/s41586-021-03819-2",
+        "https://deepmind.google/technologies/alphafold/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "http-3-2022",
+      "label": "HTTP/3",
+      "label_en": "HTTP/3 (RFC 9114)",
+      "layer": "L1_system",
+      "column": "net",
+      "year": 2022,
+      "weight": "major",
+      "master": false,
+      "summary": "HTTP over QUIC 标准（RFC 9114，UDP 承载）。",
+      "concepts": ["QUIC", "QPACK", "UDP", "0-RTT"],
+      "people": ["IETF HTTP Working Group", "Google"],
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://httpwg.org/specs/rfc9114.html"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "nvidia-h100-2022",
+      "label": "NVIDIA H100",
+      "label_en": "NVIDIA H100 (Hopper)",
+      "layer": "L0_hardware",
+      "column": "accelerator",
+      "year": 2022,
+      "weight": "minor",
+      "master": false,
+      "summary": "Hopper 架构数据中心 GPU（Transformer 引擎与 HBM3）。",
+      "concepts": ["Hopper", "Transformer Engine", "HBM3", "NVLink"],
+      "people": ["NVIDIA", "Jensen Huang"],
+      "sources": [
+        "https://www.nvidia.com/en-us/data-center/h100/",
+        "https://www.nvidia.com/en-us/data-center/technologies/hopper-architecture/"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "langchain-2022",
+      "label": "LangChain",
+      "label_en": "LangChain",
+      "layer": "L5_ai",
+      "column": "framework",
+      "year": 2022,
+      "weight": "minor",
+      "master": false,
+      "summary": "LLM 应用的编排框架（链、工具与记忆抽象）。",
+      "concepts": ["Chain", "Agent", "Prompt Template", "Retrieval"],
+      "people": ["Harrison Chase", "LangChain"],
+      "sources": [
+        "https://www.langchain.com/",
+        "https://github.com/langchain-ai/langchain",
+        "https://raw.githubusercontent.com/langchain-ai/langchain/master/CITATION.cff"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "chatgpt-2022",
+      "label": "ChatGPT",
+      "label_en": "ChatGPT",
+      "layer": "L4_delivery",
+      "column": "web",
+      "year": 2022,
+      "weight": "major",
+      "master": false,
+      "summary": "对话式大模型产品（RLHF 对齐，网页端免费开放）。",
+      "concepts": ["Dialogue", "RLHF", "Conversational UI", "Prompt"],
+      "people": ["OpenAI", "Sam Altman"],
+      "sources": [
+        "https://openai.com/index/chatgpt/",
+        "https://en.wikipedia.org/wiki/ChatGPT"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "stable-diffusion-2022",
+      "label": "Stable Diffusion",
+      "label_en": "Stable Diffusion",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2022,
+      "weight": "epic",
+      "master": true,
+      "summary": "开放权重的文生图扩散模型（潜空间去噪）。",
+      "concepts": ["Latent Diffusion", "Text-to-Image", "U-Net", "CLIP", "Open Weights"],
+      "people": ["Stability AI", "Robin Rombach", "CompVis"],
+      "sources": [
+        "https://stability.ai/blog/stable-diffusion-public-release",
+        "https://arxiv.org/abs/2112.10752"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "llama-2023",
+      "label": "Llama",
+      "label_en": "LLaMA (Large Language Model Meta AI)",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2023,
+      "weight": "major",
+      "master": false,
+      "summary": "Meta 开放权重的大语言模型（研究许可发布）。",
+      "concepts": ["Open Weights", "Transformer", "Pre-training", "Research License"],
+      "people": ["Meta AI", "Hugo Touvron"],
+      "sources": [
+        "https://arxiv.org/abs/2302.13971",
+        "https://en.wikipedia.org/wiki/LLaMA"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "sora-2024",
+      "label": "Sora",
+      "label_en": "Sora (OpenAI)",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2024,
+      "weight": "major",
+      "master": false,
+      "year_note": "技术报告 2024-02；2024-12 公开",
+      "summary": "文本到视频生成模型（扩散 Transformer，可变时长）。",
+      "concepts": ["Text-to-Video", "Diffusion Transformer", "Spacetime Patches"],
+      "people": ["OpenAI", "Bill Peebles"],
+      "sources": [
+        "https://openai.com/index/video-generation-models-as-world-simulators/",
+        "https://en.wikipedia.org/wiki/Sora_(text-to-video_model)"
+      ],
+      "checked_at": "2026-10-09"
+    },
+    {
+      "id": "deepseek-r1-2025",
+      "label": "DeepSeek-R1",
+      "label_en": "DeepSeek-R1",
+      "layer": "L5_ai",
+      "column": "nn",
+      "year": 2025,
+      "weight": "major",
+      "master": false,
+      "summary": "开放权重推理模型（强化学习训练长思维链）。",
+      "concepts": ["Reasoning", "Reinforcement Learning", "Chain-of-Thought", "MoE"],
+      "people": ["DeepSeek", "Liang Wenfeng"],
+      "sources": [
+        "https://arxiv.org/abs/2501.12948",
+        "https://github.com/deepseek-ai/DeepSeek-R1"
+      ],
+      "checked_at": "2026-10-09"
+    }
+  ],
+  "edges": [
+    {
+      "source": "llvm-2003",
+      "target": "rust-1-0-2015",
+      "relation": "enables",
+      "citation": "rustc 以 LLVM 为编译后端与优化基础设施。https://llvm.org/"
+    },
+    {
+      "source": "cuda-2007",
+      "target": "tensorflow-2015",
+      "relation": "enables",
+      "citation": "TensorFlow 的 GPU 加速以 CUDA/cuDNN 为物质基础（同 cuda → alexnet 先例）。https://www.tensorflow.org/install/pip"
+    },
+    {
+      "source": "alexnet-2012",
+      "target": "resnet-2015",
+      "relation": "conceptual_inf",
+      "citation": "ResNet 论文承接 AlexNet 深度卷积网络线（残差解决退化问题）。https://arxiv.org/abs/1512.03385"
+    },
+    {
+      "source": "cuda-2007",
+      "target": "alphago-2016",
+      "relation": "enables",
+      "citation": "AlphaGo 分布式版以 GPU 集群训练（Nature 方法节）。https://www.nature.com/articles/nature16961"
+    },
+    {
+      "source": "alexnet-2012",
+      "target": "alphago-2016",
+      "relation": "conceptual_inf",
+      "citation": "深度 CNN 感知网络 → AlphaGo 策略/价值网络（文献级延续；RL 合流线）。https://www.nature.com/articles/nature16961"
+    },
+    {
+      "source": "cuda-2007",
+      "target": "pytorch-2017",
+      "relation": "enables",
+      "citation": "PyTorch 以 CUDA 为 GPU 计算层（物质使能）。https://pytorch.org/"
+    },
+    {
+      "source": "android-2008",
+      "target": "kotlin-1-0-2016",
+      "relation": "enables",
+      "citation": "Kotlin 以 JVM/Android 为主场（官方 Android 支持线）。https://kotlinlang.org/"
+    },
+    {
+      "source": "dotnet-framework-2002",
+      "target": "dotnet-core-2016",
+      "relation": "direct_fork",
+      "citation": ".NET Core 为 .NET Framework 的跨平台开源重写。https://devblogs.microsoft.com/dotnet/announcing-net-core-1-0/"
+    },
+    {
+      "source": "c-plus-plus-11-2011",
+      "target": "c-plus-plus-17-2017",
+      "relation": "direct_fork",
+      "citation": "C++ 标准修订线延续（ISO/IEC 14882 修订）。https://isocpp.org/"
+    },
+    {
+      "source": "llvm-2003",
+      "target": "webassembly-2017",
+      "relation": "enables",
+      "citation": "Wasm 出自 asm.js/Emscripten 编译目标线（LLVM 工具链血统）。https://webassembly.org/"
+    },
+    {
+      "source": "llvm-2003",
+      "target": "julia-1-0-2018",
+      "relation": "enables",
+      "citation": "Julia JIT 以 LLVM 为编译基础设施。https://julialang.org/"
+    },
+    {
+      "source": "v8-2008",
+      "target": "deno-2018",
+      "relation": "enables",
+      "citation": "Deno 构建于 V8。https://deno.com/"
+    },
+    {
+      "source": "nodejs-2009",
+      "target": "deno-2018",
+      "relation": "conceptual_inf",
+      "citation": "同一作者（Ryan Dahl）对 Node 设计的反思重写。https://deno.com/"
+    },
+    {
+      "source": "spdy-2009",
+      "target": "http-2-2015",
+      "relation": "direct_fork",
+      "citation": "SPDY 演化纳入 HTTP/2 标准（RFC 7540）。https://www.rfc-editor.org/rfc/rfc7540"
+    },
+    {
+      "source": "spdy-2009",
+      "target": "quic-2021",
+      "relation": "conceptual_inf",
+      "citation": "谷歌传输线：SPDY/TCP → QUIC/UDP 重做。https://www.rfc-editor.org/rfc/rfc9000"
+    },
+    {
+      "source": "rest-2000",
+      "target": "graphql-2015",
+      "relation": "conceptual_inf",
+      "citation": "REST 之外的查询式 API 范式（客户端声明查询）。https://graphql.org/"
+    },
+    {
+      "source": "kubernetes-2014",
+      "target": "helm-2016",
+      "relation": "enables",
+      "citation": "Helm 为 Kubernetes 包管理器（k8s 生态使能）。https://helm.sh/"
+    },
+    {
+      "source": "kubernetes-2014",
+      "target": "istio-2017",
+      "relation": "enables",
+      "citation": "Istio 服务网格面向 Kubernetes 编排构建。https://istio.io/"
+    },
+    {
+      "source": "spark-2010",
+      "target": "ray-2017",
+      "relation": "conceptual_inf",
+      "citation": "同源实验室（Berkeley AMPLab/RISELab）线：批处理 → ML 细粒度调度。https://arxiv.org/abs/1712.05889"
+    },
+    {
+      "source": "spark-2010",
+      "target": "delta-lake-2019",
+      "relation": "enables",
+      "citation": "Delta Lake 构建于 Spark 之上（Databricks 出品）。https://delta.io/"
+    },
+    {
+      "source": "iphone-2007",
+      "target": "apple-watch-2015",
+      "relation": "direct_fork",
+      "citation": "watchOS 基于 iOS（同 iphone → ipad 平台衍生先例）。https://www.apple.com/watch/"
+    },
+    {
+      "source": "iphone-2007",
+      "target": "apple-m1-2020",
+      "relation": "conceptual_inf",
+      "citation": "Apple 自研芯片线：iPhone 的 A 系列 → M 系列（同源核心）。https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/"
+    },
+    {
+      "source": "nvidia-g80-2006",
+      "target": "nvidia-a100-2020",
+      "relation": "conceptual_inf",
+      "citation": "同族 GPU 架构演进线（统一着色器 → Tensor Core 三代）。https://www.nvidia.com/en-us/data-center/a100/"
+    },
+    {
+      "source": "nvidia-g80-2006",
+      "target": "oculus-rift-2016",
+      "relation": "conceptual_inf",
+      "citation": "GPU 立体渲染需求线延伸至消费级 VR。https://en.wikipedia.org/wiki/Oculus_Rift_CV1"
+    },
+    {
+      "source": "mac-os-x-2001",
+      "target": "macos-big-sur-2020",
+      "relation": "direct_fork",
+      "citation": "UNIX 桌面线延续（Apple 芯片过渡首发系统）。https://www.apple.com/newsroom/2020/11/macos-big-sur-is-here/"
+    },
+    {
+      "source": "windows-7-2009",
+      "target": "windows-11-2021",
+      "relation": "direct_fork",
+      "citation": "NT 内核线延续（经 8/10，同 windows-nt → windows-7 先例）。https://www.microsoft.com/en-us/windows/windows-11"
+    },
+    {
+      "source": "github-2008",
+      "target": "github-actions-2019",
+      "relation": "conceptual_inf",
+      "citation": "平台线扩展：代码托管 → 内建 CI/CD。https://docs.github.com/en/actions"
+    },
+    {
+      "source": "nodejs-2009",
+      "target": "vs-code-2015",
+      "relation": "enables",
+      "citation": "VS Code 以 Electron（Node + Chromium）构建。https://code.visualstudio.com/"
+    },
+    {
+      "source": "nodejs-2009",
+      "target": "vite-2020",
+      "relation": "enables",
+      "citation": "Vite 运行于 Node 生态（构建工具链）。https://vite.dev/"
+    },
+    {
+      "source": "gan-2014",
+      "target": "stable-diffusion-2022",
+      "relation": "paradigm_shift",
+      "citation": "生成模型线：对抗训练 → 扩散/去噪范式（DDPM → LDM/SD）。https://arxiv.org/abs/2112.10752"
+    },
+    {
+      "source": "tensorflow-2015",
+      "target": "tpu-v1-2016",
+      "relation": "enables",
+      "citation": "TPU 面向 TensorFlow 神经网络负载设计（Google 数据中心）。https://arxiv.org/abs/1704.04760"
+    },
+    {
+      "source": "resnet-2015",
+      "target": "transformer-2017",
+      "relation": "conceptual_inf",
+      "citation": "Transformer 残差连接明确引用 ResNet。https://arxiv.org/abs/1706.03762"
+    },
+    {
+      "source": "transformer-2017",
+      "target": "bert-2018",
+      "relation": "conceptual_inf",
+      "citation": "BERT = Transformer 编码器栈的双向预训练。https://arxiv.org/abs/1810.04805"
+    },
+    {
+      "source": "transformer-2017",
+      "target": "gpt-3-2020",
+      "relation": "paradigm_shift",
+      "citation": "预训练规模化（缩放律）成为方法路径新范式。https://arxiv.org/abs/2005.14165"
+    },
+    {
+      "source": "transformer-2017",
+      "target": "stable-diffusion-2022",
+      "relation": "conceptual_inf",
+      "citation": "SD 的 U-Net 与文本塔（CLIP）均内嵌 Transformer/注意力块。https://arxiv.org/abs/2112.10752"
+    },
+    {
+      "source": "transformer-2017",
+      "target": "gpt-2-2019",
+      "relation": "conceptual_inf",
+      "citation": "GPT 系列为 Transformer 解码器线。https://github.com/openai/gpt-2"
+    },
+    {
+      "source": "transformer-2017",
+      "target": "alphafold-2-2021",
+      "relation": "conceptual_inf",
+      "citation": "AF2 核心 Evoformer 为注意力/Transformer 衍生架构。https://www.nature.com/articles/s41586-021-03819-2"
+    },
+    {
+      "source": "gpt-3-2020",
+      "target": "chatgpt-2022",
+      "relation": "paradigm_shift",
+      "citation": "大模型 → 对话式产品（人机交互范式；RLHF 对齐线）。https://arxiv.org/abs/2203.02155"
+    },
+    {
+      "source": "gpt-3-2020",
+      "target": "openai-api-2020",
+      "relation": "enables",
+      "citation": "GPT-3 以 API 形式开放（模型即服务）。https://openai.com/index/openai-api/"
+    },
+    {
+      "source": "gpt-3-2020",
+      "target": "llama-2023",
+      "relation": "conceptual_inf",
+      "citation": "开放权重线：对 GPT 路线的复刻与缩放律校正。https://arxiv.org/abs/2302.13971"
+    },
+    {
+      "source": "openai-api-2020",
+      "target": "langchain-2022",
+      "relation": "enables",
+      "citation": "LangChain 构建于 LLM API 之上。https://www.langchain.com/"
+    },
+    {
+      "source": "quic-2021",
+      "target": "http-3-2022",
+      "relation": "direct_fork",
+      "citation": "HTTP/3 承载于 QUIC（RFC 9114）。https://www.rfc-editor.org/rfc/rfc9114"
+    },
+    {
+      "source": "nvidia-a100-2020",
+      "target": "nvidia-h100-2022",
+      "relation": "direct_fork",
+      "citation": "同族数据中心 GPU 继代（Ampere → Hopper）。https://www.nvidia.com/en-us/data-center/h100/"
+    },
+    {
+      "source": "tpu-v1-2016",
+      "target": "sycamore-2019",
+      "relation": "conceptual_inf",
+      "citation": "Google 自研计算芯片线（ASIC → 量子处理器）。https://www.nature.com/articles/s41586-019-1666-5"
+    },
+    {
+      "source": "stable-diffusion-2022",
+      "target": "sora-2024",
+      "relation": "conceptual_inf",
+      "citation": "生成视觉线模态扩展（图像 → 视频，扩散 Transformer）。https://openai.com/index/video-generation-models-as-world-simulators/"
+    },
+    {
+      "source": "llama-2023",
+      "target": "deepseek-r1-2025",
+      "relation": "conceptual_inf",
+      "citation": "开放权重大模型线（推理 RL 路线）。https://arxiv.org/abs/2501.12948"
+    },
+    {
+      "source": "http-2-2015",
+      "target": "grpc-2016",
+      "relation": "enables",
+      "citation": "gRPC 以 HTTP/2 为承载协议。https://grpc.io/"
+    },
+    {
+      "source": "tensorflow-2015",
+      "target": "jax-2018",
+      "relation": "enables",
+      "citation": "JAX 复用 TF 的 XLA 编译层。https://jax.readthedocs.io/"
+    }
+  ]
 }

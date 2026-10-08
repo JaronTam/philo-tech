@@ -1,6 +1,6 @@
 # M3 卷 4 候选清单（G-A 已批）
 
-状态：2026-10-09 · 草案 = `data/candidates/vol-4.draft.json`（`npm run measure -- --draft` 预检 **0 error / 0 warn**；主标轮需高 **1686.7 / H 2000** ✓ 免拉伸）· 45 = 10 master + 35 · **G-A 已批（2026-10-09）：J10 定年 2017（id `pytorch-2017`）/ J11 批 3 条（P1/P3/P4；P2 降 `conceptual_inf`）/ J12 批 A/B/C 三案**——「跨卷上限」与「孤点」两项未触发（据 §D）· 规格已同步（`content-spec` v0.15 / `prd2` §3.4+§13 / `master-candidates` v0.5）· 待数据批落库
+状态：2026-10-09 · 草案 = `data/candidates/vol-4.draft.json`（`npm run measure -- --draft` 预检 **0 error / 0 warn**；主标轮需高 **1686.7 / H 2000** ✓ 免拉伸）· 45 = 10 master + 35 · **G-A 已批（2026-10-09）：J10 定年 2017（id `pytorch-2017`）/ J11 批 3 条（P1/P3/P4；P2 降 `conceptual_inf`）/ J12 批 A/B/C 三案**——「跨卷上限」与「孤点」两项未触发（据 §D）· 规格已同步（`content-spec` v0.15 / `prd2` §3.4+§13 / `master-candidates` v0.5）· **已落库**：`data/vol-4.json` 45 节点 / 48 边（2026-10-09）
 
 ## 0. 裁定（3 项）—— 待 G-A 审批
 
