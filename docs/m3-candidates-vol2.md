@@ -130,7 +130,7 @@ L5/nn           1980 1989 1997
 
 - 出度 max = **5**（`www-1991`：mosaic / javascript / css / http-1-1 / google-search）≤5 ✓；次高 4（macintosh）✓
 - master→master 主图入度 ≤8 ✓；主图节点 16 → 24（+8 新 master）；J6 追加：`intel-8086-1978` 升 master → 主图 25（`8086 → IBM PC` 消解孤点）
-- **跨卷 vol-1→vol-2 = 11 条**（J5 裁定）：master→master 4 条（c→c++ / tcp-ip→www / unix→linux / c→python）≤5 ✓
+- **跨卷 vol-1→vol-2 = 11 条**（J5 裁定）：master→master **5 条**（c→c++ / tcp-ip→www / unix→linux / c→python + J6 新增 `8086 → IBM PC`）≤5 ✓〔V2 验收修复批（2026-10-09）：4 → 5 更正（原 4 条系 J6 前口径）〕
 - `paradigm_shift`：v2 消耗 0（留 v3/v4）✓ ≤8
 - `convergence`：+1（windows-95 入度 2：win3.0 + ms-dos）→ 站内累计 3 条
 
