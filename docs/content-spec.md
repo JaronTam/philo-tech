@@ -33,7 +33,7 @@
 | PRE_theory | `theory`（前史渊源单列；哨兵层，非泳道，限 year < 1947） |
 
 - 注册表 **M1 前冻结 v1**；新增列 = minor 升级并先改此表。
-- 新增列（2026-10-05，M3 批）：`algol-family` = 命令式语言奠基线（FORTRAN、ALGOL 60、COBOL、PL/I、BASIC、Pascal、Simula 等）；`dotnet-family` = .NET 平台族（C#、F# 等，与 `jvm-family` 同构）。两列**追加于数组末尾**（既有列 x 位置不变；L3–L5 泳道随 L2 增宽整体右移 112px）。
+- 新增列（2026-10-05，M3 批）：`algol-family` = 命令式语言奠基线（FORTRAN、ALGOL 60、COBOL、PL/I、BASIC、Pascal、Simula 等）；`dotnet-family` = .NET 平台族（C#、F# 等，与 `jvm-family` 同构）。两列**追加于数组末尾**（既有列 x 位置不变；L3–L5 泳道随 L2 增宽整体右移 224px = 112px/列 × 2 列）。
 - 泳道宽由列数决定（L2 = 8 列 → 928px，见 ui-spec §1）。
 - 已定（2 份 web 交叉复核维持）：CUDA 归 `L2-toolchain`（nvcc / PTX / runtime，语义同质；GPU→CUDA 跨层边保留）；HTTP 归 `L1-net`（IETF 协议，与 TCP/IP、DNS 同列）。
 - 脚本语言归属判据（2026-10-03 定）：语言规范 / 语言实现（JavaScript、V8、Python、Ruby、PHP、Go）→ `L2-scripting`；宿主平台 / 交付物（浏览器、Web API）→ `L4-web`。Node.js 为服务端运行时平台，按此判据归 `L4-web`。

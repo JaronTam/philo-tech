@@ -18,7 +18,7 @@
 | 3 | 哥德尔不完备定理 | PRE_theory † | theory | 1931 | |
 | 4 | 丘奇 λ 演算 | PRE_theory † | theory | 1936 | |
 | 5 | 香农开关电路论文 | PRE_theory † | theory | 1937 | 由 布尔 → 香农（conceptual_inf）入边，非源头 |
-| 6 | McCulloch–Pitts 神经元模型 | PRE_theory † | theory | 1943 | M1 数据落文时标签压为「McCulloch–Pitts 模型」（块高 ≤2 行） |
+| 6 | McCulloch–Pitts 神经元模型 | PRE_theory † | theory | 1943 | M1 数据落文时标签压为「McCulloch–Pitts 模型」（块高 ≤2 行）；B0 验收修复批（2026-10-09）将 `master-candidates.json` 同步为压缩后 label（消 D-17 对账失配） |
 | 7 | EDVAC 报告 | L0_hardware | arch | 1945 | 存储程序体系结构规范；层 / 列映射 M1 复核维持 L0_hardware / arch |
 | 8 | 晶体管 | L0_hardware | device | 1947 | 首演 1947-12-16（checklist 2.3 裁决） |
 | 9 | Manchester Baby | L0_hardware | device | 1948 | EDVAC 报告 1945 → Baby（enables） |

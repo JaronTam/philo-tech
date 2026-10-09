@@ -9,3 +9,6 @@ subject-matter/prd.md
 
 # 本地浏览器取证
 .playwright-mcp/
+
+# 候选草稿临时副本（Tailwind v4 自动扫描面：防 build 哈希偏移与误提交）
+data/candidates/tmp-*
