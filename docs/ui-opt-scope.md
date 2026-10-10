@@ -1,6 +1,6 @@
 # UI 优化批范围件（登记 · 待裁）
 
-状态：2026-10-10 · **登记待裁**（未裁定、未动代码）· 真源 = 本文 + `checklist.md` 快照 · 裁定后按 `J` 号落批次
+状态：2026-10-10 · **登记待裁 + 探针批完成**（`P1` / `P2` 结果入 §7；未裁定、未动代码）· 真源 = 本文 + `checklist.md` 快照 · 裁定后按 `J` 号落批次
 
 ## 0. 背景与范围
 
@@ -101,3 +101,73 @@
 - 口径：用现有数据算两种平面划分（`6` 泳道 / `6`–`8` 家系）的统计：每平面节点数、跨平面边数、平面内列数、区间条目数。
 - 输出：`(a)` `Occupancy` / `PlaneIndex` 的 TS 接口草案（含路由查询签名：查不查 `plane` 参数）；`(b)` 单份 vs 多份的查询路径差异与数据量估算；`(c)` 分层视图下跨平面边渲染（入口 / 出口标记）所需字段清单。
 - 用途：定 §6 小问 1 与 6（occupancy 归属 / 与 `J-D` 的边界）。
+
+> 2026-10-10：两探针已跑，结果并入 §7（§6.1 至此收口）。
+
+## 7. P1 / P2 探针结果（2026-10-10 · 探针批完成 · 未裁定）
+
+口径：临时脚本（本机 temp，未入仓；`npx tsx` + file URL 直调真实 `src/lib` 的 `placeWithDegradation` / `placeInColumns`，未改 `src/`）；数据 = 全站 `193` 节点 / `203` 边；视图构造同 `App.tsx`（主图 = `45` master，分卷 = 各卷节点，`withTheory` 同判据）；变体 = 真实两遍放置的等价副本 + `avoidLimit` 参数扩展（副本先与真实函数逐 y 坐标比对一致）。脚本 `p1.mts` / `p2.mts` 与原始输出 `p1-output.txt` / `p2-output.txt` 留本机 temp，可复跑。
+
+### 7.1 P1 · repair 闭环收益（6 视图 × `4` 方案）
+
+| 视图 | ① 现状 | ② 降级扩展 | ③ 分档 + 回退 | ④ ②×③ | 最大位移（③） |
+|---|---|---|---|---|---|
+| 主图 | `0`（已隐藏 `6` 节点灰字） | `0` | `20px` | `20px` | `19.20px`（香农开关电路论文） |
+| 前史 | `1`（Colossus ↔ Harvard Mark I 缺 `7.55px`） | **`0`** | **`28px`** | `20px` | `27.55px` |
+| 卷 1 | `0` | `0` | `20px` | `20px` | `13.39px`（Manchester Mark 1） |
+| 卷 2–4 | `0` | `0` | `20px` | `20px` | `0` |
+
+- ②（推挤方入降级集 + 迭代至不动点）：前史 `1 → 0`；新增降级仅 `1` 节点（ABC），灰字隐藏 `6 → 7`；最大位移不变（`20px`）；迭代 `1` 轮（新增集 = `Colossus` / `Harvard Mark I` / `ABC`，其余 `6` 节点已在前两遍降级）。
+- ③（`AVOID_LIMIT 20 → 24 / 28 / 32`，首档清零即选）：前史需 `28px` 档；代价 = 最大位移 `27.55px`（`20 + 7.55`，破 ui-spec §1 的 ±`20px` 口径）。
+- ④（② 叠 ③）：前史在 `20px` 档即 `0` —— ② 已够，升档不触发。
+- 边界（合成「同列同年 `3` 节点」，def = 卷 1、year `1960`）：② 无效（无灰字可去 / 去后仍不够）；③ 最小清零档 = 上方块高累计 —— 三条 `20px` 块 → `40px`；三条带灰字（`54 → 20`）→ `40px`；中夹 `60px` 长标 → `80px`；三例均 > `32` 档上限 → `k=3` 簇在 `32` 档内**无解**（现行数据仅 `k=2` 两组：1936 theory / 1944 device）。
+- 供裁：`J-A1` 形态两候选 = ②（零位移代价、多 `1` 节点灰字）vs ③（保灰字、破 ±`20px`）；小问 5（repair 范围）的闭环上限 = 边界用例的累计块高。
+
+### 7.2 P2 · per-plane occupancy 字段形状
+
+- 源头互证（与 §1 基线一致）：全局入度 `0` 源头 `6` 个（布尔 / Hollerith / 罗素 / 图灵机 / ABC / Colossus）✓；master 子图树根 `8` 个（`cuda-2007` / `unix-1971` / `russell-principia-mathematica-1910` / `tcp-ip-1974` / `boole-laws-of-thought-1854` / `intel-8086-1978` / `edvac-report-1945` / `docker-2013`）、归属歧义 `0` ✓。
+- 新发现：**全局**最近源归属歧义 = `66 / 193` 节点（34%，均双源）→ 全站家系划分不能只靠自动派生（master 口径才 `0`）；`J-B`「`meta.json` 人工映射」由此拿硬证据。
+- 统计（两划分 × 两口径；列计数含跨平面重复）：
+  - 泳道 × 主图：节点 `45` / 列 `19` / 区间 `45` / 跨平面边 `15`（占 `38` 条 master-master 边的 39%）。
+  - 泳道 × 全站：节点 `193` / 列 `22` / 区间 `238` / 跨平面边 `45`（占 `203` 条的 22%）。
+  - 家系 `8` 树 × 主图：节点 `45` / 列 `24` / 区间 `45` / 跨平面边 `0`（`8` 棵树彼此无边）。
+  - 家系 `6` 源 × 全站：节点 `193` / 列 `39` / 区间 `238` / 跨平面边 `8`（4%）。
+- 规模：区间条目 raw `238`（`193` 卷内 + `45` master 再现）→ 视图内按列合并 `237`；约 `7.4KB`；单次查询 k_max = `16`。三方案（`plane|column` 键 / 每平面一份 / 查后 filter）同量级 —— 选型看签名显式性，不看性能。
+
+`(a)` 接口草案（两方案并列）：
+
+```ts
+// A：单份 + plane 键（1 次查询 O(1)，签名带 plane）
+type PlaneId = string;            // 泳道划分：L0_hardware..L5_ai / PRE_theory；家系划分：源头 id
+type ColumnKey = string;          // 形如 layer/column，与 layout.ts 分组键一致
+interface BlockInterval { y0: number; y1: number; nodeId: string }  // 占用块（文本盒）；自由区间由相邻块间隙导出
+interface OccupancyIndex {
+  blocks(plane: PlaneId, column: ColumnKey): readonly BlockInterval[];
+  planeOf(nodeId: string): PlaneId;   // 端点 → 平面（路由先查两端平面）
+  planes(): readonly PlaneId[];
+}
+// B：多份（每平面一份实例；查询不带 plane 参数，持有即平面）
+interface PlaneOccupancy { blocks(column: ColumnKey): readonly BlockInterval[] }
+type OccupancyByPlane = ReadonlyMap<PlaneId, PlaneOccupancy>;
+```
+
+`(c)` 跨平面边字段清单（`J-D` 分层视图「入口 / 出口标记」）：
+
+```ts
+interface PlaneCrossing {
+  edgeId: string;
+  relation: Relation;      // 标记样式沿用 TechEdge 线型编码（ui-spec §2）
+  source: { nodeId: string; plane: PlaneId; anchor: { x: number; y: number } };  // 出口标记位（源平面内）
+  target: { nodeId: string; plane: PlaneId; anchor: { x: number; y: number } };  // 入口标记位（目标平面内）
+  dir: 'forward' | 'backward';  // 平面序方向（层切换模式的箭头 / 文案）
+}
+```
+
+注记：跨卷页「入口 / 出口标记」（prd2 §4）代码未实现；最近似先例 = `preEntryNodes` chip / 主图入边 `+N` badge —— `J-D` 落批时复用 chip 样式或新建。
+
+- 供裁：小问 1（occupancy 归属）= A / B 二选一（量级无差，定签名）；小问 6（与 `J-D` 边界）= 泳道划分跨平面边 `15 / 38`（主图）为主场景，家系划分主图 `0` 跨边。
+
+### 7.3 收尾状态
+
+- 探针批：未裁定、未动 `src/` / `data/`（与 §0 口径同）；temp 脚本与输出未入仓。
+- 下次接续点 = 三套几何讨论（§6：`L0`–`L3` 阶梯 + `6` 个小问）→ 逐条裁定。
