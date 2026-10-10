@@ -54,6 +54,13 @@ export function totalWidth(ctx: LayoutCtx): number {
   return lanes + theory + CANVAS_MARGIN * 2;
 }
 
+/** 块底衬色（J-A2 knockout）：随节点所处背景取值（泳道交替 / 前史理论单列），不硬编码 */
+export function backdropFor(layer: Layer, column: string): string {
+  if (column === THEORY_COLUMN) return 'var(--lane-b)'; // 前史理论单列条带（GridLayer 同值）
+  const idx = LANES.findIndex((l) => l.layer === layer);
+  return idx % 2 === 1 ? 'var(--lane-b)' : 'var(--lane-a)';
+}
+
 export function xForColumn(ctx: LayoutCtx, layer: Layer, column: string): number {
   const inset = (COLUMN_WIDTH - NODE_MAX_WIDTH) / 2;
   if (column === THEORY_COLUMN) return CANVAS_MARGIN + inset;
@@ -230,9 +237,28 @@ export function placeInColumns<T extends Placeable>(
   return { placed, violations };
 }
 
+/** repair 迭代上限（不动点保护；现行数据 1 轮收敛）—— J-A1 */
+const REPAIR_PASS_MAX = 8;
+
+/**
+ * upper 在同列（layer/column）排序中的正上邻 = 该违规对的推挤方（J-A1 降级扩展的目标）
+ */
+function pusherOf<T extends Placeable>(items: T[], def: VolumeDef, v: Violation): string | undefined {
+  if (!v.upperId) return undefined;
+  const group = items
+    .filter(
+      (it) => it.year >= def.start && it.year < def.end && it.layer === v.layer && it.column === v.column,
+    )
+    .sort((a, b) => a.year - b.year || a.label.localeCompare(b.label));
+  const idx = group.findIndex((it) => it.id === v.upperId);
+  return idx > 0 ? group[idx - 1].id : undefined;
+}
+
 /**
  * 两遍放置（M1 定）：先按全 concepts 排，避让缺口（±20px 上限压不住）涉及的节点
  * 在第二遍去掉 concepts 重排——灰字不压字，坐标为「实排」坐标。
+ * 批 1 扩展（J-A1 / K5）：违规对的「推挤方」（upper 的正上邻）也入降级集，迭代至不动点；
+ * 降级集不再增长即停（剩余违规超出降级闭合域，由 content-spec §3 同列同年校验拦截）。
  */
 export function placeWithDegradation<T extends Placeable>(
   items: T[],
@@ -243,12 +269,27 @@ export function placeWithDegradation<T extends Placeable>(
   const degraded = new Set(
     first.violations.flatMap((v) => [v.upperId, v.lowerId]).filter((id): id is string => !!id),
   );
-  const second = placeInColumns(
-    items.map((it) => (degraded.has(it.id ?? '') ? { ...it, concepts: undefined } : it)),
-    def,
-    ctx,
-  );
-  return { placed: second.placed, violations: second.violations, degraded };
+  const run = (set: Set<string>) =>
+    placeInColumns(
+      items.map((it) => (set.has(it.id ?? '') ? { ...it, concepts: undefined } : it)),
+      def,
+      ctx,
+    );
+  let result = run(degraded);
+  for (let pass = 0; pass < REPAIR_PASS_MAX && result.violations.length > 0; pass++) {
+    let grew = false;
+    for (const v of result.violations) {
+      for (const id of [v.upperId, v.lowerId, pusherOf(items, def, v)]) {
+        if (id && !degraded.has(id)) {
+          degraded.add(id);
+          grew = true;
+        }
+      }
+    }
+    if (!grew) break;
+    result = run(degraded);
+  }
+  return { placed: result.placed, violations: result.violations, degraded };
 }
 
 /** 主图段界（折弯标识线位置） */

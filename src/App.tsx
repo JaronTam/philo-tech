@@ -7,6 +7,7 @@ import {
 import type { Node } from '@xyflow/react';
 import { VOLUME_BY_KEY } from './lib/volumes';
 import {
+  backdropFor,
   NODE_MAX_WIDTH,
   placeWithDegradation,
   segmentBoundaries,
@@ -16,6 +17,7 @@ import {
   type LayoutCtx,
   type Placeable,
 } from './lib/layout';
+import { buildRouteScaffold, routeEdge, type Route } from './lib/route';
 import { graph, meta } from './lib/data';
 import { THEORY_COLUMN, type VolumeKey } from './lib/types';
 import {
@@ -124,8 +126,10 @@ export default function App() {
         (it) => it.column === THEORY_COLUMN && it.year >= def.start && it.year < def.end,
       ),
     };
-    // 两遍放置：缺口节点去 concepts 重排（防灰字压字），坐标为实排
+    // 两遍放置 + repair：缺口节点去 concepts 重排（防灰字压字），坐标为实排
     const { placed, degraded } = placeWithDegradation(items, def, ctx);
+    // 统一几何（J-A3 / K1/K2）：占用图 + 逐边确定性路由，随本 memo 一次预算
+    const scaffold = buildRouteScaffold(placed);
 
     const gridNode: Node = {
       id: 'grid',
@@ -150,6 +154,7 @@ export default function App() {
         weight: p.item.weight ?? 'major',
         layer: p.item.layer,
         hideConcepts: degraded.has(p.item.id ?? ''),
+        backdrop: backdropFor(p.item.layer, p.item.column),
         preEntry: viewKey === 'main' && PRE_ENTRY.has(p.item.id ?? ''),
       },
     }));
@@ -164,6 +169,23 @@ export default function App() {
     // 主图入边 ≤8（content-spec §3）：超限按 relation 优先级截断，节点显 `+N`
     const { kept, overflow } =
       viewKey === 'main' ? capInbound(rawEdges, MAIN_INBOUND_CAP) : { kept: rawEdges, overflow: new Map<string, number>() };
+    // 逐边路由（端点口径 = RF 锚点约定：源块底中 → 目标块顶中；新不优于旧则退化旧式）
+    const routes = new Map<string, Route>();
+    for (const e of kept) {
+      const s = positions.get(e.source);
+      const t = positions.get(e.target);
+      const sn = byId.get(e.source);
+      const tn = byId.get(e.target);
+      if (!s || !t || !sn || !tn) continue;
+      routes.set(
+        edgeId(e),
+        routeEdge(
+          { x: s.x + NODE_MAX_WIDTH / 2, y: s.y + s.h, column: `${sn.layer}/${sn.column}` },
+          { x: t.x + NODE_MAX_WIDTH / 2, y: t.y, column: `${tn.layer}/${tn.column}` },
+          scaffold,
+        ),
+      );
+    }
     const dataEdges: Edge[] = kept.map((e) => ({
       id: edgeId(e),
       source: e.source,
@@ -174,6 +196,7 @@ export default function App() {
         citation: e.citation,
         sourceLabel: byId.get(e.source)?.label,
         targetLabel: byId.get(e.target)?.label,
+        route: routes.get(edgeId(e)),
       },
     }));
     return { nodes: [gridNode, ...dataNodes], edges: dataEdges, inboundBadge: overflow };

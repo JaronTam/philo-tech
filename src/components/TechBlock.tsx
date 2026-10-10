@@ -10,6 +10,8 @@ export interface TechBlockData {
   weight: Weight;
   layer: string;
   hideConcepts?: boolean;
+  /** 块底衬色（knockout，J-A2：亮底遮断穿行其下的边线；随块所处背景取值） */
+  backdrop?: string;
   /** 主图「前史」入口 chip（ui-spec §6） */
   preEntry?: boolean;
 }
@@ -72,7 +74,14 @@ export function TechBlock({ id, data }: NodeProps) {
       <div
         style={{
           opacity: dim ? 0.1 : 1,
-          background: hovered ? '#00000008' : neighbor ? '#00000004' : 'transparent',
+          // knockout：不透明底衬铺满块矩形（渲染文本盒），遮断层下边线；hover/邻居淡底以叠层实现
+          // （长手属性配对：background 简写与 backgroundImage 混用会触发 React 重渲染告警）
+          backgroundColor: d.backdrop ?? 'transparent',
+          backgroundImage: hovered
+            ? 'linear-gradient(#00000008, #00000008)'
+            : neighbor
+              ? 'linear-gradient(#00000004, #00000004)'
+              : undefined,
         }}
       >
         <div

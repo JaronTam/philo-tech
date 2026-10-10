@@ -1,6 +1,6 @@
 # 技术史图谱站 PRD
 
-状态：v7 · 冻结 schema v5.3（2026-10-05：M3 批〔§3.2 L2 增 `algol-family` / `dotnet-family` 两列，6 → 8 列〕；M2 批〔§6 搜索域补 `label_en`；§10 M2 验收注测量口径；`year_note` 字段（只增不删）〕，见 §13）· 素材见 subject-matter/0–6.jpg
+状态：v7.1 · 冻结 schema v5.3（2026-10-10：UI 优化批 1 批〔§9 校验器 +2，K7：同列同年 ≤ 2 / 上方 label-only 块高 ≤ 20px〕；2026-10-05：M3 批〔§3.2 L2 增 `algol-family` / `dotnet-family` 两列，6 → 8 列〕；M2 批〔§6 搜索域补 `label_en`；§10 M2 验收注测量口径；`year_note` 字段（只增不删）〕，见 §13）· 素材见 subject-matter/0–6.jpg
 
 ## 0. 一句话
 
@@ -295,6 +295,7 @@ jobs:
 | 每条 edge 的 `citation` 含可点击 URL（`https?://`；M2 批补） | citation 无来源链接（tooltip / 详情框无法给外链） |
 | 主图（两端皆 `master`）单节点入边 ≤ 8 | 主图入边爆炸 |
 | 相邻卷跨卷边 ≤ 32（总量）/ ≤ 7（master→master，M3 修订 J7）——下限 3 为建设期目标，不足仅 warn | 跨卷边失控 |
+| 同列同年 ≤ 2；同年对「上方」label-only 块高 ≤ 20px（UI 优化批 1 / K7，2026-10-10） | 同年碰撞（同列零横向自由度；避让 ±20px 闭合域之外） |
 
 校验器能拦住结构性错误，拦不住事实错误（如"TPU v1 支持训练"）。事实靠第 1、2 步的出处。
 
@@ -369,3 +370,4 @@ M1 是关键闸门：如果列对齐在 M1 站不住，整个坐标系要重做�
 | M3 | §9 | 跨卷边上限三修（J7 裁定，V3 批）：总量 12 → **32**（master→master 5 → **7**）——V3（2000–2015）早期节点（2000–2007 生）同卷无父源，血统全部植根 v2（PC / Web 时代），实测需 31 条 / MM 6 条；非 master 跨卷边任何视图不渲染 |
 | M3 | §10 | M2 行测量口径「M3 真实数据复跑」完成（B5 批：真实 193 节点 / 203 边 p95 0.036ms，报告段不设 gate） |
 | M3 | §3.4 | `paradigm_shift` 成立条件收窄（J11 裁定，V4 准备批）：限「领域方法路径换代」——target 范式取代 source 在其领域的主导方法路径，不替换血脉语义；首用 3 条（`transformer → gpt-3` 架构创新 → 规模化 / `gan → stable-diffusion` 对抗 → 扩散 / `gpt-3 → chatgpt` 补全交互 → 对话 + 对齐），站内 0 → 3（§9 上限 8 不变） |
+| UI 优化批 1 | §9 | 校验器 +2（K7）：同列同年 ≤ 2；同年对「上方」label-only 块高 ≤ 20px（布局 repair 闭合域 = ±20px 避让上限；三处同步 = `validate.ts` / `content-spec` §3 / 本表；决策全文 = `docs/ui-opt-scope.md` §8） |

@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { AVOID_LIMIT, estimateBlockHeight } from '../src/lib/layout';
 import type { Layer, MetaFile, TechEdge, TechNode, VolumeFile } from '../src/lib/types';
 
 const root = join(import.meta.dirname, '..');
@@ -70,6 +71,30 @@ for (const n of nodes) {
   if (!n.checked_at) errors.push(`[checked_at] ${where}：缺失`);
   const hit = bannedHit(n.label);
   if (hit) errors.push(`[禁用词] ${where}：label「${n.label}」命中「${hit}」`);
+}
+
+// 同列同年（K7，content-spec §3）：≤2；同年对的「上方」（year, label 排序）label-only 块高 ≤ AVOID_LIMIT
+// —— 布局 repair（降级扩展 + 不动点）的闭合域：上方块超出 ±20px 避让上限即无解
+{
+  const sameCell = new Map<string, TechNode[]>();
+  for (const n of nodes) {
+    const key = `${n.layer}/${n.column}@${n.year}`;
+    sameCell.set(key, [...(sameCell.get(key) ?? []), n]);
+  }
+  for (const [key, list] of sameCell) {
+    if (list.length <= 1) continue;
+    if (list.length > 2) {
+      errors.push(`[同列同年] ${key}：${list.map((n) => n.label).join(' / ')}（${list.length} 条 > 2）`);
+      continue;
+    }
+    const [upper] = [...list].sort((a, b) => a.year - b.year || a.label.localeCompare(b.label));
+    const h = estimateBlockHeight(upper.label, undefined, upper.weight);
+    if (h > AVOID_LIMIT) {
+      errors.push(
+        `[同列同年] ${key}：上方 ${upper.label} label-only 块高 ${h}px > ${AVOID_LIMIT}px（避让闭合域之外）`,
+      );
+    }
+  }
 }
 
 const inDeg = new Map<string, number>();

@@ -3,15 +3,18 @@
 // M3 增：--draft <path> 候选草稿模式（data/candidates/vol-N.draft.json → 预检 + 列占用矩阵 + 测高）
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { Layer, MetaFile, TechNode, VolumeFile } from '../src/lib/types';
+import { THEORY_COLUMN, type Layer, type MetaFile, type TechNode, type VolumeFile } from '../src/lib/types';
 import {
   AVOID_LIMIT,
+  NODE_MAX_WIDTH,
   placeInColumns,
   placeWithDegradation,
   type LayoutCtx,
   type Placeable,
   type Violation,
 } from '../src/lib/layout';
+import { buildRouteScaffold, legacyPoints, pathMetrics, routeEdge } from '../src/lib/route';
+import { capInbound } from '../src/lib/graph';
 import { VOLUME_BY_KEY, segmentHeights, type VolumeDef } from '../src/lib/volumes';
 
 const root = join(import.meta.dirname, '..');
@@ -247,6 +250,65 @@ for (const key of ['pre', 'v1', 'v2', 'v3', 'v4'] as const) {
   if (need > def.height) {
     console.log(`    ⇒ 建议（主标轮）：H ${fmt(def.height)} → ${fmt(Math.ceil(need / 20) * 20)}px`);
   }
+}
+
+console.log('\n[3] 边穿字（统一几何路由复算 · 口径 = 全量 block，无 LOD；目标 ≤10 块，不设 gate —— K4）');
+{
+  // 视图构造与 App.tsx 同口径（主图 = master；主图入边 ≤8 截断）
+  const masterNodes = allNodes.filter((n) => n.master);
+  const viewList: { key: string; def: VolumeDef; nodes: TechNode[] }[] = [
+    { key: 'main', def: VOLUME_BY_KEY.main, nodes: masterNodes },
+    { key: 'pre', def: VOLUME_BY_KEY.pre, nodes: volFiles[0].nodes },
+    { key: 'v1', def: VOLUME_BY_KEY.v1, nodes: volFiles[1].nodes },
+    { key: 'v2', def: VOLUME_BY_KEY.v2, nodes: volFiles[2].nodes },
+    { key: 'v3', def: VOLUME_BY_KEY.v3, nodes: volFiles[3].nodes },
+    { key: 'v4', def: VOLUME_BY_KEY.v4, nodes: volFiles[4].nodes },
+  ];
+  let legacyTotal = 0;
+  let routeTotal = 0;
+  for (const { key, def, nodes } of viewList) {
+    const items = toPlaceables(nodes, true);
+    const vctx: LayoutCtx = {
+      registry: meta.columns,
+      withTheory: items.some(
+        (it) => it.column === THEORY_COLUMN && it.year >= def.start && it.year < def.end,
+      ),
+    };
+    const { placed } = placeWithDegradation(items, def, vctx);
+    const scaffold = buildRouteScaffold(placed);
+    const pos = new Map(placed.map((p) => [p.item.id ?? p.item.label, p]));
+    const nodeById = new Map(nodes.map((n) => [n.id, n]));
+    const visible = new Set(nodes.map((n) => n.id));
+    const rawEdges = allEdges.filter((e) => visible.has(e.source) && visible.has(e.target));
+    const kept = key === 'main' ? capInbound(rawEdges, 8).kept : rawEdges;
+    let viewLegacy = 0;
+    let viewRoute = 0;
+    let degenerate = 0;
+    const residual: string[] = [];
+    for (const e of kept) {
+      const s = pos.get(e.source)!;
+      const t = pos.get(e.target)!;
+      const sn = nodeById.get(e.source)!;
+      const tn = nodeById.get(e.target)!;
+      const src = { x: s.x + NODE_MAX_WIDTH / 2, y: s.y + s.blockH, column: `${sn.layer}/${sn.column}` };
+      const tgt = { x: t.x + NODE_MAX_WIDTH / 2, y: t.y, column: `${tn.layer}/${tn.column}` };
+      const legacy = pathMetrics(legacyPoints(src, tgt), scaffold);
+      const route = routeEdge(src, tgt, scaffold);
+      viewLegacy += legacy.crossings;
+      viewRoute += route.crossings;
+      if (route.degenerate) degenerate += 1;
+      if (route.crossings > 0) residual.push(`${e.source} ＞ ${e.target} ${route.crossings}`);
+    }
+    legacyTotal += viewLegacy;
+    routeTotal += viewRoute;
+    console.log(
+      `  ${key}：边 ${kept.length} · 旧式 ${viewLegacy} 块 → 新路由 ${viewRoute} 块 · 退化 ${degenerate} 边`,
+    );
+    if (residual.length) console.log(`   残留：${residual.join(' · ')}`);
+  }
+  console.log(
+    `  合计：旧式 ${legacyTotal} 块 → 新路由 ${routeTotal} 块（目标 ≤10 块：${routeTotal <= 10 ? '✓' : '✗'}）`,
+  );
 }
 
 console.log('\n=== 连通性 ===');
