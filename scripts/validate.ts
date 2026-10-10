@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { AVOID_LIMIT, estimateBlockHeight } from '../src/lib/layout';
+import { buildLineageIndex } from '../src/lib/lineage';
 import type { Layer, MetaFile, TechEdge, TechNode, VolumeFile } from '../src/lib/types';
 
 const root = join(import.meta.dirname, '..');
@@ -160,6 +161,91 @@ for (const id of meta.preEntryNodes ?? []) {
   else if (n.year >= 1947) errors.push(`[前史入口] ${id}：year ${n.year} ≥ 1947`);
 }
 
+// 家系（UI 优化批 2 · J-B；口径 = docs/ui-spec.md §2）：表完整性 + 归属覆盖 + master 45 与 8 树分区一致
+let lineageInfo = '家系：未启用';
+{
+  const lineages = meta.lineages ?? [];
+  const exceptions = meta.lineageExceptions ?? {};
+  const css = readFileSync(join(root, 'src/index.css'), 'utf8');
+  const lineageIds = new Set<string>();
+  if (lineages.length === 0) errors.push('[家系] meta.lineages 缺失');
+  for (const l of lineages) {
+    if (lineageIds.has(l.id)) errors.push(`[家系] id 重复：${l.id}`);
+    lineageIds.add(l.id);
+    const rootNode = byId.get(l.id);
+    if (!rootNode) errors.push(`[家系] ${l.id}：树根节点不存在`);
+    else if (!rootNode.master) errors.push(`[家系] ${l.id}：树根非 master（主图不可见）`);
+    if (!l.label) errors.push(`[家系] ${l.id}：label 缺失`);
+    if (!/^--lineage-\d+$/.test(l.color)) errors.push(`[家系] ${l.id}：色 token 非法「${l.color}」`);
+    else if (!css.includes(`${l.color}:`)) errors.push(`[家系] ${l.id}：${l.color} 未在 src/index.css 声明`);
+  }
+  for (const [nodeId, lineageId] of Object.entries(exceptions)) {
+    if (!byId.has(nodeId)) errors.push(`[家系例外] ${nodeId}：节点不存在`);
+    if (!lineageIds.has(lineageId)) errors.push(`[家系例外] ${nodeId} → ${lineageId}：家系不存在`);
+  }
+  // (b) 归属覆盖全表：所有节点有归属、无未消解并列
+  const idx = buildLineageIndex(nodes, edges, meta);
+  for (const n of nodes) {
+    if (!idx.byNode.has(n.id)) errors.push(`[家系] ${n.id}：无归属（不可达或并列未消解）`);
+  }
+  for (const id of idx.unresolved) errors.push(`[家系] ${id}：并列未消解（补例外或改数据）`);
+  // (c) master 45 与 8 树分区一致：独立复算 master 子图「最近树根」（多源 BFS，并列 = 分区不唯一），
+  //     对照派生基线（不含例外的 buildLineageIndex 结果）
+  const mIds = new Set(nodes.filter((n) => n.master).map((n) => n.id));
+  const mAdj = new Map<string, string[]>();
+  for (const e of edges) {
+    if (mIds.has(e.source) && mIds.has(e.target)) {
+      mAdj.set(e.source, [...(mAdj.get(e.source) ?? []), e.target]);
+    }
+  }
+  const bfsDist = (src: string): Map<string, number> => {
+    const dist = new Map<string, number>([[src, 0]]);
+    const q = [src];
+    while (q.length) {
+      const cur = q.shift()!;
+      for (const nb of mAdj.get(cur) ?? []) {
+        if (!dist.has(nb)) {
+          dist.set(nb, dist.get(cur)! + 1);
+          q.push(nb);
+        }
+      }
+    }
+    return dist;
+  };
+  const bestD = new Map<string, number>();
+  const bestRoots = new Map<string, string[]>();
+  for (const root of lineages) {
+    for (const [id, d] of bfsDist(root.id)) {
+      const cur = bestD.get(id);
+      if (cur === undefined || d < cur) {
+        bestD.set(id, d);
+        bestRoots.set(id, [root.id]);
+      } else if (d === cur && !bestRoots.get(id)!.includes(root.id)) {
+        bestRoots.get(id)!.push(root.id);
+      }
+    }
+  }
+  const uncovered = [...mIds].filter((id) => !bestRoots.has(id)).sort();
+  if (uncovered.length) errors.push(`[家系] master 未被任何家系树覆盖：${uncovered.join(' / ')}`);
+  const tied = [...mIds].filter((id) => (bestRoots.get(id)?.length ?? 0) > 1).sort();
+  if (tied.length) errors.push(`[家系] master 树归属并列（分区不唯一）：${tied.join(' / ')}`);
+  const baseline = buildLineageIndex(nodes, edges, { ...meta, lineageExceptions: {} });
+  let treeDivergence = 0;
+  for (const id of [...mIds].sort()) {
+    const expect = bestRoots.get(id)?.[0];
+    if (expect && baseline.byNode.get(id) !== expect) {
+      treeDivergence += 1;
+      errors.push(`[家系] master ${id}：派生基线 ${baseline.byNode.get(id) ?? '∅'} ≠ 8 树分区 ${expect}`);
+    }
+  }
+  const excCount = Object.keys(exceptions).length;
+  const excMaster = Object.keys(exceptions).filter((id) => mIds.has(id)).length;
+  lineageInfo = `家系：${lineages.length} 条 · 归属 ${idx.byNode.size}/${nodes.length}（例外 ${excCount} 条，其中 master ${excMaster}）· master ${mIds.size} 与 8 树分区基线偏离 ${treeDivergence}`;
+  if (lineages.length > 0 && lineageIds.size !== 8) {
+    warnings.push(`[家系] 家系 ${lineageIds.size} 条 ≠ 8（基准 = master 8 树）`);
+  }
+}
+
 const volIdx = new Map<string, number>();
 volFiles.forEach((v, i) => v.nodes.forEach((n) => volIdx.set(n.id, i)));
 const crossPairs = new Map<string, number>();
@@ -187,6 +273,7 @@ for (const [key, count] of crossMasterPairs) {
 }
 
 console.log(`validate：nodes ${nodes.length} / edges ${edges.length}`);
+console.log(`  ${lineageInfo}`);
 for (const w of warnings) console.log(`  warn  ${w}`);
 for (const e of errors) console.log(`  ERROR ${e}`);
 if (errors.length > 0) {

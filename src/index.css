@@ -13,6 +13,15 @@
   --accent: #c0392b;
   --link: #2a6fbb;
   --dim: #b8b8b2;
+  /* 家系色板（UI 优化批 2 · J-B；抽检口径见 ui-spec §3）：8 色两两 ΔE00 ≥ 18.4、对 lane-a ≥ 4.8:1、避 accent */
+  --lineage-1: #950034; /* 布尔线 */
+  --lineage-2: #7c3900; /* 罗素线 */
+  --lineage-3: #616500; /* EDVAC 线 */
+  --lineage-4: #057238; /* UNIX 线 */
+  --lineage-5: #097674; /* TCP/IP 线 */
+  --lineage-6: #004b62; /* Intel 8086 线 */
+  --lineage-7: #1069d1; /* CUDA 线 */
+  --lineage-8: #b800b1; /* Docker 线 */
 }
 
 html,

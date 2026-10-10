@@ -12,6 +12,8 @@ export interface TechBlockData {
   hideConcepts?: boolean;
   /** 块底衬色（knockout，J-A2：亮底遮断穿行其下的边线；随块所处背景取值） */
   backdrop?: string;
+  /** 家系色值（var(--lineage-N)，J-B）：主标文字色 = 家系；缺省（无家系表 / fixture）回落字号档默认 */
+  lineageColor?: string;
   /** 主图「前史」入口 chip（ui-spec §6） */
   preEntry?: boolean;
 }
@@ -89,7 +91,8 @@ export function TechBlock({ id, data }: NodeProps) {
             fontSize: f.size,
             fontWeight: f.weight,
             lineHeight: '20px',
-            color: f.color ?? 'var(--ink)',
+            // 主标色 = 家系色（J-B：一节点一色、跨视图不变）；无家系时回落字号档默认（minor = 灰）
+            color: d.lineageColor ?? f.color ?? 'var(--ink)',
           }}
         >
           {d.label}

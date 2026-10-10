@@ -1,6 +1,6 @@
 # UI Spec
 
-状态：2026-10-10 · v0.14（UI 优化批 1：§2「无填充」→ 块底衬 knockout 例外〔`J-A2`/`K9`〕+ 边路由配方〔`K3`/`K8`〕）· v0.13（M3 B5 批：§1 主图注记 25 → **45 条 master** 终值；§7 真实数据复跑完成注）· v0.12（M3 V2 批：§1 主图注记 M3 = 25 条 master〔J6：+Intel 8086〕）· v0.11（M3 批：§1 L2 6 → 8 列〔704 → 928px〕；主图容器陈旧值 2750 → 2800 修正）· v0.10（M2 批：§8 控件布局 F-E-3 落值；§2 hover 邻居淡底 + relation 显示名 + 自定义边 tooltip〔点击固定〕；§4 面板扩展项〔核验行 / 存档链接 / 入边全列 / 出边 / citation / `+N`〕+ 居中公式 + 深链加载不抢焦点 + `year_note`；§5 搜索排序 / Esc 语义 / 切卷重置 / 收敛 dim；§7 性能测量口径 + 断点值）· v0.9（M1 批：前史段 6.3 → 6.8px/年〔段高 632〕；主图容器 2800；段高合计 2713；灰字降级规则；ParadigmBand 渲染一句；§5 空态更正）· v0.7（M0 实测批：前史段 3 → 6.3px/年；主图容器 2750；前史卷 H 2160；前史单列 x 槽位定义）· v0.5（blocking 修复批：卷 4 → [2015, 2027) 12 年；分段 55px/年；L2 = 6 列）· 与 prd2 冲突时以 prd2 为准
+状态：2026-10-10 · v0.15（UI 优化批 2：§2 家系色 / 血统线 + 手绘层〔`J-B`/`J-C`〕+ §3 家系色板 `--lineage-1..8`）· v0.14（UI 优化批 1：§2「无填充」→ 块底衬 knockout 例外〔`J-A2`/`K9`〕+ 边路由配方〔`K3`/`K8`〕）· v0.13（M3 B5 批：§1 主图注记 25 → **45 条 master** 终值；§7 真实数据复跑完成注）· v0.12（M3 V2 批：§1 主图注记 M3 = 25 条 master〔J6：+Intel 8086〕）· v0.11（M3 批：§1 L2 6 → 8 列〔704 → 928px〕；主图容器陈旧值 2750 → 2800 修正）· v0.10（M2 批：§8 控件布局 F-E-3 落值；§2 hover 邻居淡底 + relation 显示名 + 自定义边 tooltip〔点击固定〕；§4 面板扩展项〔核验行 / 存档链接 / 入边全列 / 出边 / citation / `+N`〕+ 居中公式 + 深链加载不抢焦点 + `year_note`；§5 搜索排序 / Esc 语义 / 切卷重置 / 收敛 dim；§7 性能测量口径 + 断点值）· v0.9（M1 批：前史段 6.3 → 6.8px/年〔段高 632〕；主图容器 2800；段高合计 2713；灰字降级规则；ParadigmBand 渲染一句；§5 空态更正）· v0.7（M0 实测批：前史段 3 → 6.3px/年；主图容器 2750；前史卷 H 2160；前史单列 x 槽位定义）· v0.5（blocking 修复批：卷 4 → [2015, 2027) 12 年；分段 55px/年；L2 = 6 列）· 与 prd2 冲突时以 prd2 为准
 
 ## 1. 坐标与刻度
 
@@ -41,11 +41,12 @@
 
 - 节点 = 纯文本块：主标 + 灰字 `concepts`（最多 2 行 11px，超出以「…」截断，完整列表入详情框）；无边框；无填充（例外 = 块底衬，见下条）。
 - **块底衬与边路由（UI 优化批 1，2026-10-10；`J-A2` / `K8` / `K9`）**：文本块带不透明底衬（knockout），色 = 该块所处背景（泳道 `--lane-a` / `--lane-b`；前史理论单列同 `--lane-b`），用于遮断穿行其下的边线；网格线被底衬遮断 = 接受。底衬随渲染文本收缩（LOD / 灰字降级后），边路由按全量块计算、不受 LOD 影响。边路由 = 共享占用图（`Map<列键, 块区间>`）× 确定性候选：竖段走列间隙（列右 / 左间隙，写死序）、横段取候选走廊 y（中线 → 端点 y → 跨越列块间隙中点）；判据 = 字典序（穿字数 → 折点数 → 总长）；单边「新不优于旧则退化」为旧式路由（同列 = 右侧旁路 `SIDE = 56`；跨列 = 中线式 `my = (sourceY + targetY) / 2`）。目标值 = 边穿字 ≤ 10 块（`measure` 复算口径 = 全量 block，不设硬 gate）。
+- **家系色与血统线手绘（UI 优化批 2，2026-10-10；`J-B` / `J-C`）**：色 = **家系**（8 色 token，§3）——节点主标与边描边按节点所属家系着色，一节点一色、跨视图不变色；relation 语义只由线型 / 线宽承载（`paradigm_shift` 原 `--accent` 描边改随家系取色，线宽 `2` 保留；`--accent` 保留给选中描边 / 闪烁 / `+N` 角标 / 前史 chip）。**血统线** = 两端同家系的边（取该家系色 + 手绘层）；**跨家系边** = 中性 `--ink-soft` + 精确直线。手绘范围 = 血统线 ∪ BFS 追溯态高亮边（其余边保持精确直线）：可见层 = rough 折线（`seed` = 边 id FNV-1a 哈希；抖动常量 roughness `1.2` / bowing `1`；端点与折点精确 `preserveVertices`；交互态切换不重抖），透明加宽命中层（`strokeWidth 14`）恒为精确 path。rough 只产路径串（深引 `roughjs/bin/renderer` 折线原语 `linearPath` + 自序列化 ops——包入口含 canvas / svg / filler / path 解析器，无法 tree-shake、越 gzip 预算），描边色 / 线宽 / 虚线由渲染层 CSS `style` 注入施加（SVG 表现属性不吃 `var()`；rough 的 `stroke` 选项写属性值，故不走其 stroke 通道）。家系归属 = `data/meta.json` `lineages`（8 条，id = master 8 树树根）+ `lineageExceptions`（人为例外）+ 派生规则（`src/lib/lineage.ts`：master 冻结分区 → 全图无向最近树根 → 主进边判据 → 例外覆盖）。
 - weight 映射：`epic → 16px/700`、`major → 14px/500`、`minor → 12px/400`；前者两档用 `var(--ink)`，minor 用 `var(--ink-soft)`。
 - 交互态：hover → 淡底 `#00000008` + 邻居高亮（邻居 = 直接前驱 / 后继，淡底 `#00000004`）；选中 → 2px `--accent` 描边（描边画在未被 dim 的外层，dim 态下保持锐利）；BFS / 搜索 / 收敛三态 → 非相关节点与边 opacity 0.1。节点块 `cursor: pointer`（M2 起可点）。
 - **灰字降级（M1 定）**：两遍放置——先按全 concepts 排，凡落入避让缺口（±20px 上限压不住）的节点在第二遍去掉 concepts 重排；被降级的节点块内不渲染灰字（详细内容仍入详情框）。同年 / 邻年密集簇（如 1936、1944）由此不出现压字。
 - ParadigmBand（背景高亮带）：泳道内半透明底带 + 左缘竖排标签，置于节点层之下；v1 数据为空（`bands: []`），M3 有真实范式带后再定色值（不阻塞）。
-- 边 = 正交折线（路由配方见上条），无箭头；线型 / 线宽按 prd2 §3.5；hover 与点击均显示 tooltip（M2 落地 = 自定义浮层，非原生 title）：`source → target` + `relation 中文名` + `citation`（含 URL 时渲染为可点击外链）；hover 跟随光标、离开 180ms 收起，点击固定（标「已固定」），点空白 / 平移 / 切卷收起。relation 显示名：`enables → 使能`、`direct_fork → 直接分支`、`conceptual_inf → 概念影响`、`paradigm_shift → 范式转移`、`convergence → 收敛`、`composition → 组合`。
+- 边 = 正交折线（路由配方见上条），无箭头；线型 / 线宽按 prd2 §3.5、色按家系（上条）；hover 与点击均显示 tooltip（M2 落地 = 自定义浮层，非原生 title）：`source → target` + `relation 中文名` + `citation`（含 URL 时渲染为可点击外链）；hover 跟随光标、离开 180ms 收起，点击固定（标「已固定」），点空白 / 平移 / 切卷收起。relation 显示名：`enables → 使能`、`direct_fork → 直接分支`、`conceptual_inf → 概念影响`、`paradigm_shift → 范式转移`、`convergence → 收敛`、`composition → 组合`。
 
 ## 3. 色板与字体
 
@@ -57,9 +58,12 @@
 | `--lane-a` / `--lane-b` | `#F4F4F0` / `#FAFAF8` | 泳道交替 |
 | `--grid` | `#E8E8E4` | 时间网格 |
 | `--rule` | `#D9D9D4` | 泳道分隔 |
-| `--accent` | `#C0392B` | paradigm_shift 线、选中描边 |
+| `--accent` | `#C0392B` | 选中描边 / 搜索闪烁 / `+N` 角标 / 前史 chip（批 2 起 `paradigm_shift` 线随家系取色，让位） |
 | `--link` | `#2A6FBB` | 详情框链接 |
 | `--dim` | `#B8B8B2` | 仅非文本装饰（禁用描边）；任何文本不得使用 |
+| `--lineage-1..8` | `#950034` / `#7c3900` / `#616500` / `#057238` / `#097674` / `#004b62` / `#1069d1` / `#b800b1` | 家系色（批 2）：依次 = 布尔 / 罗素 / EDVAC / UNIX / TCP/IP / Intel 8086 / CUDA / Docker 线（`data/meta.json` `lineages` 绑定 id → token） |
+
+- 家系色板抽检口径与实测（批 2）：文本（节点主标）对 `--lane-a` / `--bg` ≥ **4.5:1**（WCAG AA；实测最小 4.81:1 = CUDA 对 lane-a）；8 色两两 ΔE00 ≥ **15**（实测最小 18.4 = 布尔 × 罗素）；`opacity 0.1` dim 态复合（叠 lane-a / bg）两两 ΔE00 ≥ **2**（实测最小 2.22）；对 `--accent #c0392b` ΔE00 ≥ **15** 且 Lab 色相距 ≥ **20°**（实测 17.3 / 21.0° = 布尔）；对中性 `--ink-soft` ΔE00 ≥ **20**（实测 21.0）。色值改动须重跑同口径抽检（脚本口径见批 2 报告）。
 
 - 字体栈（不加载 webfont）：正文 `system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif`；卷题衬线 `"Songti SC", "SimSun", Georgia, serif`。
 - 暗色模式：v1 不做。

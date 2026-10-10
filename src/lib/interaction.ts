@@ -6,6 +6,8 @@ export interface Interaction {
   selectedId: string | null;
   flashId: string | null;
   lit: Lit;
+  /** BFS 追溯态（J-C：追溯态高亮边随血统线一起走手绘层） */
+  traced: boolean;
   /** 主图入边超限时的 `+N` 计数（target id → N） */
   inboundBadge: Map<string, number>;
   onSelect: (id: string) => void;

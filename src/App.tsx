@@ -18,6 +18,7 @@ import {
   type Placeable,
 } from './lib/layout';
 import { buildRouteScaffold, routeEdge, type Route } from './lib/route';
+import { buildLineageIndex, colorOf } from './lib/lineage';
 import { graph, meta } from './lib/data';
 import { THEORY_COLUMN, type VolumeKey } from './lib/types';
 import {
@@ -102,6 +103,9 @@ export default function App() {
     });
   }, []);
 
+  // 家系归属（J-B）：8 树基准 + 派生 + 例外，随图数据一次预算（跨视图不变色）
+  const lineageIdx = useMemo(() => buildLineageIndex(g.nodes, g.edges, meta), [g]);
+
   // ---- 视图数据：布局 + 边集（memo 只依赖 [viewKey, g]，交互态经 context 下发）----
   const { nodes, edges, inboundBadge } = useMemo(() => {
     const def = VOLUME_BY_KEY[viewKey];
@@ -156,6 +160,7 @@ export default function App() {
         hideConcepts: degraded.has(p.item.id ?? ''),
         backdrop: backdropFor(p.item.layer, p.item.column),
         preEntry: viewKey === 'main' && PRE_ENTRY.has(p.item.id ?? ''),
+        lineageColor: colorOf(lineageIdx, p.item.id ?? p.item.label),
       },
     }));
 
@@ -186,21 +191,28 @@ export default function App() {
         ),
       );
     }
-    const dataEdges: Edge[] = kept.map((e) => ({
-      id: edgeId(e),
-      source: e.source,
-      target: e.target,
-      type: 'tech',
-      data: {
-        relation: e.relation,
-        citation: e.citation,
-        sourceLabel: byId.get(e.source)?.label,
-        targetLabel: byId.get(e.target)?.label,
-        route: routes.get(edgeId(e)),
-      },
-    }));
+    const dataEdges: Edge[] = kept.map((e) => {
+      // 血统线（J-B/J-C）= 两端同家系：取家系色 + 手绘层；跨家系 / 无家系 = 中性 + 精确线
+      const lin = lineageIdx.byNode.get(e.source);
+      const lineageEdge = lin !== undefined && lin === lineageIdx.byNode.get(e.target);
+      return {
+        id: edgeId(e),
+        source: e.source,
+        target: e.target,
+        type: 'tech',
+        data: {
+          relation: e.relation,
+          citation: e.citation,
+          sourceLabel: byId.get(e.source)?.label,
+          targetLabel: byId.get(e.target)?.label,
+          route: routes.get(edgeId(e)),
+          lineageEdge,
+          lineageColor: lineageEdge ? lineageIdx.colorOfLineage.get(lin!) : undefined,
+        },
+      };
+    });
     return { nodes: [gridNode, ...dataNodes], edges: dataEdges, inboundBadge: overflow };
-  }, [viewKey, g]);
+  }, [viewKey, g, lineageIdx]);
 
   // ---- 高亮派生 ----
   const lit = useMemo(() => deriveLit(highlight, null, g), [highlight, g]);
@@ -417,8 +429,16 @@ export default function App() {
     searchOpenRef.current = open;
   }, []);
   const interaction = useMemo<Interaction>(
-    () => ({ selectedId, flashId, lit, inboundBadge, onSelect: handleNodeSelect, onPreEntry: handlePreEntry }),
-    [selectedId, flashId, lit, inboundBadge, handleNodeSelect, handlePreEntry],
+    () => ({
+      selectedId,
+      flashId,
+      lit,
+      traced: highlight.kind === 'trace',
+      inboundBadge,
+      onSelect: handleNodeSelect,
+      onPreEntry: handlePreEntry,
+    }),
+    [selectedId, flashId, lit, highlight.kind, inboundBadge, handleNodeSelect, handlePreEntry],
   );
   const hover = useMemo<Hover>(() => ({ hoveredId, neighbors, hover: setHoveredId }), [hoveredId, neighbors]);
 

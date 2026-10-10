@@ -54,12 +54,23 @@ export interface VolumeFile {
   edges: TechEdge[];
 }
 
+/** 家系（ui-opt 批 2 · J-B）：id = master 8 树树根节点 id；color = 色板 token 名（ui-spec §3） */
+export interface LineageDef {
+  id: string;
+  label: string;
+  color: string;
+}
+
 export interface MetaFile {
   columns: Record<Layer, string[]>;
   bannedWords: string[];
   bands: ParadigmBand[];
   /** 主图「前史」入口标记（ui-spec §6，渲染层概念，与入度无关）：这些 id 在主图带 chip，点击跳前史卷 */
   preEntryNodes?: string[];
+  /** 家系表（8 条，基准 = master 8 树；派生规则见 src/lib/lineage.ts） */
+  lineages?: LineageDef[];
+  /** 家系人为例外（nodeId → lineageId）：覆盖派生结果（语义修复，ui-spec §2 注） */
+  lineageExceptions?: Record<string, string>;
 }
 
 export type VolumeKey = 'main' | 'pre' | 'v1' | 'v2' | 'v3' | 'v4';

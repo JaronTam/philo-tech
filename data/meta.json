@@ -36,5 +36,34 @@
     "低代码"
   ],
   "bands": [],
-  "preEntryNodes": ["boole-laws-of-thought-1854", "shannon-switching-circuits-1937"]
+  "preEntryNodes": ["boole-laws-of-thought-1854", "shannon-switching-circuits-1937"],
+  "lineages": [
+    { "id": "boole-laws-of-thought-1854", "label": "布尔线", "color": "--lineage-1" },
+    { "id": "russell-principia-mathematica-1910", "label": "罗素线", "color": "--lineage-2" },
+    { "id": "edvac-report-1945", "label": "EDVAC 线", "color": "--lineage-3" },
+    { "id": "unix-1971", "label": "UNIX 线", "color": "--lineage-4" },
+    { "id": "tcp-ip-1974", "label": "TCP/IP 线", "color": "--lineage-5" },
+    { "id": "intel-8086-1978", "label": "Intel 8086 线", "color": "--lineage-6" },
+    { "id": "cuda-2007", "label": "CUDA 线", "color": "--lineage-7" },
+    { "id": "docker-2013", "label": "Docker 线", "color": "--lineage-8" }
+  ],
+  "lineageExceptions": {
+    "adaline-1960": "cuda-2007",
+    "backpropagation-1974": "cuda-2007",
+    "delta-lake-2019": "tcp-ip-1974",
+    "harvard-mark-1-1944": "boole-laws-of-thought-1854",
+    "hollerith-tabulator-1890": "boole-laws-of-thought-1854",
+    "ibm-701-1952": "boole-laws-of-thought-1854",
+    "ibm-704-1954": "boole-laws-of-thought-1854",
+    "ibm-system-360-1964": "boole-laws-of-thought-1854",
+    "mapreduce-2004": "tcp-ip-1974",
+    "mcculloch-pitts-1943": "cuda-2007",
+    "neocognitron-1980": "cuda-2007",
+    "os-360-1966": "boole-laws-of-thought-1854",
+    "perceptron-1958": "cuda-2007",
+    "python-1991": "cuda-2007",
+    "ray-2017": "tcp-ip-1974",
+    "scikit-learn-2010": "cuda-2007",
+    "spark-2010": "tcp-ip-1974"
+  }
 }
