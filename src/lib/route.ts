@@ -112,7 +112,7 @@ function collectCrossings(seg: Segment, cols: ColumnBlocks[], out: Set<string>):
   }
 }
 
-/** 去重顶点 + 去共线中间点；返回 a→b→a 折返（贴合堆叠节点对的 0 穿字往返）不塌缩为零长 */
+/** 去重顶点 + 去共线中间点；a→b→a 折返（堆叠节点对的 0 穿字往返）保留、不塌缩为零长 */
 function simplify(points: readonly RoutePoint[]): RoutePoint[] {
   const dedup: RoutePoint[] = [];
   for (const p of points) {
