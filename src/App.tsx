@@ -19,6 +19,8 @@ import {
 } from './lib/layout';
 import { buildRouteScaffold, routeEdge, type Route } from './lib/route';
 import { buildLineageIndex, colorOf } from './lib/lineage';
+import { buildPlaneMarkers, planesInView, type PlaneMarker } from './lib/planes';
+import { RELATION_LABEL } from './lib/labels';
 import { graph, meta } from './lib/data';
 import { THEORY_COLUMN, type VolumeKey } from './lib/types';
 import {
@@ -62,6 +64,7 @@ function panelInsets(open: boolean, canvas: HTMLElement | null): { x: number; y:
 export default function App() {
   const [g, setG] = useState<GraphIndex>(() => graph());
   const [viewKey, setViewKey] = useState<VolumeKey>(() => parseHash(location.hash).state.vol);
+  const [plane, setPlane] = useState<string | null>(null); // 层态（J-D1）：家系 id 或 null（全部层）
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
   const [panelFocusOnOpen, setPanelFocusOnOpen] = useState(false);
@@ -107,7 +110,7 @@ export default function App() {
   const lineageIdx = useMemo(() => buildLineageIndex(g.nodes, g.edges, meta), [g]);
 
   // ---- 视图数据：布局 + 边集（memo 只依赖 [viewKey, g]，交互态经 context 下发）----
-  const { nodes, edges, inboundBadge } = useMemo(() => {
+  const view = useMemo(() => {
     const def = VOLUME_BY_KEY[viewKey];
     const visible =
       viewKey === 'main'
@@ -211,8 +214,37 @@ export default function App() {
         },
       };
     });
-    return { nodes: [gridNode, ...dataNodes], edges: dataEdges, inboundBadge: overflow };
+    // 层态选项（J-D1）：当前视图内出现的家系（按 lineages 声明序）
+    const planes = planesInView(visibleIds, lineageIdx.byNode, (meta.lineages ?? []).map((l) => l.id));
+    return { nodes: [gridNode, ...dataNodes], edges: dataEdges, keptEdges: kept, inboundBadge: overflow, planes };
   }, [viewKey, g, lineageIdx]);
+
+  // ---- 层态投影（J-D1/J-D2，零重排过滤）：仅该家系节点；跨层边不画连线，改入口/出口标记 ----
+  const planeRender = useMemo(() => {
+    if (!plane) return null;
+    const inPlane = (id: string) => lineageIdx.byNode.get(id) === plane;
+    const markers = buildPlaneMarkers(view.keptEdges, lineageIdx.byNode, plane);
+    const edgeById = new Map(view.keptEdges.map((e) => [edgeId(e), e]));
+    const toRender = (m: PlaneMarker) => {
+      const e = edgeById.get(m.edgeId)!;
+      const src = g.byId.get(e.source)?.label ?? e.source;
+      const tgt = g.byId.get(e.target)?.label ?? e.target;
+      const other = (meta.lineages ?? []).find((l) => l.id === m.other)?.label ?? m.other;
+      return {
+        dir: m.dir,
+        color: lineageIdx.colorOfLineage.get(m.other) ?? 'var(--ink-soft)',
+        title: `${m.dir === 'in' ? '入口' : '出口'} · ${other}：${src} → ${tgt}（${RELATION_LABEL[e.relation]}）`,
+      };
+    };
+    const nodes = view.nodes
+      .filter((n) => n.id === 'grid' || inPlane(n.id))
+      .map((n) => {
+        const ms = markers.get(n.id);
+        return ms ? { ...n, data: { ...n.data, planeMarkers: ms.map(toRender) } } : n;
+      });
+    const edges = view.edges.filter((e) => inPlane(e.source) && inPlane(e.target));
+    return { nodes, edges };
+  }, [view, plane, lineageIdx, g]);
 
   // ---- 高亮派生 ----
   const lit = useMemo(() => deriveLit(highlight, null, g), [highlight, g]);
@@ -269,6 +301,11 @@ export default function App() {
   const selectNode = useCallback(
     (id: string, mode: 'trace' | 'search' | 'none', flash = false) => {
       const vol = ensureVisible(id);
+      // 层态（J-D1）：命中节点不在当前层 → 自动切到其家系（无归属 → 退回全部层），同「自动切卷」语义
+      if (plane) {
+        const lin = lineageIdx.byNode.get(id);
+        if (lin !== plane) setPlane(lin ?? null);
+      }
       setNotice(null);
       setSelectedId(id);
       setPanelOpen(true);
@@ -278,7 +315,7 @@ export default function App() {
       setEdgeTip(null);
       writeHash({ vol, node: id });
     },
-    [ensureVisible],
+    [ensureVisible, plane, lineageIdx],
   );
 
   const clearAll = useCallback(() => {
@@ -294,6 +331,7 @@ export default function App() {
   const handleView = useCallback((k: VolumeKey) => {
     // 切卷 = 重置：高亮集合跨视图不再自洽，连同选中/面板/tooltip 一并清（计划裁定）
     setViewKey(k);
+    setPlane(null);
     setSelectedId(null);
     setPanelOpen(false);
     setHighlight(HL_NONE);
@@ -302,6 +340,14 @@ export default function App() {
     setNotice(null);
     setCenterRequest(null);
     writeHash({ vol: k, node: null });
+  }, []);
+
+  // 层切换 = 第 4 态（ui-spec §5）：进入 / 切换 / 退出清高亮与 tooltip；过滤零重排（坐标不变）
+  const handlePlane = useCallback((p: string | null) => {
+    setPlane(p);
+    setHighlight(HL_NONE);
+    setEdgeTip(null);
+    setHoveredId(null);
   }, []);
 
   const closePanel = useCallback(() => {
@@ -335,6 +381,11 @@ export default function App() {
       const visibleIn = (v: VolumeKey) => (v === 'main' ? node.master : owner === v);
       // URL 显式 vol 优先；节点在该卷不可见时切到其所属卷（ui-spec §5 自动切卷）
       const vol = visibleIn(state.vol) ? state.vol : owner;
+      // 层态（J-D1）：深链命中节点不在当前层 → 自动切到其家系（无归属 → 退回全部层）
+      if (plane) {
+        const lin = lineageIdx.byNode.get(id);
+        if (lin !== plane) setPlane(lin ?? null);
+      }
       setViewKey(vol);
       setSelectedId(id);
       setPanelOpen(true);
@@ -343,7 +394,7 @@ export default function App() {
       setCenterRequest({ id, flash: true });
       writeHash({ vol, node: id }); // 规范化（replaceState 不触发 hashchange）
     },
-    [g, viewKey],
+    [g, viewKey, plane, lineageIdx],
   );
 
   const initialApplied = useRef(false);
@@ -434,11 +485,11 @@ export default function App() {
       flashId,
       lit,
       traced: highlight.kind === 'trace',
-      inboundBadge,
+      inboundBadge: view.inboundBadge,
       onSelect: handleNodeSelect,
       onPreEntry: handlePreEntry,
     }),
-    [selectedId, flashId, lit, highlight.kind, inboundBadge, handleNodeSelect, handlePreEntry],
+    [selectedId, flashId, lit, highlight.kind, view.inboundBadge, handleNodeSelect, handlePreEntry],
   );
   const hover = useMemo<Hover>(() => ({ hoveredId, neighbors, hover: setHoveredId }), [hoveredId, neighbors]);
 
@@ -452,6 +503,30 @@ export default function App() {
         onView={handleView}
         right={
           <>
+            {view.planes.length > 0 && (
+              <select
+                aria-label="层（家系平面）"
+                title="按家系分层显示（z 轴 = 家系，与色一致）"
+                value={plane ?? ''}
+                onChange={(e) => handlePlane(e.target.value || null)}
+                style={{
+                  padding: '4px 6px',
+                  fontSize: 13,
+                  border: '1px solid var(--rule)',
+                  borderRadius: 4,
+                  background: 'transparent',
+                  color: 'var(--ink)',
+                  cursor: 'pointer',
+                }}
+              >
+                <option value="">全部层</option>
+                {view.planes.map((p) => (
+                  <option key={p} value={p}>
+                    {(meta.lineages ?? []).find((l) => l.id === p)?.label ?? p}
+                  </option>
+                ))}
+              </select>
+            )}
             <SearchBox
               index={searchIndex}
               volumeOf={g.volumeOf}
@@ -484,9 +559,9 @@ export default function App() {
         <InteractionContext.Provider value={interaction}>
           <HoverContext.Provider value={hover}>
             <ReactFlow
-              key={viewKey}
-              nodes={nodes}
-              edges={edges}
+              key={`${viewKey}|${plane ?? 'all'}`}
+              nodes={planeRender?.nodes ?? view.nodes}
+              edges={planeRender?.edges ?? view.edges}
               nodeTypes={nodeTypes}
               edgeTypes={edgeTypes}
               nodesDraggable={false}

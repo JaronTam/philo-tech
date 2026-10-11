@@ -16,6 +16,38 @@ export interface TechBlockData {
   lineageColor?: string;
   /** 主图「前史」入口 chip（ui-spec §6） */
   preEntry?: boolean;
+  /** 层态跨层边标记（J-D1）：入口 / 出口 + 对端家系色 + 标题（App 预算注入） */
+  planeMarkers?: PlaneMark[];
+}
+
+type PlaneMark = { dir: 'in' | 'out'; color: string; title: string };
+
+/** 跨层边标记（ui-spec §2）：锚点右 26px 起、间距 14px；入口在块顶、出口在块底，箭头恒向下（时间轴向下） */
+function PlaneMarkers({ marks, side, dim }: { marks: PlaneMark[]; side: 'in' | 'out'; dim: boolean }) {
+  return (
+    <>
+      {marks.map((m, i) => (
+        <span
+          key={`${m.dir}-${i}`}
+          data-plane-marker={m.dir}
+          title={m.title}
+          style={{
+            position: 'absolute',
+            left: '50%',
+            transform: `translateX(${26 + i * 14}px)`,
+            ...(side === 'in' ? { top: -14 } : { top: '100%', marginTop: 2 }),
+            lineHeight: 0,
+            opacity: dim ? 0.1 : 1,
+          }}
+        >
+          <svg width={10} height={14} viewBox="0 0 10 14" aria-hidden="true" style={{ display: 'block' }}>
+            <path d="M5 0 V7" stroke={m.color} strokeWidth={2} />
+            <path d="M1 7 L5 13 L9 7" fill="none" stroke={m.color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      ))}
+    </>
+  );
 }
 
 const FONT: Record<Weight, { size: number; weight: number; color?: string }> = {
@@ -114,6 +146,12 @@ export function TechBlock({ id, data }: NodeProps) {
           </div>
         )}
       </div>
+      {d.planeMarkers && (
+        <>
+          <PlaneMarkers marks={d.planeMarkers.filter((m) => m.dir === 'in')} side="in" dim={dim} />
+          <PlaneMarkers marks={d.planeMarkers.filter((m) => m.dir === 'out')} side="out" dim={dim} />
+        </>
+      )}
       {badge > 0 && (
         <span
           title={`入边另有 ${badge} 条未绘（详情框列全）`}

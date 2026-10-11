@@ -15,6 +15,8 @@ import {
 } from '../src/lib/layout';
 import { buildRouteScaffold, legacyPoints, pathMetrics, routeEdge } from '../src/lib/route';
 import { capInbound } from '../src/lib/graph';
+import { buildLineageIndex } from '../src/lib/lineage';
+import { buildPlaneMarkers } from '../src/lib/planes';
 import { VOLUME_BY_KEY, segmentHeights, type VolumeDef } from '../src/lib/volumes';
 
 const root = join(import.meta.dirname, '..');
@@ -309,6 +311,47 @@ console.log('\n[3] 边穿字（统一几何路由复算 · 口径 = 全量 block
   console.log(
     `  合计：旧式 ${legacyTotal} 块 → 新路由 ${routeTotal} 块（目标 ≤10 块：${routeTotal <= 10 ? '✓' : '✗'}）`,
   );
+}
+
+console.log('\n[4] 分层（家系平面）跨层边（J-D1 口径 = 视图内渲染边〔主图含入边截断后〕；两端家系不同 → 层态下每条 1 入口/出口标记）');
+{
+  const lineageIdx = buildLineageIndex(allNodes, allEdges, meta);
+  const order = (meta.lineages ?? []).map((l) => l.id);
+  const labelOf = (id: string) => meta.lineages?.find((l) => l.id === id)?.label ?? id;
+  const viewList: { key: string; nodes: TechNode[] }[] = [
+    { key: 'main', nodes: masterNodes },
+    { key: 'pre', nodes: volFiles[0].nodes },
+    { key: 'v1', nodes: volFiles[1].nodes },
+    { key: 'v2', nodes: volFiles[2].nodes },
+    { key: 'v3', nodes: volFiles[3].nodes },
+    { key: 'v4', nodes: volFiles[4].nodes },
+  ];
+  const distinct = new Set<string>();
+  let instanceTotal = 0;
+  for (const { key, nodes } of viewList) {
+    const visible = new Set(nodes.map((n) => n.id));
+    const rawEdges = allEdges.filter((e) => visible.has(e.source) && visible.has(e.target));
+    const kept = key === 'main' ? capInbound(rawEdges, 8).kept : rawEdges;
+    const ids = new Set<string>();
+    const parts: string[] = [];
+    for (const p of order) {
+      const markers = buildPlaneMarkers(kept, lineageIdx.byNode, p);
+      let inC = 0;
+      let outC = 0;
+      for (const list of markers.values()) {
+        for (const m of list) {
+          if (m.dir === 'in') inC += 1;
+          else outC += 1;
+          ids.add(m.edgeId);
+          distinct.add(m.edgeId);
+        }
+      }
+      if (inC + outC > 0) parts.push(`${labelOf(p)} 入${inC}/出${outC}`);
+    }
+    instanceTotal += ids.size;
+    console.log(`  ${key}：跨层边 ${ids.size}${parts.length ? ` · 标记（按平面 入/出）${parts.join(' · ')}` : ''}`);
+  }
+  console.log(`  合计：跨层边 ${instanceTotal}（视图实例）· 去重 ${distinct.size}`);
 }
 
 console.log('\n=== 连通性 ===');
