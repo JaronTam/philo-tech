@@ -33,7 +33,7 @@ const NEUTRAL = 'var(--ink-soft)';
 /**
  * 边 = 正交折线，无箭头（ui-spec §2）；路径 = 统一几何路由（K3，退化时即旧式中线式）。
  * 描边色 = 家系色（血统线）/ 中性（跨家系）；血统线与 BFS 追溯态高亮边走 rough 手绘层（J-C），
- * 其余保持精确直线。透明加宽命中层恒为精确 path（hover/click 经 RF 的边事件冒泡）。
+ * 其余保持精确直线。hover / click = App 层几何最近边判定（J-E2，取代透明命中层，D-20 关档）；
  * 完整 tooltip 由 App 层 EdgeTooltip 渲染。
  */
 export function TechEdge({ id, sourceX, sourceY, targetX, targetY, data }: EdgeProps) {
@@ -46,26 +46,13 @@ export function TechEdge({ id, sourceX, sourceY, targetX, targetY, data }: EdgeP
   const stroke = d.lineageColor ?? NEUTRAL;
   const rough = Boolean(d.lineageEdge) || (traced && lit.litEdges.has(id));
   const opacity = dim ? 0.1 : 1;
-  return (
-    <>
-      {rough ? (
-        <g opacity={opacity} strokeLinecap="round" strokeLinejoin="round">
-          {sketchPaths(path, edgeSeed(id)).map((p, i) => (
-            <path key={i} d={p} fill="none" style={{ stroke }} strokeWidth={s.width} strokeDasharray={s.dash} />
-          ))}
-        </g>
-      ) : (
-        <path
-          d={path}
-          fill="none"
-          style={{ stroke }}
-          strokeWidth={s.width}
-          strokeDasharray={s.dash}
-          opacity={opacity}
-        />
-      )}
-      {/* 透明加宽命中层：hover/click 经 RF 的边事件冒泡（视觉层保持 1） */}
-      <path d={path} fill="none" stroke="transparent" strokeWidth={14} />
-    </>
+  return rough ? (
+    <g opacity={opacity} strokeLinecap="round" strokeLinejoin="round">
+      {sketchPaths(path, edgeSeed(id)).map((p, i) => (
+        <path key={i} d={p} fill="none" style={{ stroke }} strokeWidth={s.width} strokeDasharray={s.dash} />
+      ))}
+    </g>
+  ) : (
+    <path d={path} fill="none" style={{ stroke }} strokeWidth={s.width} strokeDasharray={s.dash} opacity={opacity} />
   );
 }

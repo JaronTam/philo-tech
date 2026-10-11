@@ -31,6 +31,8 @@ export interface RouteEndpoint {
 export interface Route {
   /** SVG 折线（端点口径 = 源块底中 → 目标块顶中，与 TechEdge 收到的 RF 锚点同约定） */
   path: string;
+  /** 化简后顶点（J-E2 几何最近边命中用；与 path 同源） */
+  points: RoutePoint[];
   crossings: number;
   bends: number;
   length: number;
@@ -276,5 +278,12 @@ export function routeEdge(source: RouteEndpoint, target: RouteEndpoint, scaffold
   }
   // best 未被任何候选取代 ⇒ 退化旧式（K3「新不优于旧则退化」）
   const degenerate = best === legacy;
-  return { path: toPath(best.points), crossings: best.crossings, bends: best.bends, length: best.length, degenerate };
+  return {
+    path: toPath(best.points),
+    points: best.points,
+    crossings: best.crossings,
+    bends: best.bends,
+    length: best.length,
+    degenerate,
+  };
 }

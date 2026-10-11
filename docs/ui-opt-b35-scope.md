@@ -1,6 +1,6 @@
 # UI 优化批 3.5 微批范围（准备批）
 
-状态：2026-10-11 · 基线 = HEAD `4cb1a6b`（批 `3` 分层批已上线，deploy runs `38141060842` / `38141277055`）· 范围 = 附带候选 `3` 条（F5 / D-20 / F6，批 `3` 验收报告 §9 登记，用户 2026-10-11 裁定合开微批）· **G-A 已批（2026-10-11）：J-E1 = A / J-E2 = A / J-E3 = A**
+状态：2026-10-11 · 基线 = HEAD `4cb1a6b`（批 `3` 分层批已上线，deploy runs `38141060842` / `38141277055`）· 范围 = 附带候选 `3` 条（F5 / D-20 / F6，批 `3` 验收报告 §9 登记，用户 2026-10-11 裁定合开微批）· **G-A 已批（2026-10-11）：J-E1 = A / J-E2 = A / J-E3 = A** · **已完成（2026-10-11）：落地 + 验收见 §4**
 
 口径：全部「现状」数字 = 真实实现复算（`npx tsx` 直调 `src/lib`）+ dev 站 Playwright DOM 实测（zoom `0.7505` 或 fit，逐条注明）；复算脚本 `.playwright-mcp/b35-*.mts`（gitignored）。
 
@@ -109,3 +109,17 @@
 - 流程：本件 → **G-A（用户批 §0 三裁定）** → 落地批（代码 + specs + 复算）→ checklist 收口 + deploy → 批 `4` 收口验收（第三方，含本批验收）。
 - 交付物（按裁定组合）：`src/App.tsx` / `src/lib/graph.ts`（或 `route.ts`）改动 + `scripts/validate.ts` 断言 + ui-spec 同步 + `measure` / 复算脚本（若 D-20 批 A：几何判定函数入 `src/lib`，供验收对拍）。
 - 环境：dev 站 5199（复用前验真 HEAD）；DOM 断言 Playwright MCP；zoom 校准法同批 `1`/`2`（`deltaY = -100·ln(target/current)/ln(1.148698354997035)`）。
+
+## 4. 已完成（2026-10-11 · 三题全落）
+
+- 代码件：`src/lib/edgehit.ts`（新，`nearestEdge` 纯函数：点到折线平方距离 + 阈值严格内 + 平局 EPS `1e-9` 按 edgeId 字典序）；`src/lib/route.ts`（`Route.points` = 化简后顶点，与 `path` 同源）；`src/App.tsx`（渲染边集 memo〔J-E1 过滤 / J-E2 命中 / 收敛计数三处共用〕+ `lit` 收敛态按视图过滤 + 按钮按视图计数 / 文案 + 画布层 pointer 接管 hover / click〔阈值 `8px` 屏幕 = `8 / zoom` flow〕+ `panningRef`）；`src/components/TechEdge.tsx`（透明命中层删除）；`scripts/validate.ts`（例外台账断言：`17 = tie 6 + override 11` 冻结计数 + 冗余逐条 error）。
+- **J-E1 验收（DOM，zoom `0.7505`，逐视图开收敛读 opacity）**：亮边 = 主图 `0` / 前史 `0` / 卷 1 `2` / 卷 2 `1` / 卷 3 `2` / 卷 4 `0`；亮节点 = `0/0/4/2/4/0`（= 亮边端点，与 §1.1 期望逐项一致）；主图 / 前史 / 卷 4 按钮 disabled + title「本视图无 convergence 边（收敛边出现在卷 1–3）」。
+- **J-E2 验收**：
+  - 几何对拍（`.playwright-mcp/b35-geom-check.mts`）：六视图 × 20,000 种子随机点（共 `120,000` 点）`nearestEdge` vs 独立实现（hypot + 端点早退 + |cross|/|ab|）不一致 `0`；合成用例（同线平局两序 = `a`、阈值边界 `10 → null` / `9.999 → a`）✓；复跑确定性 ✓。
+  - 完全遮挡复算（口径 = 沿可见路径 `route.points` 每 `4` 用户 px 采样判「归属 = 本边」，zoom `0.7505`）：主图 / 前史 / 卷 1 / 卷 2 / 卷 3 = `0`，卷 4 残余 `1`。**残余登记** = `transformer-2017->stable-diffusion-2022`：路径与他边**全程精确重合**（源扇出同列竖段 / `gpt-3→llama` 竖段 / `openai-api→langchain` 横段），零距离平局按 id 序恒让位——纯距离判定下同几何重合边必有一侧不可分（§1.2 缓解实验：排序 / 缩窄命中层均留有残侧；C 案走廊分道已否）；已知替代入口 = 详情框入边 / 出边列。旧命中层口径视图实例 `32` → 几何口径 `1`。
+  - DOM hover 抽查 `8/8`：**russell→godel 反例转正** = 「罗素《数学原理》 → 哥德尔不完备定理 · 概念影响」（截图 `b35-d20-russell-godel.png`）；cuda→alexnet / ABC→ENIAC / ibm-704→7090 / ms-dos→win3.0 / mapreduce→hadoop / transformer→bert 各归自身；tsd 残余探针 = 归 `GPT-3 → Llama`（与复算一致）。
+  - 交互回归 `9/9`：hover 显示 / 未固定移入 tooltip 保活 / 离开 180ms 收起（60ms 在 → 360ms 无）/ 点击固定（「已固定」）/ 固定态移开保留 / hover 他边替换 / 点空白清 / 节点 hover 不弹边 tip / 平移不弹且不误 pin；全程 `0` console error / `0` warning。
+- **J-E3 验收**：正面 `validate` 全绿 + 信息行「… · 例外台账 `17` = tie `6` + override `11`」；负例（temp 副本，EXIT=1）`4/4`：删 tie 型（`harvard-mark-1-1944`——连带归属覆盖报错）/ 删 override 型 ×`2`（`python-1991` / `spark-2010`——计数 + 分类报错）/ 冗余注入（`python-1991 → unix-1971` = 派生基线——「冗余」逐条 error）。转录 = `.playwright-mcp/b35-f6-negative.txt`。
+- 通用：五命令全绿（validate `193/203` · measure 复跑 `2` 次 md5 `b4f23fe1` = 批 `3` 基线，路由零漂移 · bench p95 `0.207ms` · build gzip `180.44`kB = 基线 `180.01` + `0.43`）；DOM 六视图 `0` console error；截图 `.playwright-mcp/b35-f5-*.png` ×`6` / `b35-d20-russell-godel.png` / `b35-interaction-regression.png`。
+- 施工注记（相对中断 WIP 的两处修正）：① 画布层 `pointerleave` 改 `hideTipSoon`（保「离开 180ms 收起」+ 未固定 tooltip 可入场「来源」链接，同 RF 旧路径）；② 节点 hover 抑制由 React 状态 `hoveredId` 改事件 `target.closest('[data-node-id]')` 同步判定——连续 pointermove 下状态滞后一拍，节点贴边处首击会漏 tip（顺带消除相对 RF 边事件的边角回归）。
+- specs：`ui-spec` v0.17（§2 命中 = 几何最近边 + 重合残余注 / §5 收敛按视图 / §8 按钮按视图态）；`docs/ui-opt-scope.md` §9 + `checklist.md` 快照同步。

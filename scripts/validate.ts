@@ -238,9 +238,26 @@ let lineageInfo = '家系：未启用';
       errors.push(`[家系] master ${id}：派生基线 ${baseline.byNode.get(id) ?? '∅'} ≠ 8 树分区 ${expect}`);
     }
   }
+  // (d) 例外台账（F6 → J-E3）：计数 + 分类断言——分类由派生基线复算（不硬编码 id）。
+  // 删除 override 型例外会静默改线（派生唯一，归属覆盖查不出），此断言把 17/17 删除全变可见；
+  // 阈值 17 = tie 6 + override 11 为冻结台账（先例 K7：数据批增删例外须同步本处）。
+  const excEntries = Object.entries(exceptions);
+  const excTie = excEntries.filter(([id]) => baseline.byNode.get(id) === undefined);
+  const excOverride = excEntries.filter(([id, target]) => {
+    const base = baseline.byNode.get(id);
+    return base !== undefined && base !== target;
+  });
+  if (excEntries.length !== 17) errors.push(`[家系例外] 例外 ${excEntries.length} 条 ≠ 17（增删例外须同步台账）`);
+  if (excTie.length !== 6) errors.push(`[家系例外] tie 型 ${excTie.length} 条 ≠ 6（无例外时派生未定）`);
+  if (excOverride.length !== 11) errors.push(`[家系例外] override 型 ${excOverride.length} 条 ≠ 11（派生唯一且 ≠ 目标）`);
+  for (const [id, target] of excEntries) {
+    if (baseline.byNode.get(id) === target) {
+      errors.push(`[家系例外] ${id} → ${target}：冗余（派生基线已归 ${target}，例外可删）`);
+    }
+  }
   const excCount = Object.keys(exceptions).length;
   const excMaster = Object.keys(exceptions).filter((id) => mIds.has(id)).length;
-  lineageInfo = `家系：${lineages.length} 条 · 归属 ${idx.byNode.size}/${nodes.length}（例外 ${excCount} 条，其中 master ${excMaster}）· master ${mIds.size} 与 8 树分区基线偏离 ${treeDivergence}`;
+  lineageInfo = `家系：${lineages.length} 条 · 归属 ${idx.byNode.size}/${nodes.length}（例外 ${excCount} 条，其中 master ${excMaster}）· master ${mIds.size} 与 8 树分区基线偏离 ${treeDivergence} · 例外台账 ${excCount} = tie ${excTie.length} + override ${excOverride.length}`;
   if (lineages.length > 0 && lineageIds.size !== 8) {
     warnings.push(`[家系] 家系 ${lineageIds.size} 条 ≠ 8（基准 = master 8 树）`);
   }

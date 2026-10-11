@@ -20,6 +20,7 @@ import {
 import { buildRouteScaffold, routeEdge, type Route } from './lib/route';
 import { buildLineageIndex, colorOf } from './lib/lineage';
 import { buildPlaneMarkers, planesInView, type PlaneMarker } from './lib/planes';
+import { nearestEdge, type HitCandidate } from './lib/edgehit';
 import { RELATION_LABEL } from './lib/labels';
 import { graph, meta } from './lib/data';
 import { THEORY_COLUMN, type VolumeKey } from './lib/types';
@@ -247,7 +248,22 @@ export default function App() {
   }, [view, plane, lineageIdx, g]);
 
   // ---- 高亮派生 ----
-  const lit = useMemo(() => deriveLit(highlight, null, g), [highlight, g]);
+  // 收敛态按视图过滤（J-E1）：仅点亮「本视图实际渲染」的收敛边及其端点（0 边视图按钮已 disable）
+  const renderedEdges = planeRender?.edges ?? view.edges;
+  const lit = useMemo(() => {
+    const l = deriveLit(highlight, null, g);
+    if (highlight.kind !== 'convergence') return l;
+    const litEdges = new Set<string>();
+    const litNodes = new Set<string>();
+    for (const e of renderedEdges) {
+      if (l.litEdges.has(e.id)) {
+        litEdges.add(e.id);
+        litNodes.add(e.source);
+        litNodes.add(e.target);
+      }
+    }
+    return { ...l, litNodes, litEdges };
+  }, [highlight, g, renderedEdges]);
   const neighbors = useMemo(() => (hoveredId ? neighborsOf(g, hoveredId) : EMPTY_SET), [hoveredId, g]);
 
   // ---- 缩放控件（D-8）：onMove 只在整数 % 变化时 setState（平移不触发重渲染）----
@@ -445,19 +461,66 @@ export default function App() {
     tipTimer.current = window.setTimeout(() => setEdgeTip((t) => (t?.pinned ? t : null)), 180);
   }, []);
   const cancelHideTip = useCallback(() => window.clearTimeout(tipTimer.current), []);
-  const showTip = useCallback((ev: React.MouseEvent, edge: Edge) => {
-    window.clearTimeout(tipTimer.current);
-    // 重新 hover 已固定的同一条边：保持固定态与锚点位置
-    setEdgeTip((t) =>
-      t?.pinned && t.edgeId === edge.id
-        ? t
-        : { edgeId: edge.id, x: ev.clientX, y: ev.clientY, pinned: false, data: edge.data as unknown as TechEdgeData },
-    );
-  }, []);
-  const pinTip = useCallback((ev: React.MouseEvent, edge: Edge) => {
-    window.clearTimeout(tipTimer.current);
-    setEdgeTip({ edgeId: edge.id, x: ev.clientX, y: ev.clientY, pinned: true, data: edge.data as unknown as TechEdgeData });
-  }, []);
+
+  // ---- 边命中（J-E2 · D-20）：几何「最近边」判定，替代透明命中层叠加（同走廊嵌套边不再被上层吞掉）----
+  const EDGE_HIT_PX = 8; // 屏幕像素命中阈值（flow 阈值 = 8 / zoom）
+  const panningRef = useRef(false);
+  const hitEdges = useMemo<HitCandidate[]>(
+    () =>
+      renderedEdges
+        .map((e) => ({ edgeId: e.id, points: (e.data as unknown as TechEdgeData).route?.points ?? [] }))
+        .filter((h) => h.points.length > 1),
+    [renderedEdges],
+  );
+  const edgeAt = useCallback(
+    (clientX: number, clientY: number): Edge | null => {
+      const inst = rfRef.current;
+      if (!inst) return null;
+      const p = inst.screenToFlowPosition({ x: clientX, y: clientY });
+      const id = nearestEdge(p, hitEdges, EDGE_HIT_PX / inst.getZoom());
+      return id === null ? null : (renderedEdges.find((e) => e.id === id) ?? null);
+    },
+    [hitEdges, renderedEdges],
+  );
+  const tipData = (edge: Edge): TechEdgeData => edge.data as unknown as TechEdgeData;
+  const onCanvasPointerMove = useCallback(
+    (ev: React.PointerEvent) => {
+      // 平移中不判命中（拖拽 pane 期间不弹 tooltip）
+      if (panningRef.current) return;
+      // 指针在节点块内 = 离开边（沿 RF onEdgeMouseLeave 语义）：不接管命中、收起未固定 tip。
+      // 用事件 target 同步判定（hoveredId 为 React 状态，连续 pointermove 下可能滞后一拍：
+      // 从节点块移出的首个 pointermove 会带旧 hoveredId，若光标恰停在节点贴边处会漏 tip）
+      if ((ev.target as HTMLElement).closest?.('[data-node-id]')) {
+        hideTipSoon();
+        return;
+      }
+      const edge = edgeAt(ev.clientX, ev.clientY);
+      if (!edge) {
+        hideTipSoon();
+        return;
+      }
+      window.clearTimeout(tipTimer.current);
+      // 同边不重设（位置不随光标抖动，同批 1 前行为）；换边则替换（含替换已固定态，同既有）
+      setEdgeTip((t) =>
+        t?.edgeId === edge.id
+          ? t
+          : { edgeId: edge.id, x: ev.clientX, y: ev.clientY, pinned: false, data: tipData(edge) },
+      );
+    },
+    [edgeAt, hideTipSoon],
+  );
+  const onCanvasClick = useCallback(
+    (ev: React.MouseEvent) => {
+      const edge = edgeAt(ev.clientX, ev.clientY);
+      if (edge) {
+        window.clearTimeout(tipTimer.current);
+        setEdgeTip({ edgeId: edge.id, x: ev.clientX, y: ev.clientY, pinned: true, data: tipData(edge) });
+        return;
+      }
+      clearAll(); // 点空白 = 清全部（原 RF onPaneClick 语义，随边命中接管）
+    },
+    [edgeAt, clearAll],
+  );
 
   // ---- context ----
   const handleNodeSelect = useCallback((id: string) => selectNode(id, 'trace'), [selectNode]);
@@ -494,7 +557,11 @@ export default function App() {
   const hover = useMemo<Hover>(() => ({ hoveredId, neighbors, hover: setHoveredId }), [hoveredId, neighbors]);
 
   const searchIndex = useMemo(() => buildSearchIndex(g.nodes), [g]);
-  const convCount = g.convergence.edgeIds.size;
+  // 收敛按钮计数按视图（J-E1）：= 本视图渲染边 ∩ 收敛边
+  const convCount = useMemo(
+    () => renderedEdges.filter((e) => g.convergence.edgeIds.has(e.id)).length,
+    [renderedEdges, g],
+  );
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -538,7 +605,11 @@ export default function App() {
               onClick={() => setHighlight((h) => (h.kind === 'convergence' ? HL_NONE : { kind: 'convergence' }))}
               aria-pressed={highlight.kind === 'convergence'}
               disabled={convCount === 0}
-              title={convCount === 0 ? '当前数据无 convergence 边（预期出现在卷 3–4）' : `高亮 ${convCount} 条收敛边及其多源`}
+              title={
+                convCount === 0
+                  ? '本视图无 convergence 边（收敛边出现在卷 1–3）'
+                  : `高亮 ${convCount} 条收敛边及其多源`
+              }
               style={{
                 padding: '4px 10px',
                 fontSize: 13,
@@ -556,39 +627,49 @@ export default function App() {
         }
       />
       <div ref={canvasRef} style={{ flex: 1, minHeight: 0, background: 'var(--bg)', position: 'relative' }}>
-        <InteractionContext.Provider value={interaction}>
-          <HoverContext.Provider value={hover}>
-            <ReactFlow
-              key={`${viewKey}|${plane ?? 'all'}`}
-              nodes={planeRender?.nodes ?? view.nodes}
-              edges={planeRender?.edges ?? view.edges}
-              nodeTypes={nodeTypes}
-              edgeTypes={edgeTypes}
-              nodesDraggable={false}
-              nodesConnectable={false}
-              elementsSelectable={false}
-              minZoom={0.25}
-              maxZoom={2.5}
-              fitView
-              fitViewOptions={{ padding: 0.03 }}
-              onPaneClick={clearAll}
-              onMove={syncZoom}
-              onMoveStart={() => setEdgeTip(null)}
-              onEdgeClick={pinTip}
-              onEdgeMouseEnter={showTip}
-              onEdgeMouseLeave={hideTipSoon}
-            >
-              <FlowBridge
-                request={centerRequest}
-                onReady={(i) => {
-                  rfRef.current = i;
+        {/* 边命中接管层（J-E2）：pointermove / click 走几何最近边判定；面板 / 缩放控件 / tooltip 在此层之外 */}
+        <div
+          style={{ position: 'absolute', inset: 0 }}
+          onPointerMove={onCanvasPointerMove}
+          onPointerLeave={hideTipSoon}
+          onClick={onCanvasClick}
+        >
+          <InteractionContext.Provider value={interaction}>
+            <HoverContext.Provider value={hover}>
+              <ReactFlow
+                key={`${viewKey}|${plane ?? 'all'}`}
+                nodes={planeRender?.nodes ?? view.nodes}
+                edges={planeRender?.edges ?? view.edges}
+                nodeTypes={nodeTypes}
+                edgeTypes={edgeTypes}
+                nodesDraggable={false}
+                nodesConnectable={false}
+                elementsSelectable={false}
+                minZoom={0.25}
+                maxZoom={2.5}
+                fitView
+                fitViewOptions={{ padding: 0.03 }}
+                onMove={syncZoom}
+                onMoveStart={() => {
+                  panningRef.current = true;
+                  setEdgeTip(null);
                 }}
-                onApply={focusNode}
-                onDone={() => setCenterRequest(null)}
-              />
-            </ReactFlow>
-          </HoverContext.Provider>
-        </InteractionContext.Provider>
+                onMoveEnd={() => {
+                  panningRef.current = false;
+                }}
+              >
+                <FlowBridge
+                  request={centerRequest}
+                  onReady={(i) => {
+                    rfRef.current = i;
+                  }}
+                  onApply={focusNode}
+                  onDone={() => setCenterRequest(null)}
+                />
+              </ReactFlow>
+            </HoverContext.Provider>
+          </InteractionContext.Provider>
+        </div>
         <EdgeTooltip tip={edgeTip} onEnter={cancelHideTip} onLeave={hideTipSoon} />
         <ZoomControls
           zoomPct={zoomPct}
